@@ -7,4 +7,4 @@ const Resources = {
 }
 const ResourceLoader = new Loader([Resources.Fish, Resources.block])
 
-export { Resources, ResourceLoader }
+export { Resources, ResourceLoader };
