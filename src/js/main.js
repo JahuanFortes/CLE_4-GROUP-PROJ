@@ -2,6 +2,7 @@ import "../css/style.css";
 import { Actor, Engine, Vector } from "excalibur";
 import { Resources, ResourceLoader } from "./resources.js";
 import { TitleScreen } from "./scenes/titlescreen";
+import { testingground } from "./scenes/testingground";
 
 export class Game extends Engine {
   constructor() {
@@ -11,7 +12,8 @@ export class Game extends Engine {
 
   startGame() {
     this.addScene("titlescreen", new TitleScreen());
-    this.goToScene("titlescreen");
+    this.addScene("testingground", new testingground());
+    this.goToScene("testingground");
   }
 }
 

@@ -1,69 +1,67 @@
-import { Actor, Input, Random, Vector } from "excalibur"
+import { Actor, Input, Random, Vector, clamp } from "excalibur"
 import { Resources } from "./resources"
 
 export class player extends Actor {
-    constructor(){
+    game;
+    scene;
+    id;
+    constructor(scene, id){
         super({width:100, height:100})
-    }
-
-    onInitialize(engine, scene){
-
-        this.enableCapturePointer = true
+        this.graphics.use(Resources.block.toSprite())
+        this.pos = new Vector(100, 300) 
         this.pointer.useGraphicsBounds = true
-        this.on("pointerup", (event) => {
-            console.log(`je klikt op mario`)
-            this.pos = new Vector(100,100)
-            this.kill()
-        });
+        this.scene = scene
+        this.id = id
     }
-    onPreKill(scene){        
-        console.log("goodbye, cruel world")    
-        Resources.scream.play()
-    }
-    loadMicroGame(game){
-        switch(game){
-            case "game1":
-                this.rand = new Random()
-
-                this.graphics.use(Resources.dud.toSprite())
-                this.pos = new Vector(this.rand.integer(100, 500), this.rand.integer(100,500)) 
-                this.vel = new Vector(30, 0)
-
-                this.enableCapturePointer = true
-                this.pointer.useGraphicsBounds = true
-                this.on("pointerup", (event) => {
-                    console.log(`je klikt op mario`)
-                    this.pos = new Vector(100,100)
-                    this.kill()
-                });
-                break;
-            case "game2":
-                // voorbeeld tekstlabel
-                let textField = new Label({
-                    font: new Font({
-                        family: "Sofia",
-                        size: 32,
-                        color: Color.red
-                    })
-                })
-                textField.text = `PRESS ANY BUTTON`
-                textField.pos = new Vector(20, 30)
-                
-
-                break;
-            case "game3":
-                this.graphics.use(Resources.smasnug.toSprite())
-                this.scale = new Vector(4,2)
-                this.pos = new Vector(400,300)
-                break;
-        }
+    onInitialize(engine){
+        this.game = engine
+        engine.input.gamepads.enabled = true;
     }
     onPreUpdate(engine) {
-        if (engine.input.keyboard.isHeld(Input.Keys.W) || engine.input.keyboard.isHeld(Input.Keys.Up)) {
-            Resources.gnome.play()
-        }
-        if (engine.input.keyboard.isHeld(Input.Keys.S) || engine.input.keyboard.isHeld(Input.Keys.Up)) {
-            Resources.gnome.play()
-        }
-    } 
+        let xspeed = 0
+        let yspeed = 0
+
+        let kb = engine.input.keyboard
+        let controller = engine.input.gamepads
+        switch(this.id){
+            case 1:
+                if (kb.isHeld(Input.Keys.W) || kb.isHeld(Input.Keys.Up)  || controller.at(0).getAxes(Input.Axes.LeftStickY) < -0.5) {
+                    yspeed = -300
+                }
+                if (kb.isHeld(Input.Keys.S) || kb.isHeld(Input.Keys.Down)  || controller.at(0).getAxes(Input.Axes.LeftStickY) > 0.5) {
+                    yspeed = 300
+                }
+                if (kb.isHeld(Input.Keys.A) || kb.isHeld(Input.Keys.Left) || controller.at(0).getAxes(Input.Axes.LeftStickX) < -0.5) {
+                    xspeed = -300
+                }
+                if (kb.isHeld(Input.Keys.D) || kb.isHeld(Input.Keys.Right) || controller.at(0).getAxes(Input.Axes.LeftStickX) > 0.5) {
+                    xspeed = 300
+                }
+             break;
+             case 2:
+                if (kb.isHeld(Input.Keys.I) || kb.isHeld(Input.Keys.Up)  || controller.at(0).getAxes(Input.Axes.LeftStickY) < -0.5) {
+                    yspeed = -300
+                }
+                if (kb.isHeld(Input.Keys.K) || kb.isHeld(Input.Keys.Down)  || controller.at(0).getAxes(Input.Axes.LeftStickY) > 0.5) {
+                    yspeed = 300
+                }
+                if (kb.isHeld(Input.Keys.J) || kb.isHeld(Input.Keys.Left) || controller.at(0).getAxes(Input.Axes.LeftStickX) < -0.5) {
+                    xspeed = -300
+                }
+                if (kb.isHeld(Input.Keys.L) || kb.isHeld(Input.Keys.Right) || controller.at(0).getAxes(Input.Axes.LeftStickX) > 0.5) {
+                    xspeed = 300
+                }
+
+    }
+        this.vel = new Vector(xspeed, yspeed)
+        // blijf binnen beeld
+        this.pos.x = clamp(this.pos.x, this.width/2, engine.drawWidth - this.width/2);
+        this.pos.y = clamp(this.pos.y, this.height/2, engine.drawHeight - this.height/2);
+    }
+    onPostUpdate(engine){
+
+    }
+    hitSomething(event){
+
+    }
 }

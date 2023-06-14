@@ -9,7 +9,7 @@ import {
   Input,
   FontUnit,
 } from "excalibur";
-import { Level_1 } from "../scenes/game_lvl1";
+//import { Level1 } from "../scenes/game_lvl1.js";
 import { Resources } from "../resources.js";
 
 export class Text extends Scene {
