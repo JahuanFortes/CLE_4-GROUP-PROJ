@@ -8,8 +8,8 @@ import {
   Font,
   Input,
   FontUnit,
+  FontStyle,
 } from "excalibur";
-import { Level_1 } from "../scenes/game_lvl1";
 import { Resources } from "../resources.js";
 
 export class Text extends Scene {
@@ -29,18 +29,19 @@ export class TitleScreen extends Scene {
     console.log("how to play");
     this.game = engine;
     const color = new Actor();
-    color.graphics.use(Resources.Color.toSprite());
+    // color.graphics.use(Resources.Color.toSprite());
     color.pos = new Vector(500, 400);
     color.scale = new Vector(3, 3);
     this.add(color);
-
     //text field:
+    // FontStyle("Press Start 2P");
+
     let bigText1 = new Label({
       text: "HeadphoneActor",
       pos: new Vector(90, 100),
       font: new Font({
-        family: "Biome",
-        size: 80,
+        family: "PressStart2P-Regular",
+        size: 20,
         color: Color.White,
         unit: FontUnit.Px,
       }),
@@ -50,8 +51,8 @@ export class TitleScreen extends Scene {
       text: "Press SPACE, W or UP to JUMP!",
       pos: new Vector(110, 200),
       font: new Font({
-        family: "Biome",
-        size: 37,
+        family: "PressStart2P-Regular",
+        size: 20,
         color: Color.White,
         unit: FontUnit.Px,
       }),
@@ -61,7 +62,7 @@ export class TitleScreen extends Scene {
       text: "Press SPACE to play",
       pos: new Vector(90, 250),
       font: new Font({
-        family: "Biome",
+        family: "PressStart2P-Regular",
         size: 20,
         color: Color.White,
         unit: FontUnit.Px,
@@ -71,7 +72,6 @@ export class TitleScreen extends Scene {
     this.add(bigText2);
     this.add(textField2);
     textField2.actions.blink(200, 200, 10);
-    this.game.addScene("game", new Main());
   }
 
   onPreUpdate(engine) {
