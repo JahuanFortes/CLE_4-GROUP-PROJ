@@ -42,6 +42,7 @@ export class IngameButton extends Actor {
                     this.isPressed = false;
                     console.log('not pressed');
                 }
+                break
             case 2:
                 if (this.player.interactTimer === true) {
                     this.isPressed = true;
