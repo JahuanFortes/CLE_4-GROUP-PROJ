@@ -2,6 +2,7 @@ import { Actor, Engine, Vector, Label, Font, Color, Random, Input, CollisionGrou
 import { Resources, ResourceLoader } from '../resources.js'
 import { player } from '../player.js'
 import { IngameButton } from "../ingameButton.js";
+import { Wall } from "../wall.js";
 
 export class testingground extends Scene {
     game;
@@ -12,8 +13,11 @@ export class testingground extends Scene {
         super({ width: 1280, height: 720 })
         this.player = new player(this, 1);
         this.player2 = new player(this,2);
-        this.button1 = new IngameButton(200, 100, 3, this);
-        this.button2 = new IngameButton(400, 100, 4, this);
+        this.button1 = new IngameButton(200, 100, 1, this, Resources.TestButton.toSprite());
+        this.button2 = new IngameButton(400, 100, 2, this, Resources.TestButton2.toSprite());
+        this.breakingWall = new Wall(500, 200, 500, 0);
+        this.wall = new Wall(500, 200, 0, 200);
+
     }
     onInitialize(engine) {
         this.game = engine
@@ -28,6 +32,8 @@ export class testingground extends Scene {
         this.add(this.button1)
         this.add(this.player)
         this.add(this.button2)
+        this.add(this.breakingWall);
+        this.add(this.wall)
 
     }
     /*
