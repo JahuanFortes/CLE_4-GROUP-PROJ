@@ -12,8 +12,8 @@ export class testingground extends Scene {
         super({ width: 1280, height: 720 })
         this.player = new player(this, 1);
         this.player2 = new player(this,2);
-        this.button1 = new IngameButton(500, 300, this.player, 1);
-        //this.button2 = new IngameButton(200, 300, this.player2, 2);
+        this.button1 = new IngameButton(200, 100, 3, this);
+        this.button2 = new IngameButton(400, 100, 4, this);
     }
     onInitialize(engine) {
         this.game = engine
@@ -25,17 +25,17 @@ export class testingground extends Scene {
         this.startGame()
     }
     startGame() {
-        this.add(this.player);
-        this.add(this.button1);
-        //this.add(this.button2);
-        console.log(this.button1)
+        this.add(this.button1)
+        this.add(this.player)
+        this.add(this.button2)
 
     }
-
+    /*
     loadEverything() {
       this.add(this.player)
             
     }
+    */
     onPreUpdate(game){
       let kb = this.game.input.keyboard
       let controller = this.game.input.gamepads

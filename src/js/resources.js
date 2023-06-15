@@ -13,6 +13,6 @@ const Resources = {
     Map: new ImageSource(mapImage),
     TestButton: new ImageSource(testButton)
 }
-const ResourceLoader = new Loader([Resources.Fish, Resources.block,Resources.Map])
+const ResourceLoader = new Loader([Resources.Fish, Resources.block,Resources.Map, Resources.TestButton])
 
 export { Resources, ResourceLoader };
