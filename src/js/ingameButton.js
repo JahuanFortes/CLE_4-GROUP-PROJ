@@ -10,7 +10,9 @@ export class IngameButton extends Actor {
     player;
     isPressed;
     id;
-    constructor(x, y, player, id) {
+    scene;
+    game
+    constructor(x, y,  id,scene) {
         super({
             width: 32,
             height: 20,
@@ -20,16 +22,20 @@ export class IngameButton extends Actor {
         this.x = x;
         this.y = y;
         this.pos = new Vector(this.x, this.y);
-        this.player = player;
+        //this.player = player;
         this.id = id;
+        this.scene = scene;
         this.graphics.use(Resources.TestButton.toSprite())
+        this.pointer.useGraphicsBounds = true
     }
 
 
     onInitialize(engine) {
+        console.log("Nuts")
+        this.game = engine
         this.on('collisionstart', () => this.wasPressed());
     }
-
+    /*
     wasPressed(event) {
 
         switch (this.id){
@@ -53,4 +59,5 @@ export class IngameButton extends Actor {
                 }
         }
     }
+    */
 }
