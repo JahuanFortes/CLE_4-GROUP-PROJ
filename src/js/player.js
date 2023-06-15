@@ -1,17 +1,17 @@
-import { Actor, Input, Random, Vector, clamp } from "excalibur"
+import { Actor, GamepadConnectEvent, Input, Random, Vector, clamp } from "excalibur"
 import { Resources } from "./resources"
 
 export class player extends Actor {
     game;
     scene;
     id;
-    constructor(scene, id){
+    constructor(scene, playerId){
         super({width:100, height:100})
         this.graphics.use(Resources.block.toSprite())
         this.pos = new Vector(100, 300) 
         this.pointer.useGraphicsBounds = true
         this.scene = scene
-        this.id = id
+        this.id = playerId
     }
     onInitialize(engine){
         this.game = engine
@@ -23,6 +23,9 @@ export class player extends Actor {
 
         let kb = engine.input.keyboard
         let controller = engine.input.gamepads
+        controller.on('connect', () => {
+           console.log("test")
+        })
         switch(this.id){
             case 1:
                 if (kb.isHeld(Input.Keys.W) || kb.isHeld(Input.Keys.Up)  || controller.at(0).getAxes(Input.Axes.LeftStickY) < -0.5) {
@@ -39,16 +42,16 @@ export class player extends Actor {
                 }
              break;
              case 2:
-                if (kb.isHeld(Input.Keys.I) || kb.isHeld(Input.Keys.Up)  || controller.at(0).getAxes(Input.Axes.LeftStickY) < -0.5) {
+                if (kb.isHeld(Input.Keys.I) || kb.isHeld(Input.Keys.Up)  || controller.at(1).getAxes(Input.Axes.LeftStickY) < -0.5) {
                     yspeed = -300
                 }
-                if (kb.isHeld(Input.Keys.K) || kb.isHeld(Input.Keys.Down)  || controller.at(0).getAxes(Input.Axes.LeftStickY) > 0.5) {
+                if (kb.isHeld(Input.Keys.K) || kb.isHeld(Input.Keys.Down)  || controller.at(1).getAxes(Input.Axes.LeftStickY) > 0.5) {
                     yspeed = 300
                 }
-                if (kb.isHeld(Input.Keys.J) || kb.isHeld(Input.Keys.Left) || controller.at(0).getAxes(Input.Axes.LeftStickX) < -0.5) {
+                if (kb.isHeld(Input.Keys.J) || kb.isHeld(Input.Keys.Left) || controller.at(1).getAxes(Input.Axes.LeftStickX) < -0.5) {
                     xspeed = -300
                 }
-                if (kb.isHeld(Input.Keys.L) || kb.isHeld(Input.Keys.Right) || controller.at(0).getAxes(Input.Axes.LeftStickX) > 0.5) {
+                if (kb.isHeld(Input.Keys.L) || kb.isHeld(Input.Keys.Right) || controller.at(1).getAxes(Input.Axes.LeftStickX) > 0.5) {
                     xspeed = 300
                 }
 
