@@ -1,10 +1,11 @@
-import { Actor, Input, Random, Vector, clamp } from "excalibur"
+import { Actor, Input, Random, Vector, clamp, Timer } from "excalibur"
 import { Resources } from "./resources"
 
 export class player extends Actor {
     game;
     scene;
     id;
+    interactTimer = false;
     constructor(scene, id){
         super({width:100, height:100})
         this.graphics.use(Resources.block.toSprite())
@@ -16,6 +17,7 @@ export class player extends Actor {
     onInitialize(engine){
         this.game = engine
         engine.input.gamepads.enabled = true;
+
     }
     onPreUpdate(engine) {
         let xspeed = 0
@@ -37,6 +39,10 @@ export class player extends Actor {
                 if (kb.isHeld(Input.Keys.D) || kb.isHeld(Input.Keys.Right) || controller.at(0).getAxes(Input.Axes.LeftStickX) > 0.5) {
                     xspeed = 300
                 }
+                //interaction
+                if (kb.wasPressed(Input.Keys.E)) {
+                    this.interact();
+                }
              break;
              case 2:
                 if (kb.isHeld(Input.Keys.I) || kb.isHeld(Input.Keys.Up)  || controller.at(0).getAxes(Input.Axes.LeftStickY) < -0.5) {
@@ -51,6 +57,10 @@ export class player extends Actor {
                 if (kb.isHeld(Input.Keys.L) || kb.isHeld(Input.Keys.Right) || controller.at(0).getAxes(Input.Axes.LeftStickX) > 0.5) {
                     xspeed = 300
                 }
+                 //interaction
+                 if (kb.wasPressed(Input.Keys.U)) {
+                     this.interact();
+                 }
 
     }
         this.vel = new Vector(xspeed, yspeed)
@@ -63,5 +73,21 @@ export class player extends Actor {
     }
     hitSomething(event){
 
+    }
+
+    interact(event) {
+        console.log(this.interactTimer);
+        this.interactTimer = true;
+
+        const timer = new Timer({
+            fcn: () => this.interactTimer = false,
+            repeats: false,
+            interval: 2000,
+        })
+
+        this.game.currentScene.add(timer)
+
+        timer.start()
+        console.log(this.interactTimer);
     }
 }
