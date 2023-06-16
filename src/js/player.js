@@ -4,14 +4,14 @@ import { Resources } from "./resources"
 export class player extends Actor {
     game;
     scene;
-    id;
+    playerId;
     constructor(scene, playerId){
         super({width:100, height:100})
         this.graphics.use(Resources.block.toSprite())
         this.pos = new Vector(100, 300) 
         this.pointer.useGraphicsBounds = true
         this.scene = scene
-        this.id = playerId
+        this.playerId = playerId
     }
     onInitialize(engine){
         this.game = engine
@@ -26,7 +26,7 @@ export class player extends Actor {
         controller.on('connect', () => {
            console.log("test")
         })
-        switch(this.id){
+        switch(this.playerId){
             case 1:
                 if (kb.isHeld(Input.Keys.W) || kb.isHeld(Input.Keys.Up)  || controller.at(0).getAxes(Input.Axes.LeftStickY) < -0.5) {
                     yspeed = -300
