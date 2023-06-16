@@ -2,6 +2,7 @@ import { Actor, Engine, Vector, DisplayMode, CollisionType } from "excalibur";
 import { Resources, ResourceLoader } from "./resources.js";
 import { TitleScreen } from "./scenes/titlescreen";
 import { testingground } from "./scenes/testingground";
+import { MovableObject } from "./movableObject.js";
 
 
 export class IngameButton extends Actor {
@@ -46,12 +47,16 @@ export class IngameButton extends Actor {
     isPressed(event) {
         if (this.buttonId === this.scene.player.playerId) {
             this.openDoor = true;
-            console.log(this.openDoor)
+
         }
         if (this.buttonId === this.scene.player2.playerId) {
             this.openDoor = true;
-            console.log(this.openDoor)
 
+
+        }
+        if (this.buttonId === this.scene.movableObject.objectId) {
+            this.openDoor = true;
+            console.log('wat')
         }
 
 
@@ -64,9 +69,14 @@ export class IngameButton extends Actor {
         }
         if (this.buttonId === this.scene.player2.playerId) {
             this.openDoor = false;
-            console.log(this.openDoor)
+
 
         }
+        if (this.buttonId === this.scene.movableObject.objectId) {
+            this.openDoor = false;
+            console.log('wat')
+        }
+
     }
 
 

@@ -1,6 +1,7 @@
 import {Actor, Input, Random, Vector, clamp, Timer, CollisionType, CollisionGroupManager} from "excalibur"
 import { Resources } from "./resources"
 
+
 export class player extends Actor {
     game;
     scene;
@@ -8,13 +9,14 @@ export class player extends Actor {
     interactTimer = false;
     static group = CollisionGroupManager.create('player');
     constructor(scene, playerId){
-        super({width:100, height:100, collisionType:CollisionType.Active})
+        super({width:100, height:100, collisionType:CollisionType.Active, })
         this.graphics.use(Resources.block.toSprite());
         this.pos = new Vector(5, 100);
         this.pointer.useGraphicsBounds = true;
         this.scene = scene;
         this.playerId = playerId;
         this.body.group = player.group;
+
 
     }
     onInitialize(engine){
@@ -23,6 +25,7 @@ export class player extends Actor {
 
     }
     onPreUpdate(engine) {
+        this.rotation = 0;
         let xspeed = 0
         let yspeed = 0
 

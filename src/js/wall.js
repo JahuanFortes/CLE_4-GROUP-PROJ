@@ -3,6 +3,7 @@ import { Actor, Input, Random, Vector, clamp, Timer, EdgeCollider, CollisionType
 import { Resources } from "./resources"
 
 export class Wall extends Actor {
+    box;
     constructor(startX, startY, endX, endY) {
         super()
 
@@ -10,11 +11,11 @@ export class Wall extends Actor {
 
         this.pos = new Vector(0, 0)
 
-        const box = new EdgeCollider({
+        this.box = new EdgeCollider({
             begin: new Vector(startX, startY),
             end: new Vector(endX, endY),
         })
-        this.collider.set(box);
+        this.collider.set(this.box);
         this.body.collisionType = CollisionType.Fixed;
 
     }
