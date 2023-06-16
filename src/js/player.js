@@ -9,11 +9,11 @@ export class player extends Actor {
     static group = CollisionGroupManager.create('player');
     constructor(scene, playerId){
         super({width:100, height:100, collisionType:CollisionType.Active})
-        this.graphics.use(Resources.block.toSprite())
-        this.pos = new Vector(5, 5)
-        this.pointer.useGraphicsBounds = true
-        this.scene = scene
-        this.playerId = playerId
+        this.graphics.use(Resources.block.toSprite());
+        this.pos = new Vector(5, 100);
+        this.pointer.useGraphicsBounds = true;
+        this.scene = scene;
+        this.playerId = playerId;
         this.body.group = player.group;
 
     }

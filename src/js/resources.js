@@ -2,6 +2,7 @@ import { ImageSource, Sound, Resource, Loader } from 'excalibur'
 import fishImage from '../images/fish.png'
 import block from '../images/Sprite-0002-rock.png'
 import mapImage from "../images/map.jpg"
+import level1 from "../images/BgLevel1.jpg"
 import testButton from "../images/test-button.png"
 import testButton2 from "../images/test-button-2.png"
 import fontFile from "../css/PressStart2P-Regular.ttf";
@@ -12,6 +13,7 @@ const Resources = {
     Fish: new ImageSource(fishImage),
     block: new ImageSource(block),
     Map: new ImageSource(mapImage),
+    Level1: new ImageSource(level1),
     TestButton: new ImageSource(testButton),
     TestButton2: new ImageSource(testButton2)
 }

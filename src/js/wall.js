@@ -18,4 +18,11 @@ export class Wall extends Actor {
         this.body.collisionType = CollisionType.Fixed;
 
     }
+
+    onInitialize(engine) {
+        this.game = engine;
+
+    }
+
+
 }

@@ -13,16 +13,20 @@ export class testingground extends Scene {
         super({ width: 1280, height: 720 })
         this.player = new player(this, 1);
         this.player2 = new player(this,2);
-        this.button1 = new IngameButton(200, 100, 1, this, Resources.TestButton.toSprite());
-        this.button2 = new IngameButton(400, 100, 2, this, Resources.TestButton2.toSprite());
-        this.breakingWall = new Wall(500, 200, 500, 0);
-        this.wall = new Wall(500, 200, 0, 200);
+        this.button1 = new IngameButton(50, 25, 1, this);
+        this.button2 = new IngameButton(250, 25, 2, this);
+        this.breakingWall = new Wall(400, 300, 400, 0);
+        this.wall = new Wall(1200, 300, 0, 300);
 
     }
     onInitialize(engine) {
         this.game = engine
         engine.input.gamepads.enabled = true;
-
+        let background = new Actor();
+        background.graphics.use(Resources.Level1.toSprite());
+        background.scale = new Vector(1.3, 1.36);
+        background.pos = new Vector(775, 335);
+        this.add(background);
     }
     onActivate(ctx) {
         console.log("Scene has started");
@@ -35,6 +39,7 @@ export class testingground extends Scene {
         this.add(this.breakingWall);
         this.add(this.wall)
 
+
     }
     /*
     loadEverything() {
@@ -43,6 +48,12 @@ export class testingground extends Scene {
     }
     */
     onPreUpdate(game){
+        if (this.button1.openDoor && this.button2.openDoor) {
+            this.breakingWall.kill();
+            this.button1.openDoor = false;
+            this.button2.openDoor = false;
+
+        }
       let kb = this.game.input.keyboard
       let controller = this.game.input.gamepads
       if (kb.isHeld(Input.Keys.Enter)) {

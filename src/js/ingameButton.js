@@ -8,13 +8,12 @@ export class IngameButton extends Actor {
     x;
     y;
     player;
-    isPressed1 = false;
-    isPressed2 = false;
+    openDoor = false;
     buttonId;
     scene;
     game;
     sprite;
-    constructor(x, y,  buttonId, scene, image) {
+    constructor(x, y,  buttonId, scene) {
         super({
             width: 32,
             height: 20,
@@ -26,7 +25,7 @@ export class IngameButton extends Actor {
         this.pos = new Vector(this.x, this.y);
         this.buttonId = buttonId;
         this.scene = scene;
-        this.sprite = image;
+        this.sprite = Resources.TestButton.toSprite();
 
         this.pointer.useGraphicsBounds = true
     }
@@ -36,36 +35,39 @@ export class IngameButton extends Actor {
         console.log("Nuts")
         this.game = engine;
         this.graphics.use(this.sprite);
-        this.on('collisionstart', () => this.wasPressed());
+        this.on('collisionstart', () => this.isPressed());
+        this.on('collisionend', () => this.wasPressed());
+
+
     }
 
-    deleteWall() {
 
-    }
 
+    isPressed(event) {
+        if (this.buttonId === this.scene.player.playerId) {
+            this.openDoor = true;
+            console.log(this.openDoor)
+        }
+        if (this.buttonId === this.scene.player2.playerId) {
+            this.openDoor = true;
+            console.log(this.openDoor)
+
+        }
+
+
+
+   }
     wasPressed(event) {
+        if (this.buttonId === this.scene.player.playerId) {
+            this.openDoor = false;
+            console.log(this.openDoor)
+        }
+        if (this.buttonId === this.scene.player2.playerId) {
+            this.openDoor = false;
+            console.log(this.openDoor)
 
-        switch (this.buttonId){
-            case 1:
-                if (this.scene.player.interactTimer === true) {
-                    this.isPressed1 = true;
-                    console.log('im pressed');
-                }
-                if (this.scene.player.interactTimer === false) {
-                    this.isPressed1 = false;
-                    console.log('not pressed');
-                }
-                break
-            case 2:
-                if (this.scene.player2.interactTimer === true) {
-                    this.isPressed2 = true;
-                    console.log('im pressed');
-                }
-                if (this.scene.player2.interactTimer === false) {
-                    this.isPressed2 = false;
-                    console.log('not pressed');
-                }
         }
     }
+
 
 }
