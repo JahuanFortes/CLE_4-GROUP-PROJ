@@ -45,6 +45,7 @@ export class IngameButton extends Actor {
 
 
     isPressed(event) {
+        Resources.Click.play();
         if (this.buttonId === this.scene.player.playerId) {
             this.openDoor = true;
 
@@ -63,6 +64,7 @@ export class IngameButton extends Actor {
 
    }
     wasPressed(event) {
+        Resources.Offclick.play();
         if (this.buttonId === this.scene.player.playerId) {
             this.openDoor = false;
             console.log(this.openDoor)

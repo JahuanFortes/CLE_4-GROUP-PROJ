@@ -3,21 +3,27 @@ import { Resources } from "./resources"
 
 export class MovableObject extends Actor {
     objectId;
-    constructor(objectId) {
-        super({ collisionType: CollisionType.Active, width: 50, height: 50, color: Color.Red})
+    sprite;
+    collision;
+    constructor(objectId, image, collision, x, y) {
+        super({
+            width: image.width,
+            height: image.height
+        })
 
-        this.pos = new Vector(500, 130);
-        this.body.friction = 0.99;
-        this.body.bounciness = 0.01;
+        this.pos = new Vector(x, y);
+
         this.objectId = objectId;
-        this.body.useGravity = true;
-
+        this.collision = collision
+        this.sprite = image;
+        this.body.collisionType = this.collision;
 
 
     }
 
     onInitialize(engine) {
         this.game = engine;
+        this.graphics.use(this.sprite);
 
     }
 

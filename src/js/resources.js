@@ -6,6 +6,8 @@ import level1 from "../images/BgLevel1.jpg"
 import realLevel from "../images/map-1.png"
 import testButton from "../images/test-button.png"
 import testButton2 from "../images/test-button-2.png"
+import stone from "../images/stone.png"
+import smallstone from "../images/smallStone.png"
 import fontFile from "../css/PressStart2P-Regular.ttf";
 
 import click from "../sounds/click.wav"
@@ -22,6 +24,8 @@ const Resources = {
     realLevel: new ImageSource(realLevel),
     TestButton: new ImageSource(testButton),
     TestButton2: new ImageSource(testButton2),
+    Stone: new ImageSource(stone),
+    Smallstone: new ImageSource(smallstone),
 
     Click: new Sound(click),
     Offclick: new Sound(offclick),
