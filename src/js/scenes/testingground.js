@@ -20,9 +20,9 @@ export class testingground extends Scene {
         this.button2 = new IngameButton(250, 25, 2, this);
         this.button3 = new IngameButton(1000, 25, 2, this);
         this.button4 = new IngameButton(1680, 130, 3, this);
-        this.breakingWall = new Wall(400, 300, 400, 0);
-        this.wall = new Wall(1200, 300, 0, 300);
-        this.breakingWall2 = new Wall(1200, 300, 1200, 0);
+        this.breakingWall = new Wall(1710, 323, 845, 323);
+        this.wall = new Wall(845, 323, 0, 323);
+        this.breakingWall2 = new Wall(845, 323, 845, 0);
         this.movableObject = new MovableObject(3)
 
 
@@ -33,9 +33,9 @@ export class testingground extends Scene {
         this.game = engine
         engine.input.gamepads.enabled = true;
         let background = new Actor();
-        background.graphics.use(Resources.Level1.toSprite());
-        background.scale = new Vector(1.3, 1.36);
-        background.pos = new Vector(775, 335);
+        background.graphics.use(Resources.realLevel.toSprite());
+        background.scale = new Vector(1.3, 1.1);
+        background.pos = new Vector(775, 480);
         this.add(background);
     }
     onActivate(ctx) {

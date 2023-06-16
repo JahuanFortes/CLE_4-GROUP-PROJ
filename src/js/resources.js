@@ -3,9 +3,14 @@ import fishImage from '../images/fish.png'
 import block from '../images/Sprite-0002-rock.png'
 import mapImage from "../images/map.jpg"
 import level1 from "../images/BgLevel1.jpg"
+import realLevel from "../images/map-1.png"
 import testButton from "../images/test-button.png"
 import testButton2 from "../images/test-button-2.png"
 import fontFile from "../css/PressStart2P-Regular.ttf";
+
+import click from "../sounds/click.wav"
+import offclick from "../sounds/offclick.wav"
+import opendoor from "../sounds/explosion.wav"
 const font = new FontFace("PressStart2P-Regular", `url(${fontFile})`);
 document.fonts.add(font);
 font.load();
@@ -14,8 +19,13 @@ const Resources = {
     block: new ImageSource(block),
     Map: new ImageSource(mapImage),
     Level1: new ImageSource(level1),
+    realLevel: new ImageSource(realLevel),
     TestButton: new ImageSource(testButton),
-    TestButton2: new ImageSource(testButton2)
+    TestButton2: new ImageSource(testButton2),
+
+    Click: new Sound(click),
+    Offclick: new Sound(offclick),
+    Opendoor: new Sound(opendoor)
 }
 // met deze for loop hoef je niet alles handmatig in de loader te zetten
 const resourceArray = []
