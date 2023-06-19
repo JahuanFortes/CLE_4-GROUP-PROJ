@@ -27,6 +27,7 @@ export class character_select extends Scene {
     onActivate(ctx) {
         console.log("Scene has started");
         this.startGame()
+        Resources.smb2.play(0.3)
     }
     startGame() {
         this.add(this.player)
