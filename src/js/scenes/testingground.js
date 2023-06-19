@@ -41,16 +41,13 @@ export class testingground extends Scene {
         timeTimer.start()
     }
 
+    /*
     loadEverything() {
       this.add(this.player)
     }
+    */
     onPreUpdate(game){
-      let kb = this.game.input.keyboard
-      let controller = this.game.input.gamepads
-      if (kb.isHeld(Input.Keys.Enter)) {
-        this.add(this.player2)
     }
-}
     updateTimer(){
         this.userInterface.timerText.text = `Time remaining: ${this.remainingTime--}`
     }
