@@ -11,7 +11,7 @@ export class player extends Actor {
     selectedP1
     selectedP2
     constructor(scene, playerId,x, y, charId, charselect){
-        super({width:100, height:100})
+        super({width:100, height:100, collisionType:CollisionType.Active})
         this.spriteSheet = SpriteSheet.fromImageSource({
             image: Resources.characterSheet,
             grid: {
