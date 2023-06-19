@@ -13,12 +13,17 @@ export class Level1 extends Scene {
     userInterface;
     character;
     colliding = CollisionType.Fixed;
-    constructor() {
+    player1ID;
+    player2ID;
+    remainingTime;
+    constructor(player1ID, player2ID) {
 
         super({ width: 1280, height: 720, })
+        this.player1ID = player1ID
+        this.player2ID = player2ID
         Physics.useRealisticPhysics();
-        this.player = new player(this, 1);
-        this.player2 = new player(this,2);
+        this.player = new player(this, 1, 5, 100, this.player1ID);
+        this.player2 = new player(this,2, 5, 100);
         this.button1 = new IngameButton(1680, 130, 1, this);
         this.button2 = new IngameButton(1100, 25, 2, this);
         this.button3 = new IngameButton(700, 130, 2, this);

@@ -27,6 +27,7 @@ export class character_select extends Scene {
     onActivate(ctx) {
         console.log("Scene has started");
         this.startGame()
+        Resources.smb2.play(0.3)
     }
     startGame() {
         this.add(this.player)
@@ -49,7 +50,7 @@ export class character_select extends Scene {
             this.player2ID = userId
         }
         if(this.amount == 2){
-            this.game.goToScene('testingground', this.player1ID, this.player2ID);
+            this.game.goToScene('Level1', this.player1ID, this.player2ID);
         }
      }
 }

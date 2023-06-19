@@ -31,8 +31,7 @@ export class player extends Actor {
         this.graphics.use(this.spriteSheet.sprites[charId])
         this.pos = new Vector(x, y) 
         this.pointer.useGraphicsBounds = true
-        this.pos = new Vector(5, 100);
-        this.pointer.useGraphicsBounds = true;
+        //this.pos = new Vector(5, 100);
         this.scene = scene;
         this.playerId = playerId;
         this.body.group = player.group;
