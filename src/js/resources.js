@@ -21,6 +21,8 @@ const Resources = {
     Fish: new ImageSource(fishImage),
     block: new ImageSource(block),
     Map: new ImageSource(mapImage),
+    characterSheet: new ImageSource(characterSheet),
+    smb2: new Sound(smb2),
     Level1: new ImageSource(level1),
     realLevel: new ImageSource(realLevel),
     TestButton: new ImageSource(testButton),

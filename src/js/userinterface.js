@@ -112,7 +112,24 @@ export class userInterface extends Actor {
                 textAlign: TextAlign.Center
                 })
             })
+        this.buttonSelect = new Label({
+                pos: new Vector(750, 600),
+                text: json.charselect[1],
+                font: new Font({
+                    family: 'arial',
+                    // style: FontStyle.Italic,
+                    size: 40,
+                    strokeColor: Color.Black,
+                    lineWidth: 2,
+                    bold: true,
+                    color: Color.White,
+                    baseAlign: BaseAlign.Top,
+                    textAlign: TextAlign.Center
+                    })
+            })
         this.scene.add(this.charSelect)
+        this.scene.add(this.buttonSelect)
+        this.buttonSelect.actions.blink(300, 150, 100)
     }
     explanation(){
 
