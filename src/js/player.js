@@ -27,7 +27,7 @@ export class player extends Actor {
                 margin: { x: 50, y: 100}
             }
         })
-        console.log(this.spriteSheet.sprites[0])
+        //console.log(this.spriteSheet.sprites[0])
         this.graphics.use(this.spriteSheet.sprites[charId])
         this.pos = new Vector(x, y) 
         this.pointer.useGraphicsBounds = true

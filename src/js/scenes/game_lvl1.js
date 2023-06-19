@@ -16,14 +16,11 @@ export class Level1 extends Scene {
     player1ID;
     player2ID;
     remainingTime;
-    constructor(player1ID, player2ID) {
+    constructor() {
 
         super({ width: 1280, height: 720, })
-        this.player1ID = player1ID
-        this.player2ID = player2ID
         Physics.useRealisticPhysics();
-        this.player = new player(this, 1, 5, 100, this.player1ID);
-        this.player2 = new player(this,2, 5, 100);
+    
         this.button1 = new IngameButton(1680, 130, 1, this);
         this.button2 = new IngameButton(1100, 25, 2, this);
         this.button3 = new IngameButton(700, 130, 2, this);
@@ -61,6 +58,11 @@ export class Level1 extends Scene {
     }
     onActivate(ctx) {
         console.log("Level1 has started");
+        console.log(ctx.previousScene)
+        this.player1ID = ctx.previousScene.player1ID
+        this.player2ID = ctx.previousScene.player2ID
+        this.player = new player(this, 1, 5, 100, this.player1ID);
+        this.player2 = new player(this,2, 5, 100, this.player2ID);
         this.startGame()
     }
     startGame() {
