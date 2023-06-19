@@ -10,10 +10,10 @@ import stone from "../images/stone.png"
 import smallstone from "../images/smallStone.png"
 import ending from "../images/endingLvl1.png"
 import fontFile from "../css/PressStart2P-Regular.ttf";
-
 import click from "../sounds/click.wav"
 import offclick from "../sounds/offclick.wav"
 import opendoor from "../sounds/explosion.wav"
+import characterSheet from "../images/character1.png"
 const font = new FontFace("PressStart2P-Regular", `url(${fontFile})`);
 document.fonts.add(font);
 font.load();
