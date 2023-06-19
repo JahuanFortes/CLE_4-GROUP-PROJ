@@ -13,6 +13,7 @@ import click from "../sounds/click.wav"
 import offclick from "../sounds/offclick.wav"
 import opendoor from "../sounds/explosion.wav"
 import characterSheet from "../images/character1.png"
+import smb2 from "../smb2.mp3";
 const font = new FontFace("PressStart2P-Regular", `url(${fontFile})`);
 document.fonts.add(font);
 font.load();
@@ -20,6 +21,8 @@ const Resources = {
     Fish: new ImageSource(fishImage),
     block: new ImageSource(block),
     Map: new ImageSource(mapImage),
+    characterSheet: new ImageSource(characterSheet),
+    smb2: new Sound(smb2),
     Level1: new ImageSource(level1),
     realLevel: new ImageSource(realLevel),
     TestButton: new ImageSource(testButton),
