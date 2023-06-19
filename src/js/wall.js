@@ -5,7 +5,7 @@ import { Resources } from "./resources"
 export class Wall extends Actor {
     waall;
     constructor(startX, startY, endX, endY) {
-        super()
+        super({collisionType: CollisionType.Fixed})
 
         this._setName('wall')
 
@@ -14,9 +14,11 @@ export class Wall extends Actor {
         this.waall = new EdgeCollider({
             begin: new Vector(startX, startY),
             end: new Vector(endX, endY),
+
         })
         this.collider.set(this.waall);
-        this.body.collisionType = CollisionType.Fixed;
+
+
 
     }
 

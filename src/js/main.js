@@ -5,6 +5,7 @@ import { TitleScreen } from "./scenes/titlescreen";
 import { testingground } from "./scenes/testingground";
 import { character_select } from "./scenes/character_select";
 import { Level1 } from "./scenes/game_lvl1.js";
+import { Level2 } from "./scenes/game_lvl2.js"
 
 export class Game extends Engine {
   constructor() {
@@ -21,8 +22,8 @@ export class Game extends Engine {
     this.goToScene("character_select");
   }
   startLevel2() {
-    // this.addScene("Level2", new Level2());
-    // this.goToScene("Level2");
+    this.addScene("Level2", new Level2());
+    this.goToScene("Level2");
     console.log("level2 has started!")
   }
 }
