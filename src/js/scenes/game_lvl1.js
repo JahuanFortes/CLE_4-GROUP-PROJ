@@ -25,20 +25,29 @@ export class Level1 extends Scene {
         this.button2 = new IngameButton(1100, 25, 2, this);
         this.button3 = new IngameButton(700, 130, 2, this);
         this.button4 = new IngameButton(1680, 130, 3, this);
-        this.breakingWall = new Wall(1710, 323, 845, 323);
+
+
 
         this.wall = new Wall(845, 323, 0, 323);
+        this.breakingWall = new Wall(1710, 323, 845, 323);
+        this.breakingWall2 = new Wall(845, 323, 845, 0);
+        this.breakingWall3 = new Wall(300, 550, 300, 850);
+        //#region boxes
         this.boxes = new Box(500, 400, 800, 100);
         this.boxes2 = new Box(500, 900, 800, 100);
         this.boxes3 = new Box(500, 600, 400, 100);
         this.boxes4 = new Box(850, 700, 100, 300);
         this.boxes5 = new Box(500, 800, 400, 100);
+        this.boxes6 = new Box(150, 500, 100, 100);
+        this.mazeButton = new IngameButton(750, 800, 2, this);
+        this.mazeButton2 = new IngameButton(250, 500, 1, this);
 
-        this.breakingWall2 = new Wall(845, 323, 845, 0);
+        //#endregion boxes
+
+
         this.movableObject = new MovableObject(3, Resources.Smallstone.toSprite(), CollisionType.Active, 300, 100);
 
-        this.stone = new MovableObject(1, Resources.Stone.toSprite(), CollisionType.Fixed, 180, 410)
-
+        this.ending = new MovableObject(1, Resources.Ending.toSprite(), CollisionType.Passive, 25, 700)
 
         this.moveStone = new MovableObject(1, Resources.Stone.toSprite(), CollisionType.Active, 880, 510
 
@@ -73,6 +82,7 @@ export class Level1 extends Scene {
 
         this.add(this.breakingWall);
         this.add(this.breakingWall2);
+        this.add(this.breakingWall3);
         this.add(this.wall);
         this.add(this.movableObject);
 
@@ -83,9 +93,14 @@ export class Level1 extends Scene {
         this.add(this.boxes2);
         this.add(this.boxes3);
         this.add(this.boxes4);
-        this.add(this.boxes5)
+        this.add(this.boxes5);
+        this.add(this.boxes6);
+
+        this.add(this.mazeButton);
+        this.add(this.mazeButton2);
 
         this.add(this.moveStone);
+        this.add(this.ending)
 
     }
     /*
@@ -102,6 +117,14 @@ export class Level1 extends Scene {
             this.button1.openDoor = false;
             this.button2.openDoor = false;
         }
+
+        if (this.mazeButton.openDoor && this.mazeButton2.openDoor) {
+            this.breakingWall3.collider.set(null);
+            this.mazeButton.openDoor = false;
+            this.mazeButton2.openDoor = false;
+        }
+
+
         //this is puzzle two, if the button gets pressed
         if (this.button3.openDoor) {
 
@@ -117,6 +140,11 @@ export class Level1 extends Scene {
             Resources.Opendoor.play();
             this.breakingWall2.kill();
             this.button4.opendoor = false;
+        }
+
+        if (this.ending.isColliding) {
+            this.game.startLevel2();
+            this.ending.isColliding = false;
         }
 
 

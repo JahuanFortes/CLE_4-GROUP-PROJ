@@ -59,6 +59,10 @@ export class IngameButton extends Actor {
             this.openDoor = true;
             console.log('wat')
         }
+        if (this.buttonId === this.scene.moveStone.objectId) {
+            this.openDoor = true;
+            console.log('wow')
+        }
 
 
 
@@ -77,6 +81,10 @@ export class IngameButton extends Actor {
         if (this.buttonId === this.scene.movableObject.objectId) {
             this.openDoor = false;
             console.log('wat')
+        }
+        if (this.buttonId === this.scene.moveStone.objectId) {
+            this.openDoor = false;
+            console.log('wow')
         }
 
     }

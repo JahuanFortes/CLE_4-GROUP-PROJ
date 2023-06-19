@@ -8,6 +8,7 @@ import testButton from "../images/test-button.png"
 import testButton2 from "../images/test-button-2.png"
 import stone from "../images/stone.png"
 import smallstone from "../images/smallStone.png"
+import ending from "../images/endingLvl1.png"
 import fontFile from "../css/PressStart2P-Regular.ttf";
 import click from "../sounds/click.wav"
 import offclick from "../sounds/offclick.wav"
@@ -31,6 +32,7 @@ const Resources = {
     Smallstone: new ImageSource(smallstone),
     characterSheet: new ImageSource(characterSheet),
     smb2: new Sound(smb2),
+    Ending: new ImageSource(ending),
     Click: new Sound(click),
     Offclick: new Sound(offclick),
     Opendoor: new Sound(opendoor)

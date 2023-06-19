@@ -2,6 +2,7 @@ import { Actor, Input, Random, Vector, clamp, Timer, EdgeCollider, CollisionType
 import { Resources } from "./resources"
 
 export class Box extends Actor {
+
     constructor(x, y, w, h) {
         super({
             width: w, // hitbox

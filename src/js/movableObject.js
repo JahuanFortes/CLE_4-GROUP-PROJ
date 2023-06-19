@@ -5,6 +5,7 @@ export class MovableObject extends Actor {
     objectId;
     sprite;
     collision;
+    isColliding = false;
     constructor(objectId, image, collision, x, y) {
         super({
             width: image.width,
@@ -14,7 +15,7 @@ export class MovableObject extends Actor {
         this.pos = new Vector(x, y);
 
         this.objectId = objectId;
-        this.collision = collision
+        this.collision = collision;
         this.sprite = image;
         this.body.collisionType = this.collision;
 
@@ -24,8 +25,13 @@ export class MovableObject extends Actor {
     onInitialize(engine) {
         this.game = engine;
         this.graphics.use(this.sprite);
-
+        this.on('collisionstart', () => this.collides());
     }
+
+    collides() {
+        this.isColliding = true;
+    }
+
 
     onPreUpdate(engine) {
         this.pos.x = clamp(this.pos.x, this.width/2, engine.drawWidth - this.width/2);
