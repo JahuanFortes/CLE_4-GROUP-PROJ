@@ -1,5 +1,5 @@
 import "../css/style.css";
-import { Actor, Engine, Vector, DisplayMode } from "excalibur";
+import { Actor, Engine, Vector, DisplayMode, Color } from "excalibur";
 import { Resources, ResourceLoader } from "./resources.js";
 import { TitleScreen } from "./scenes/titlescreen";
 import { testingground } from "./scenes/testingground";

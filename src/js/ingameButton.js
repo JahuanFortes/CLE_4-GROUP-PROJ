@@ -27,6 +27,7 @@ export class IngameButton extends Actor {
         this.buttonId = buttonId;
         this.scene = scene;
         this.sprite = Resources.TestButton.toSprite();
+        this.scale = new Vector(2, 2);
 
         this.pointer.useGraphicsBounds = true
     }

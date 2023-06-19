@@ -17,6 +17,7 @@ export class MovableObject extends Actor {
         this.objectId = objectId;
         this.collision = collision;
         this.sprite = image;
+        this.scale = new Vector(2, 2);
         this.body.collisionType = this.collision;
 
 
@@ -34,8 +35,8 @@ export class MovableObject extends Actor {
 
 
     onPreUpdate(engine) {
-        this.pos.x = clamp(this.pos.x, this.width/2, engine.drawWidth - this.width/2);
-        this.pos.y = clamp(this.pos.y, this.height/2, engine.drawHeight - this.height/2);
+        // this.pos.x = clamp(this.pos.x, this.width/2, engine.drawWidth - this.width/2);
+        // this.pos.y = clamp(this.pos.y, this.height/2, engine.drawHeight - this.height/2);
         if (this.vel.x > 0) {
             this.vel.x -= 5
         }

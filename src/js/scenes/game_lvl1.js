@@ -18,43 +18,43 @@ export class Level1 extends Scene {
     remainingTime;
     constructor() {
 
-        super({ width: 1280, height: 720, })
+        super({ width: 1280, height: 720 })
         Physics.useRealisticPhysics();
 
         //#region buttons
-        this.button1 = new IngameButton(1680, 130, 1, this);
-        this.button2 = new IngameButton(1100, 25, 2, this);
-        this.button3 = new IngameButton(700, 130, 2, this);
+        this.button1 = new IngameButton(2500, -150, 1, this);
+        this.button2 = new IngameButton(1300, -400, 2, this);
+        this.button3 = new IngameButton(500, -200, 2, this);
         this.button4 = new IngameButton(1680, 130, 3, this);
 
-        this.mazeButton = new IngameButton(750, 800, 2, this);
-        this.mazeButton2 = new IngameButton(250, 500, 1, this);
+        this.mazeButton = new IngameButton(750, 1150, 2, this);
+        this.mazeButton2 = new IngameButton(-50, 550, 1, this);
         //#endregion buttons
 
         //#region walls
-        this.wall = new Wall(845, 323, 0, 323);
-        this.breakingWall = new Wall(1710, 323, 845, 323);
+        this.wall = new Wall(-1095, 165, 915, 165);
+        this.breakingWall = new Wall(915, 165, 2650, 165);
         // this.breakingWallImg = new MovableObject(1, Resources.Onewall.toSprite(), CollisionType.Passive, 400, 30);
-        this.breakingWall2 = new Wall(845, 323, 845, 0);
-        this.breakingWall3 = new Wall(300, 550, 300, 850);
+        this.breakingWall2 = new Wall(915, 165, 915, -510);
+        this.breakingWall3 = new Wall(-150, 850, -150, 1050);
         //#endregion walls
 
         //#region boxes
-        this.boxes = new Box(500, 400, 800, 100);
-        this.boxes2 = new Box(500, 900, 800, 100);
-        this.boxes3 = new Box(500, 600, 400, 100);
-        this.boxes4 = new Box(850, 700, 100, 300);
-        this.boxes5 = new Box(500, 800, 400, 100);
-        this.boxes6 = new Box(150, 500, 100, 100);
+        this.boxes = new Box(250, 350, 1600, 200);
+        this.boxes2 = new Box(250, 1350, 1600, 200);
+        this.boxes3 = new Box(250, 750, 800, 200);
+        this.boxes4 = new Box(950, 950, 200, 600);
+        this.boxes5 = new Box(250, 1150, 800, 200);
+        this.boxes6 = new Box(-250, 550, 200, 200);
         //#endregion boxes
 
         //#region objects
-        this.movableObject = new MovableObject(3, Resources.Smallstone.toSprite(), CollisionType.Active, 300, 100);
+        this.movableObject = new MovableObject(3, Resources.Smallstone.toSprite(), CollisionType.Active, -500, -200);
         this.ending = new MovableObject(1, Resources.Ending.toSprite(), CollisionType.Passive, 25, 700)
-        this.moveStone = new MovableObject(1, Resources.Stone.toSprite(), CollisionType.Active, 880, 510
+        this.moveStone = new MovableObject(1, Resources.Stone.toSprite(), CollisionType.Active, 1000, 550);
         //#endregion objects
 
-        );
+
 
 
 
@@ -64,6 +64,16 @@ export class Level1 extends Scene {
         //gets engine to use for controllers, also adds background with right scale and pos
         this.game = engine
         engine.input.gamepads.enabled = true;
+
+
+        let bg = new Actor();
+        bg.graphics.use(Resources.Bg.toSprite());
+        bg.scale = new Vector(26, 22);
+        bg.pos = new Vector(775, 480);
+        bg.z = 0;
+        this.add(bg);
+
+        //this is the playable background
         let background = new Actor();
         background.graphics.use(Resources.realLevel.toSprite());
         background.scale = new Vector(2.6, 2.2);
@@ -77,7 +87,7 @@ export class Level1 extends Scene {
         console.log(ctx.previousScene)
         this.player1ID = ctx.previousScene.player1ID
         this.player2ID = ctx.previousScene.player2ID
-        this.player = new player(this, 1, 5, 100, this.player1ID);
+        this.player = new player(this, 1, 1000, 1000, this.player1ID);
         this.player2 = new player(this,2, 5, 100, this.player2ID);
         //starts game
         this.startGame()
@@ -114,7 +124,7 @@ export class Level1 extends Scene {
 
         this.add(this.movableObject);
         this.add(this.moveStone);
-        this.add(this.ending)
+        // this.add(this.ending)
 
     }
     /*
