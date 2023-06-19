@@ -34,8 +34,7 @@ export class Level1 extends Scene {
         //#region walls
         this.wall = new Wall(-1095, 165, 915, 165);
         this.breakingWall = new Wall(915, 165, 2650, 165);
-        // this.breakingWallImg = new MovableObject(1, Resources.Onewall.toSprite(), CollisionType.Passive, 400, 30);
-        this.breakingWall2 = new Wall(915, 165, 915, -510);
+       this.breakingWallImg = new MovableObject(1, Resources.Onewall.toSprite(), CollisionType.Passive, 1005, -175);
         this.breakingWall3 = new Wall(-150, 850, -150, 1050);
         //#endregion walls
 
@@ -87,7 +86,7 @@ export class Level1 extends Scene {
         console.log(ctx.previousScene)
         this.player1ID = ctx.previousScene.player1ID
         this.player2ID = ctx.previousScene.player2ID
-        this.player = new player(this, 1, 1000, 1000, this.player1ID);
+        this.player = new player(this, 1, 5, 100, this.player1ID);
         this.player2 = new player(this,2, 5, 100, this.player2ID);
         //starts game
         this.startGame()
@@ -107,7 +106,6 @@ export class Level1 extends Scene {
 
         //#region addedWalls
         this.add(this.breakingWall);
-        this.add(this.breakingWall2);
         this.add(this.breakingWall3);
         this.add(this.wall);
         //#endregion addedWalls
@@ -125,6 +123,8 @@ export class Level1 extends Scene {
         this.add(this.movableObject);
         this.add(this.moveStone);
         // this.add(this.ending)
+
+        this.add(this.breakingWallImg);
 
     }
     /*
@@ -152,10 +152,12 @@ export class Level1 extends Scene {
 
         //this is puzzle two, if the button gets pressed
         if (this.button3.openDoor) {
-            this.breakingWall2.collider.set(null);
+            this.breakingWallImg.graphics.use(null);
+
             this.button3.opendoor = false;
         } else {
-            this.breakingWall2.collider.set(this.breakingWall2.waall);
+            this.breakingWallImg.graphics.use(this.breakingWallImg.sprite);
+
             this.button3.opendoor = false;
         }
 

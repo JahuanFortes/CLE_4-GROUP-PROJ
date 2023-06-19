@@ -21,6 +21,7 @@ export class MovableObject extends Actor {
         this.body.collisionType = this.collision;
 
 
+
     }
 
     onInitialize(engine) {

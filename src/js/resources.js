@@ -4,10 +4,11 @@ import block from '../images/Sprite-0002-rock.png'
 import mapImage from "../images/map.jpg"
 import background from "../images/bg.jpg"
 import level1 from "../images/BgLevel1.jpg"
-import realLevel from "../images/map-1.png"
+import realLevel from "../images/BgLevel1New.jpg"
 import testButton from "../images/test-button.png"
 import testButton2 from "../images/test-button-2.png"
 import stone from "../images/stone.png"
+import moveWall from "../images/level1WallMove.png"
 import smallstone from "../images/smallStone.png"
 import ending from "../images/endingLvl1.png"
 import fontFile from "../css/PressStart2P-Regular.ttf";
@@ -28,6 +29,7 @@ const Resources = {
     TestButton: new ImageSource(testButton),
     TestButton2: new ImageSource(testButton2),
     Stone: new ImageSource(stone),
+    Onewall: new ImageSource(moveWall),
     characterSheet: new ImageSource(characterSheet),
     Smallstone: new ImageSource(smallstone),
     Ending: new ImageSource(ending),
