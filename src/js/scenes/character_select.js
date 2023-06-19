@@ -50,6 +50,7 @@ export class character_select extends Scene {
             this.player2ID = userId
         }
         if(this.amount == 2){
+            Resources.smb2.stop()
             this.game.goToScene('Level1', this.player1ID, this.player2ID);
         }
      }
