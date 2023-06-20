@@ -14,7 +14,7 @@ export class character_select extends Scene {
     constructor() {
         super({width: 1440, height: 900, displayMode: DisplayMode.FillScreen});
         this.player = new player(this, 1, 500, 400, 0, 1)
-        this.player2 = new player(this,2, 1000, 400, 0, 1)
+        this.player2 = new player(this,2, 400, 400, 0, 1)
         this.userInterface = new userInterface(this, 0, 1)
         this.amount = 0
         this.player1ID = 0
@@ -51,7 +51,7 @@ export class character_select extends Scene {
         }
         if(this.amount === 2){
 
-            this.game.goToScene('Level1', this.player1ID, this.player2ID);
+            this.game.goToScene('Level3', this.player1ID, this.player2ID);
         }
      }
 }

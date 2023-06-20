@@ -43,10 +43,15 @@ export class MovableObject extends Actor {
         this.game = engine;
         this.graphics.use(this.sprite);
         this.on('collisionstart', () => this.collides());
+        this.on('collisionend', () => this.noCollides());
     }
 
     collides() {
         this.isColliding = true;
+    }
+
+    noCollides() {
+        this.isColliding = false;
     }
 
 

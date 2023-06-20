@@ -56,6 +56,8 @@ export class player extends Actor {
         controller.on('connect', () => {
            console.log("test")
         })
+
+
         if(this.charselect == 0){
         switch(this.playerId){
             case 1:

@@ -1,6 +1,24 @@
 
 
-import { Actor, Engine, Vector, Label, Font, Color, Random, Input, CollisionType, CollisionGroup, BoundingBox, EdgeCollider, Scene, Timer, randomInRange, Physics} from "excalibur"
+import {
+    Actor,
+    Engine,
+    Vector,
+    Label,
+    Font,
+    Color,
+    Random,
+    Input,
+    CollisionType,
+    CollisionGroup,
+    BoundingBox,
+    EdgeCollider,
+    Scene,
+    Timer,
+    randomInRange,
+    Physics,
+    BaseAlign, TextAlign
+} from "excalibur"
 import { Resources, ResourceLoader } from '../resources.js'
 import { player } from '../player.js'
 import { IngameButton } from "../ingameButton.js";
@@ -14,12 +32,16 @@ export class Level3 extends Scene {
     userInterface;
     character;
     colliding = CollisionType.Fixed;
+    yourScore = 0;
+    enemyScore = 0;
     constructor() {
 
         super({ width: 1280, height: 720, })
-        this.baller = new Baller(-445, 800, Resources.block.toSprite(), this);
-        this.ball = new MovableObject(1, Resources.Football.toSprite(), CollisionType.Active, -445, 400);
-
+        this.baller = new Baller(-245, 800, Resources.block.toSprite(), this);
+        this.baller2 = new Baller(-545, 800, Resources.block.toSprite(), this);
+        this.ball = new MovableObject(7, Resources.Football.toSprite(), CollisionType.Active, -445, 400);
+        this.playerGoal = new MovableObject(8, Resources.Football.toSprite(), CollisionType.Fixed, -445, 400);
+        this.enemyGoal = new MovableObject(9, Resources.Football.toSprite(), CollisionType.Fixed, -445, 400)
         this.footWall1 = new Wall(-1015, -445, 165, -445);
         this.footWall2 = new Wall(-1020, 975, -1020, -445);
         this.footWall3 = new Wall(-1015, 975, 165, 975);
@@ -43,7 +65,38 @@ export class Level3 extends Scene {
         background.pos = new Vector(775, 480);
         this.add(background);
 
-
+        this.footWall3.on('collisionstart', (evt) => this.scored(evt));
+        this.footWall1.on('collisionstart', (evt) => this.enemyScored(evt));
+        this.label = new Label({
+            text: `${this.yourScore}`,
+            pos: new Vector(200, 190),
+            font: new Font({
+                family: 'arial',
+                // style: FontStyle.Italic,
+                size: 40,
+                strokeColor: Color.Black,
+                lineWidth: 2,
+                bold: true,
+                color: Color.White,
+                baseAlign: BaseAlign.Top,
+                textAlign: TextAlign.Center
+            })
+        });
+        this.enemyLabel = new Label({
+            text: `${this.enemyScore}`,
+            pos: new Vector(200, 100),
+            font: new Font({
+                family: 'arial',
+                // style: FontStyle.Italic,
+                size: 40,
+                strokeColor: Color.Black,
+                lineWidth: 2,
+                bold: true,
+                color: Color.White,
+                baseAlign: BaseAlign.Top,
+                textAlign: TextAlign.Center
+            })
+        })
 
 
 
@@ -63,7 +116,9 @@ export class Level3 extends Scene {
 
     startGame() {
         this.game.currentScene.camera.strategy.lockToActor(this.player);
+        this.game.currentScene.camera.zoom = 0.9
         this.add(this.player);
+        this.add(this.player2);
 
             this.createPlayArea();
 
@@ -71,19 +126,53 @@ export class Level3 extends Scene {
 
     }
 
+    scored(evt) {
+        if (evt.other instanceof MovableObject) {
+            this.baller.actions.clearActions();
+            this.baller2.actions.clearActions();
+            this.yourScore += 1;
+            this.player.pos = new Vector(-245, -200);
+            this.player2.pos = new Vector(-545, -200);
+            this.ball.pos = new Vector(-445, 400);
+            this.baller.pos = new Vector(-245, 800);
+            this.baller2.pos = new Vector(-545, 800);
+
+        }
+
+    }
+    enemyScored(evt) {
+        if (evt.other instanceof MovableObject) {
+            this.baller.actions.clearActions();
+            this.baller2.actions.clearActions();
+            this.enemyScore += 1;
+            this.player.pos = new Vector(-245, -200);
+            this.player2.pos = new Vector(-545, -200);
+            this.ball.pos = new Vector(-445, 400);
+            this.baller.pos = new Vector(-245, 800);
+            this.baller2.pos = new Vector(-545, 800);
+        }
+    }
+
     createPlayArea() {
-        this.player.pos = new Vector(-445, -200);
+        this.player.pos = new Vector(-245, -200);
+        this.player2.pos = new Vector(-545, -200);
         this.add(this.baller);
+        this.add(this.baller2);
         this.add(this.ball);
         this.add(this.footWall1);
         this.add(this.footWall2);
         this.add(this.footWall3);
         this.add(this.footWall4);
 
-        if (this.player.interactTimer) {
-            this.ball.vel = new Vector(100, 100);
-        }
+            this.add(this.label);
+            this.add(this.enemyLabel);
+
+
+
 
     }
-    
+    onPostDraw() {
+        this.label.text = `${this.yourScore}`
+        this.enemyLabel.text = `${this.enemyScore}`
+    }
 }
