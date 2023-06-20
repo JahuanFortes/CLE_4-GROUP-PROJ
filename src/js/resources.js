@@ -10,6 +10,7 @@ import testButton from "../images/test-button.png"
 import testButton2 from "../images/test-button-2.png"
 import stone from "../images/stone.png"
 import moveWall from "../images/level1WallMove.png"
+import moveRock from "../images/level1rockMove.png"
 import football from "../images/football.png"
 import fence from "../images/fence.png"
 import smallstone from "../images/smallStone.png"
@@ -35,6 +36,7 @@ const Resources = {
     TestButton2: new ImageSource(testButton2),
     Stone: new ImageSource(stone),
     Onewall: new ImageSource(moveWall),
+    Moverock: new ImageSource(moveRock),
     Fence: new ImageSource(fence),
     characterSheet: new ImageSource(characterSheet),
     Smallstone: new ImageSource(smallstone),

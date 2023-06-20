@@ -51,7 +51,7 @@ export class character_select extends Scene {
         }
         if(this.amount === 2){
 
-            this.game.goToScene('Level3', this.player1ID, this.player2ID);
+            this.game.goToScene('Level1', this.player1ID, this.player2ID);
         }
      }
 }

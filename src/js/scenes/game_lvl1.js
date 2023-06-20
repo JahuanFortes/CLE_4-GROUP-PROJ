@@ -36,7 +36,8 @@ export class Level1 extends Scene {
 
        this.breakingWallImg = new MovableObject(1, Resources.Onewall.toSprite(), CollisionType.Fixed, 1005, -175);
         this.breakingWallFence = new MovableObject(1, Resources.Fence.toSprite(), CollisionType.Fixed, 1850, 200);
-        this.breakingWall3 = new Wall(-150, 850, -150, 1050);
+
+        this.breakingWallRock = new MovableObject(1, Resources.Moverock.toSprite(), CollisionType.Fixed, -250, 950)
         //#endregion walls
 
         //#region boxes
@@ -106,8 +107,6 @@ export class Level1 extends Scene {
         //#endregion addedButtons
 
         //#region addedWalls
-
-        this.add(this.breakingWall3);
         this.add(this.wall);
         //#endregion addedWalls
 
@@ -127,6 +126,7 @@ export class Level1 extends Scene {
 
         this.add(this.breakingWallImg);
         this.add(this.breakingWallFence);
+        this.add(this.breakingWallRock);
 
     }
     /*
@@ -146,7 +146,7 @@ export class Level1 extends Scene {
         }
 
         if (this.mazeButton.openDoor && this.mazeButton2.openDoor) {
-            this.breakingWall3.collider.set(null);
+            this.breakingWallRock.kill();
             this.mazeButton.openDoor = false;
             this.mazeButton2.openDoor = false;
         }
