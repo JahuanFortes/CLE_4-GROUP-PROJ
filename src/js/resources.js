@@ -5,10 +5,12 @@ import mapImage from "../images/map.jpg"
 import background from "../images/bg.jpg"
 import level1 from "../images/BgLevel1.jpg"
 import realLevel from "../images/BgLevel1New.jpg"
+import realLevel3 from "../images/BgLevel3New.jpg"
 import testButton from "../images/test-button.png"
 import testButton2 from "../images/test-button-2.png"
 import stone from "../images/stone.png"
 import moveWall from "../images/level1WallMove.png"
+import football from "../images/football.png"
 import fence from "../images/fence.png"
 import smallstone from "../images/smallStone.png"
 import ending from "../images/endingLvl1.png"
@@ -25,8 +27,10 @@ const Resources = {
     block: new ImageSource(block),
     Map: new ImageSource(mapImage),
     Bg: new ImageSource(background),
+    Football: new ImageSource(football),
     Level1: new ImageSource(level1),
     realLevel: new ImageSource(realLevel),
+    realLevel3: new ImageSource(realLevel3),
     TestButton: new ImageSource(testButton),
     TestButton2: new ImageSource(testButton2),
     Stone: new ImageSource(stone),
