@@ -1,4 +1,15 @@
-import {Actor, Input, Random, Vector, clamp, Timer, EdgeCollider, CollisionType, Color} from "excalibur"
+import {
+    Actor,
+    Input,
+    Random,
+    Vector,
+    clamp,
+    Timer,
+    EdgeCollider,
+    CollisionType,
+    Color,
+    PolygonCollider
+} from "excalibur"
 import { Resources } from "./resources"
 
 export class MovableObject extends Actor {
@@ -13,13 +24,17 @@ export class MovableObject extends Actor {
         })
 
         this.pos = new Vector(x, y);
-
         this.objectId = objectId;
-        this.collision = collision;
         this.sprite = image;
         this.scale = new Vector(2, 2);
-        this.body.collisionType = this.collision;
+        this.collision = collision;
+        // this.polygon = new PolygonCollider({
+        //     x: image.width,
+        //     y: image.height
+        //
+        // })
 
+        this.body.collisionType = this.collision;
 
 
     }

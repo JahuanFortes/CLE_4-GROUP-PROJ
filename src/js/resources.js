@@ -9,6 +9,7 @@ import testButton from "../images/test-button.png"
 import testButton2 from "../images/test-button-2.png"
 import stone from "../images/stone.png"
 import moveWall from "../images/level1WallMove.png"
+import fence from "../images/fence.png"
 import smallstone from "../images/smallStone.png"
 import ending from "../images/endingLvl1.png"
 import fontFile from "../css/PressStart2P-Regular.ttf";
@@ -30,6 +31,7 @@ const Resources = {
     TestButton2: new ImageSource(testButton2),
     Stone: new ImageSource(stone),
     Onewall: new ImageSource(moveWall),
+    Fence: new ImageSource(fence),
     characterSheet: new ImageSource(characterSheet),
     Smallstone: new ImageSource(smallstone),
     Ending: new ImageSource(ending),

@@ -12,7 +12,7 @@ export class Level1 extends Scene {
     game;
     userInterface;
     character;
-
+    breakable = CollisionType.Fixed;
     player1ID;
     player2ID;
     remainingTime;
@@ -33,8 +33,9 @@ export class Level1 extends Scene {
 
         //#region walls
         this.wall = new Wall(-1095, 165, 915, 165);
-        this.breakingWall = new Wall(915, 165, 2650, 165);
-       this.breakingWallImg = new MovableObject(1, Resources.Onewall.toSprite(), CollisionType.Passive, 1005, -175);
+
+       this.breakingWallImg = new MovableObject(1, Resources.Onewall.toSprite(), CollisionType.Fixed, 1005, -175);
+        this.breakingWallFence = new MovableObject(1, Resources.Fence.toSprite(), CollisionType.Fixed, 1850, 200);
         this.breakingWall3 = new Wall(-150, 850, -150, 1050);
         //#endregion walls
 
@@ -105,7 +106,7 @@ export class Level1 extends Scene {
         //#endregion addedButtons
 
         //#region addedWalls
-        this.add(this.breakingWall);
+
         this.add(this.breakingWall3);
         this.add(this.wall);
         //#endregion addedWalls
@@ -125,6 +126,7 @@ export class Level1 extends Scene {
         // this.add(this.ending)
 
         this.add(this.breakingWallImg);
+        this.add(this.breakingWallFence);
 
     }
     /*
@@ -138,7 +140,7 @@ export class Level1 extends Scene {
         //these are all if statements used to check for buttons etc.
         if (this.button1.openDoor && this.button2.openDoor) {
             Resources.Opendoor.play();
-            this.breakingWall.kill();
+            this.breakingWallFence.kill();
             this.button1.openDoor = false;
             this.button2.openDoor = false;
         }
@@ -152,19 +154,16 @@ export class Level1 extends Scene {
 
         //this is puzzle two, if the button gets pressed
         if (this.button3.openDoor) {
-            this.breakingWallImg.graphics.use(null);
-
+            this.breakingWallImg.kill();
             this.button3.opendoor = false;
         } else {
-            this.breakingWallImg.graphics.use(this.breakingWallImg.sprite);
-
+            this.add(this.breakingWallImg);
             this.button3.opendoor = false;
         }
 
         //last button checker, only works if movable object is used
         if (this.button4.openDoor) {
             Resources.Opendoor.play();
-            this.breakingWall2.kill();
             this.button4.opendoor = false;
         }
 
