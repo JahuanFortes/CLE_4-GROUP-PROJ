@@ -51,8 +51,8 @@ export class MovableObject extends Actor {
 
 
     onPreUpdate(engine) {
-        // this.pos.x = clamp(this.pos.x, this.width/2, engine.drawWidth - this.width/2);
-        // this.pos.y = clamp(this.pos.y, this.height/2, engine.drawHeight - this.height/2);
+        this.pos.x = clamp(this.pos.x, -1050, Resources.realLevel.width * 1.84 - this.width/2);
+        this.pos.y = clamp(this.pos.y, -460, Resources.realLevel.height * 1.633- this.height/2);
         if (this.vel.x > 0) {
             this.vel.x -= 5
         }
