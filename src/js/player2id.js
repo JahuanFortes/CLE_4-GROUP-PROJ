@@ -1,9 +1,8 @@
-import {Actor, Input, Random, Vector, clamp, Timer, CollisionType, CollisionGroupManager, Delay, GamepadConnectEvent,SpriteSheet, CollisionGroup} from "excalibur"
+import {Actor, Input, Random, Vector, clamp, Timer, CollisionType, CollisionGroupManager, Delay, GamepadConnectEvent,SpriteSheet} from "excalibur"
 import { Resources } from "./resources"
 import { CustomCamera } from "./camera";
-import { player2 } from "./player2id";
 
-export class player extends Actor {
+export class player2 extends Actor {
     game;
     scene;
     playerId;
@@ -16,10 +15,7 @@ export class player extends Actor {
     CustomCameraGroup
     player2ID
     player2
-    
-    
     constructor(scene, playerId,x, y, charId, charselect, hasCamera, player2CHARID){
-        
         super({width:100, height:100, collisionType:CollisionType.Active})
         this.spriteSheet = SpriteSheet.fromImageSource({
             image: Resources.characterSheet,
@@ -36,11 +32,7 @@ export class player extends Actor {
                 margin: { x: 50, y: 100}
             }
         })
-        let PlayerCanCollideWith = CollisionGroup.collidesWith([
-            'CC',
-          ])
         //console.log(this.spriteSheet.sprites[0])
-        this.CollisionGroup = PlayerCanCollideWith;
         this.graphics.use(this.spriteSheet.sprites[charId])
         this.pos = new Vector(x, y) 
         this.pointer.useGraphicsBounds = true
@@ -53,14 +45,14 @@ export class player extends Actor {
         this.selectedP2 = 0
         this.hasCamera = hasCamera ?? 0
         this.player2ID = player2CHARID
-        this.player2 = new player2(this,2, 5, 100, this.player2ID, 0, 0)
+        //this.player2 = new player(this,2, 5, 100, this.player2ID, 0, 0)
     }
     onInitialize(engine){
         this.game = engine
         engine.input.gamepads.enabled = true;
         if(this.hasCamera == 1){
             console.log("Where that camera at tho?")
-            this.game.add(this.player2)
+            //this.game.add(this.player2)
             this.CustomCamera = new CustomCamera(this, this.player2)
             this.game.add(this.CustomCamera);
         }

@@ -1,5 +1,5 @@
 import "../css/style.css";
-import { Actor, Engine, Vector, DisplayMode } from "excalibur";
+import { Actor, Engine, Vector, DisplayMode, CollisionGroupManager, CollisionGroup } from "excalibur";
 import { Resources, ResourceLoader } from "./resources.js";
 import { TitleScreen } from "./scenes/titlescreen";
 import { testingground } from "./scenes/testingground";
@@ -14,6 +14,15 @@ export class Game extends Engine {
   }
 
   startGame() {
+    let playersGroup = CollisionGroupManager.create('Player');
+    let CameraGroup = CollisionGroupManager.create('CC');
+    let ObjectGroup = CollisionGroupManager.create('Object');
+    let PlayerCanCollideWith = CollisionGroup.collidesWith([
+      'CC',
+    ])
+    let CameraCanCollideWith = CollisionGroup.collidesWith([
+      "Player"
+    ])
     this.addScene("titlescreen", new TitleScreen());
     this.addScene("Level1", new Level1());
     this.addScene("testingground", new testingground());

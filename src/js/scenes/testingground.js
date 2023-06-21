@@ -2,6 +2,7 @@ import { Actor, Engine, Vector, Label, Font, Color, Random, Input, CollisionGrou
 import { Resources, ResourceLoader } from '../resources.js'
 import { player } from '../player.js'
 import { userInterface } from "../userinterface.js";
+import { player2 } from "../player2id.js";
 export class testingground extends Scene {
     game;
     userInterface;
@@ -12,7 +13,7 @@ export class testingground extends Scene {
     constructor() {
         super({width: 1440, height: 900, displayMode: DisplayMode.FillScreen});
         this.player = new player(this, 1)
-        this.player2 = new player(this,2)
+        this.player2 = new player2(this,2)
         this.userInterface = new userInterface(this)
     }
     onInitialize(engine) {
