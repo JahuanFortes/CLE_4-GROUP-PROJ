@@ -11,12 +11,10 @@ export class player extends Actor {
     selectedP2
     playerGroup
     hasCamera
-    CustomCameraGroup
-    player2ID
     player2
     
     
-    constructor(scene, playerId,x, y, charId, charselect, hasCamera, player2CHARID){
+    constructor(scene, playerId,x, y, charId, charselect, hasCamera){
         
         super({width:100, height:100, collisionType:CollisionType.Active})
         this.spriteSheet = SpriteSheet.fromImageSource({
@@ -34,11 +32,6 @@ export class player extends Actor {
                 margin: { x: 50, y: 100}
             }
         })
-        let PlayerCanCollideWith = CollisionGroup.collidesWith([
-            'CC',
-          ])
-        //console.log(this.spriteSheet.sprites[0])
-        this.CollisionGroup = PlayerCanCollideWith;
         this.graphics.use(this.spriteSheet.sprites[charId])
         this.pos = new Vector(x, y) 
         this.pointer.useGraphicsBounds = true
