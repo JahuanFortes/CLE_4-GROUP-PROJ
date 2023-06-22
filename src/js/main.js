@@ -14,15 +14,6 @@ export class Game extends Engine {
   }
 
   startGame() {
-    let playersGroup = CollisionGroupManager.create('Player');
-    let CameraGroup = CollisionGroupManager.create('CC');
-    let ObjectGroup = CollisionGroupManager.create('Object');
-    let PlayerCanCollideWith = CollisionGroup.collidesWith([
-      'CC',
-    ])
-    let CameraCanCollideWith = CollisionGroup.collidesWith([
-      "Player"
-    ])
     this.addScene("titlescreen", new TitleScreen());
     this.addScene("Level1", new Level1());
     this.addScene("testingground", new testingground());
