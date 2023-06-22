@@ -59,7 +59,10 @@ export class Level2 extends Scene {
 
     //#region boxes
     this.boxes = new Box(1466, 270, 2500, 88);
-    this.boxes2 = new Box(10, 270, 300, 88);
+    // this.boxes2 = new Box(-500, 270, 1000, 88);
+    this.boxes3 = new Box(-1030, -40, 88, 900);
+    this.boxes4 = new Box(2600, -40, 88, 850);
+    this.boxes5 = new Box(1690, 600, 100, 600);
 
     //#endregion boxes
 
@@ -141,6 +144,11 @@ export class Level2 extends Scene {
     //#region addedBoxes
     //all boxes used for the maze
     this.add(this.boxes);
+    // this.add(this.boxes2);
+    this.add(this.boxes3);
+    this.add(this.boxes4);
+    this.add(this.boxes5);
+
     //#endregion addedBoxes
 
     // this.add(this.movableObject);
