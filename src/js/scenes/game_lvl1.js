@@ -52,7 +52,7 @@ export class Level1 extends Scene {
 
         //#region objects
         this.movableObject = new MovableObject(3, Resources.Smallstone.toSprite(), CollisionType.Active, -500, -200);
-        this.ending = new MovableObject(1, Resources.Ending.toSprite(), CollisionType.Passive, 25, 700)
+        this.nextLevel = new MovableObject(1, Resources.Ending.toSprite(), CollisionType.Passive, -1050, 1050)
         this.moveStone = new MovableObject(1, Resources.Stone.toSprite(), CollisionType.Active, 1000, 550);
         //#endregion objects
 
@@ -124,7 +124,8 @@ export class Level1 extends Scene {
 
         this.add(this.movableObject);
         this.add(this.moveStone);
-        // this.add(this.ending)
+
+        this.add(this.nextLevel)
 
         this.add(this.breakingWallImg);
         this.add(this.breakingWallFence);
@@ -169,9 +170,9 @@ export class Level1 extends Scene {
             this.button4.opendoor = false;
         }
 
-        if (this.ending.isColliding) {
+        if (this.nextLevel.isColliding) {
             this.game.startLevel2();
-            this.ending.isColliding = false;
+            this.nextLevel.isColliding = false;
         }
 
 

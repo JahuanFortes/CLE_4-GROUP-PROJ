@@ -32,6 +32,7 @@ const Resources = {
     Bg: new ImageSource(background),
     Football: new ImageSource(football),
     Level1: new ImageSource(level1),
+    Level2: new ImageSource(level2),
     realLevel: new ImageSource(realLevel),
     realLevel3: new ImageSource(realLevel3),
     TestButton: new ImageSource(testButton),
