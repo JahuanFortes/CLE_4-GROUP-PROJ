@@ -1,5 +1,3 @@
-
-
 import { Actor, Engine, Vector, Label, Font, Color, Random, Input, CollisionType, CollisionGroup, BoundingBox, EdgeCollider, Scene, Timer, randomInRange, Physics, CollisionGroupManager} from "excalibur"
 import { Resources, ResourceLoader } from '../resources.js'
 import { player } from '../player.js'

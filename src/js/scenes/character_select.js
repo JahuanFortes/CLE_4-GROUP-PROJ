@@ -1,6 +1,23 @@
-import { Actor, Engine, Vector, Label, Font, Color, Random, Input, CollisionGroupManager, CollisionGroup, BoundingBox, EdgeCollider, Scene, Timer, randomInRange, DisplayMode} from "excalibur"
-import { Resources, ResourceLoader } from '../resources.js'
-import { player } from '../player.js'
+import {
+  Actor,
+  Engine,
+  Vector,
+  Label,
+  Font,
+  Color,
+  Random,
+  Input,
+  CollisionGroupManager,
+  CollisionGroup,
+  BoundingBox,
+  EdgeCollider,
+  Scene,
+  Timer,
+  randomInRange,
+  DisplayMode,
+} from "excalibur";
+import { Resources, ResourceLoader } from "../resources.js";
+import { player } from "../player.js";
 import { userInterface } from "../userinterface.js";
 export class character_select extends Scene {
     game;
@@ -54,4 +71,3 @@ export class character_select extends Scene {
         }
      }
 }
-    
