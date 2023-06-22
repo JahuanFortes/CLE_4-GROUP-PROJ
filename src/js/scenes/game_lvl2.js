@@ -25,7 +25,7 @@ export class Level2 extends Scene {
         engine.input.gamepads.enabled = true;
         let background = new Actor();
         background.graphics.use(Resources.Level2.toSprite());
-        background.scale = new Vector(1.3, 1.1);
+        background.scale = new Vector(2.6, 2.2);
         background.pos = new Vector(775, 480);
         this.add(background);
     }

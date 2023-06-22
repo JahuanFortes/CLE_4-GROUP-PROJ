@@ -1,16 +1,17 @@
 import "../css/style.css";
-import { Actor, Engine, Vector, DisplayMode, CollisionGroupManager, CollisionGroup } from "excalibur";
+import { Actor, Engine, Vector, DisplayMode, CollisionGroupManager, CollisionGroup, Color } from "excalibur";
 import { Resources, ResourceLoader } from "./resources.js";
 import { TitleScreen } from "./scenes/titlescreen";
 import { testingground } from "./scenes/testingground";
 import { character_select } from "./scenes/character_select";
 import { Level1 } from "./scenes/game_lvl1.js";
 import { Level2 } from "./scenes/game_lvl2.js"
+import { Level3 } from "./scenes/game_lvl3.js"
 
 export class Game extends Engine {
   constructor() {
     super({width: 1440, height: 900, displayMode: DisplayMode.FillScreen});
-    this.showDebug(true);
+    this.showDebug(false);
     this.start(ResourceLoader).then(() => this.startGame());
   }
 
@@ -19,6 +20,7 @@ export class Game extends Engine {
     this.addScene("Level1", new Level1());
     this.addScene("testingground", new testingground());
     this.addScene("character_select", new character_select());
+    this.addScene("Level3", new Level3())
     this.goToScene("character_select");
   }
   startLevel2() {

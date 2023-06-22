@@ -75,6 +75,8 @@ export class player extends Actor {
         controller.on('connect', () => {
            console.log("test")
         })
+
+
         if(this.charselect == 0){
         switch(this.playerId){
             case 1:
@@ -116,9 +118,10 @@ export class player extends Actor {
             }
         this.vel = new Vector(xspeed, yspeed)
         // blijf binnen beeld
-            /*this.pos.x = clamp(this.pos.x, this.width/2, engine.drawWidth - this.width/2);
-        this.pos.y = clamp(this.pos.y, this.height/2, engine.drawHeight - this.height/2);
-        */
+
+            this.pos.x = clamp(this.pos.x, -1050, Resources.realLevel.width * 1.84 - this.width/2);
+            this.pos.y = clamp(this.pos.y, -460, Resources.realLevel.height * 1.633- this.height/2);
+
 
         } else{
             
