@@ -27,8 +27,13 @@ export class Game extends Engine {
   }
   startLevel2() {
     // this.addScene("Level2", new Level2());
-    this.goToScene("Level1");
+    this.goToScene("Level2");
     console.log("level2 has started!");
+  }
+
+  startLevel3() {
+    this.goToScene("Level3");
+    console.log("level3 has started!");
   }
 }
 

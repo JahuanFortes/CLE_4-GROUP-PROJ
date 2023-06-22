@@ -75,7 +75,12 @@ export class Level2 extends Scene {
 
   onInitialize(engine) {
     //gets engine to use for controllers, also adds background with right scale and pos
-
+    let bg = new Actor();
+    bg.graphics.use(Resources.Bg.toSprite());
+    bg.scale = new Vector(26, 22);
+    bg.pos = new Vector(775, 480);
+    bg.z = 0;
+    this.add(bg);
     //#region background
     this.game = engine;
     engine.input.gamepads.enabled = true;
@@ -95,8 +100,8 @@ export class Level2 extends Scene {
     //#region Players
     this.player1ID = ctx.previousScene.player1ID;
     this.player2ID = ctx.previousScene.player2ID;
-    this.player = new player(this, 1, 2400, 1000, this.player1ID);
-    this.player2 = new player(this, 2, 2400, -100, this.player2ID);
+    this.player = new player(this, 1, 2400, 1000, this.player1ID, 0, 1);
+    this.player2 = new player(this, 2, 2400, -100, this.player2ID, 0, 0);
     //#endregion Players
 
     //starts game
@@ -107,7 +112,7 @@ export class Level2 extends Scene {
     this.game.currentScene.camera.strategy.lockToActor(this.player);
 
     this.add(this.player);
-
+    this.add(this.player2);
     //#region Buttons
     this.add(this.button1);
     this.add(this.button2);
@@ -164,7 +169,7 @@ export class Level2 extends Scene {
     }
 
     if (this.ending.isColliding) {
-      this.game.startLevel2();
+      this.game.startLevel3();
       this.ending.isColliding = false;
     }
     //#endregion Puzzles
