@@ -7,11 +7,12 @@ import { character_select } from "./scenes/character_select";
 import { Level1 } from "./scenes/game_lvl1.js";
 import { Level2 } from "./scenes/game_lvl2.js"
 import { Level3 } from "./scenes/game_lvl3.js"
+import { Level4 } from "./scenes/game_lvl4.js"
 
 export class Game extends Engine {
   constructor() {
     super({width: 1440, height: 900, displayMode: DisplayMode.FillScreen});
-    this.showDebug(false);
+    this.showDebug(true);
     this.start(ResourceLoader).then(() => this.startGame());
   }
 
@@ -28,6 +29,12 @@ export class Game extends Engine {
     this.goToScene("Level2");
     console.log("level2 has started!")
   }
+  startLevel4() {
+    this.addScene("Level4", new Level4());
+    this.goToScene("Level4");
+    console.log("level4 has started!")
+  }
 }
+
 
 new Game();
