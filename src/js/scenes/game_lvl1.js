@@ -16,6 +16,7 @@ export class Level1 extends Scene {
     player1ID;
     player2ID;
     remainingTime;
+    background;
     constructor() {
 
         super({ width: 1280, height: 720 })
@@ -75,11 +76,11 @@ export class Level1 extends Scene {
         this.add(bg);
 
         //this is the playable background
-        let background = new Actor();
-        background.graphics.use(Resources.realLevel.toSprite());
-        background.scale = new Vector(2.6, 2.2);
-        background.pos = new Vector(775, 480);
-        this.add(background);
+        this.background = new Actor();
+        this.background.graphics.use(Resources.realLevel.toSprite());
+        this.background.scale = new Vector(2.6, 2.2);
+        this.background.pos = new Vector(775, 480);
+        this.add(this.background);
     }
 
     onActivate(ctx) {
@@ -97,11 +98,10 @@ export class Level1 extends Scene {
         this.game.currentScene.camera.strategy.lockToActor(this.player)
         this.game.currentScene.camera.zoom = 0.9
         this.add(this.player);
+        this.add(this.player2)
 
         //#region addedButtons
         this.add(this.button1);
-        this.add(this.player);
-        this.add(this.player2)
         this.add(this.button2);
         this.add(this.button3);
         this.add(this.mazeButton);
@@ -129,7 +129,7 @@ export class Level1 extends Scene {
         this.add(this.breakingWallImg);
         this.add(this.breakingWallFence);
         this.add(this.breakingWallRock);
-
+        console.log(this.player2)
     }
     /*
     loadEverything() {

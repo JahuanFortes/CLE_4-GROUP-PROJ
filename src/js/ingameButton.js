@@ -49,12 +49,11 @@ export class IngameButton extends Actor {
         Resources.Click.play();
         if (this.buttonId === this.scene.player.playerId) {
             this.openDoor = true;
-
+            console.log("ara?")
         }
         if (this.buttonId === this.scene.player2.playerId) {
             this.openDoor = true;
-
-
+            console.log("Oro?")
         }
         if (this.buttonId === this.scene.movableObject.objectId) {
             this.openDoor = true;

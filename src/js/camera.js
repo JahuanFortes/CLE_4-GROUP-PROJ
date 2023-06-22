@@ -8,14 +8,11 @@ export class CustomCamera extends Actor{
     scene    
     constructor(player1, scene){
         super({
-            width: 50,
-            height: 50,
         })
         this.player1 = player1
         this.scene = scene
         this.pos.x = this.player1.pos.x
         this.pos.y = this.player1.pos.y
-        
     }
     onInitialize(engine) {
         this.game = engine
