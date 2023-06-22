@@ -1,11 +1,10 @@
-import { Actor, Engine, Vector, Label, Font, Color, Random, Input, CollisionType, CollisionGroup, BoundingBox, EdgeCollider, Scene, Timer, randomInRange, Physics} from "excalibur"
+import { Actor, Engine, Vector, Label, Font, Color, Random, Input, CollisionType, CollisionGroup, BoundingBox, EdgeCollider, Scene, Timer, randomInRange, Physics, CollisionGroupManager} from "excalibur"
 import { Resources, ResourceLoader } from '../resources.js'
 import { player } from '../player.js'
 import { IngameButton } from "../ingameButton.js";
 import { Wall } from "../wall.js";
 import { Box } from "../box.js"
 import {MovableObject} from "../movableObject.js";
-
 export class Level2 extends Scene {
   game;
   userInterface;
@@ -177,4 +176,5 @@ export class Level2 extends Scene {
     if (kb.isHeld(Input.Keys.Enter)) {
       this.add(this.player2);
     }
+  }
 }
