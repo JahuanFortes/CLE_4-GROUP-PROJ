@@ -165,19 +165,19 @@ export class player extends Actor {
 
     }
 
-    interact(event) {
-        console.log(this.interactTimer);
-        this.interactTimer = true;
+  interact(event) {
+    console.log(this.interactTimer);
+    this.interactTimer = true;
 
-        const timer = new Timer({
-            fcn: () => this.interactTimer = false,
-            repeats: false,
-            interval: 2000,
-        })
+    const timer = new Timer({
+      fcn: () => (this.interactTimer = false),
+      repeats: false,
+      interval: 2000,
+    });
 
-        this.game.currentScene.add(timer)
+    this.game.currentScene.add(timer);
 
-        timer.start()
-        console.log(this.interactTimer);
-    }
+    timer.start();
+    console.log(this.interactTimer);
+  }
 }

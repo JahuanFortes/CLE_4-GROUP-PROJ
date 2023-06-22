@@ -10,7 +10,7 @@ import { Level3 } from "./scenes/game_lvl3.js"
 
 export class Game extends Engine {
   constructor() {
-    super({width: 1440, height: 900, displayMode: DisplayMode.FillScreen});
+    super({ width: 1440, height: 900, displayMode: DisplayMode.FillScreen });
     this.showDebug(true);
     this.start(ResourceLoader).then(() => this.startGame());
   }
@@ -18,15 +18,17 @@ export class Game extends Engine {
   startGame() {
     this.addScene("titlescreen", new TitleScreen());
     this.addScene("Level1", new Level1());
+    this.addScene("Level2", new Level2());
+
     this.addScene("testingground", new testingground());
     this.addScene("character_select", new character_select());
     this.addScene("Level3", new Level3())
     this.goToScene("character_select");
   }
   startLevel2() {
-    this.addScene("Level2", new Level2());
-    this.goToScene("Level2");
-    console.log("level2 has started!")
+    // this.addScene("Level2", new Level2());
+    this.goToScene("Level1");
+    console.log("level2 has started!");
   }
 }
 

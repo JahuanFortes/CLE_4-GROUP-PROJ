@@ -4,6 +4,7 @@ import block from '../images/Sprite-0002-rock.png'
 import mapImage from "../images/map.jpg"
 import background from "../images/bg.jpg"
 import level1 from "../images/BgLevel1.jpg"
+import level2 from "../images/BgLevel2New.jpg";
 import realLevel from "../images/BgLevel1New.jpg"
 import realLevel3 from "../images/BgLevel3New.jpg"
 import testButton from "../images/test-button.png"
@@ -43,15 +44,15 @@ const Resources = {
     characterSheet: new ImageSource(characterSheet),
     Smallstone: new ImageSource(smallstone),
     Ending: new ImageSource(ending),
-
+    Level2: new ImageSource(level2),
     Click: new Sound(click),
     Offclick: new Sound(offclick),
     Opendoor: new Sound(opendoor)
 }
 // met deze for loop hoef je niet alles handmatig in de loader te zetten
-const resourceArray = []
+const resourceArray = [];
 for (const key in Resources) {
-    resourceArray.push(Resources[key])
+  resourceArray.push(Resources[key]);
 }
-const ResourceLoader = new Loader(resourceArray)
-export { Resources, ResourceLoader }
+const ResourceLoader = new Loader(resourceArray);
+export { Resources, ResourceLoader };
