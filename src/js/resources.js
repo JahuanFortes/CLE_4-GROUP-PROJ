@@ -16,6 +16,7 @@ import fence from "../images/fence.png"
 import smallstone from "../images/smallStone.png"
 import ending from "../images/endingLvl1.png"
 import fontFile from "../css/PressStart2P-Regular.ttf";
+import leaf from "../images/leaf.png"
 import click from "../sounds/click.wav"
 import offclick from "../sounds/offclick.wav"
 import opendoor from "../sounds/explosion.wav"
@@ -35,6 +36,7 @@ const Resources = {
     TestButton: new ImageSource(testButton),
     TestButton2: new ImageSource(testButton2),
     Stone: new ImageSource(stone),
+    Leaf: new ImageSource(leaf),
     Onewall: new ImageSource(moveWall),
     Moverock: new ImageSource(moveRock),
     Fence: new ImageSource(fence),

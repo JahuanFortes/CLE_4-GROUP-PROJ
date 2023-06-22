@@ -26,6 +26,7 @@ import { Wall } from "../wall.js";
 import { Box } from "../box.js"
 import {MovableObject} from "../movableObject.js";
 import {Baller} from "../baller.js";
+import {Leaves} from "../leaves.js";
 
 export class Level3 extends Scene {
     game;
@@ -34,18 +35,21 @@ export class Level3 extends Scene {
     colliding = CollisionType.Fixed;
     yourScore = 0;
     enemyScore = 0;
+    leafArray = [];
+    timer;
     constructor() {
 
         super({ width: 1280, height: 720, })
         this.baller = new Baller(-245, 800, Resources.block.toSprite(), this);
         this.baller2 = new Baller(-545, 800, Resources.block.toSprite(), this);
         this.ball = new MovableObject(7, Resources.Football.toSprite(), CollisionType.Active, -445, 400);
-        this.playerGoal = new MovableObject(8, Resources.Football.toSprite(), CollisionType.Fixed, -445, 400);
-        this.enemyGoal = new MovableObject(9, Resources.Football.toSprite(), CollisionType.Fixed, -445, 400)
+
         this.footWall1 = new Wall(-1015, -445, 165, -445);
         this.footWall2 = new Wall(-1020, 975, -1020, -445);
         this.footWall3 = new Wall(-1015, 975, 165, 975);
         this.footWall4 = new Wall(165, 975, 165, -445);
+
+
     }
 
 
@@ -114,16 +118,40 @@ export class Level3 extends Scene {
         this.startGame();
     }
 
+    timerFunction() {
+
+
+
+    }
+
     startGame() {
         this.game.currentScene.camera.strategy.lockToActor(this.player);
         this.game.currentScene.camera.zoom = 0.9
         this.add(this.player);
         this.add(this.player2);
+        this.timer = new Timer({
+            fcn: () => this.spawnLeaves(),
+            repeats: true,
+            interval: 1,
+        })
 
-            this.createPlayArea();
+        this.game.currentScene.add(this.timer)
+        this.timer.start()
 
 
 
+
+        // this.createPlayArea();
+
+
+    }
+    spawnLeaves() {
+        this.leaves = new Leaves(this);
+        this.add(this.leaves);
+        this.leafArray.push(this.leaves);
+        if (this.leafArray.length === 10) {
+            this.removeTimer(this.timer);
+        }
     }
 
     scored(evt) {

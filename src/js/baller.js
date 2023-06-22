@@ -42,17 +42,22 @@ export class Baller extends Actor {
     }
 
     onPreUpdate(engine) {
+        //dont rotate the baller on collision
         this.rotation = 0;
+        //check if baller is lower then the ball
         if (this.pos.y < this.scene.ball.pos.y) {
+            //if he is to the left and on the bottom of ball
             if (this.pos.x < this.scene.ball.pos.x) {
+                //move left and under
                 this.actions.clearActions();
                 this.actions.moveTo(new Vector(this.scene.ball.pos.x - 100, this.scene.ball.pos.y + 100), 200);
             } else {
+                //move to right and under
                 this.actions.clearActions();
                 this.actions.moveTo(new Vector(this.scene.ball.pos.x + 100, this.scene.ball.pos.y + 100), 200);
             }
 
-
+        //if he is under already, just follow/push the ball
         } else {
             this.actions.meet(this.scene.ball, 100);
         }
