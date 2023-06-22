@@ -18,12 +18,14 @@ export class Leaves extends Actor {
 
     standing = false;
     points = 0;
+    leafId = 0;
     constructor(scene) {
 
         super({
             width: width,
             height: heigth
         })
+
         this.sprite = Resources.Leaf.toSprite();
         this.scale = new Vector(2, 2);
         width = this.sprite.width;
@@ -38,14 +40,10 @@ export class Leaves extends Actor {
         this.rand = new Random();
         this.pos = new Vector(
             this.rand.integer(this.width, (Resources.realLevel3.width - this.width) * 1.8),
-            this.rand.integer(this.height, (Resources.realLevel3.height - this.height) * 1.5)
+            this.rand.integer(this.height, (Resources.realLevel3.height - this.height) * 1.8)
         );
         this.on('collisionstart', () => this.isStanding());
         this.on('collisionend', () => this.isNotStanding());
-        if (this.standing && this.scene.player.interactTimer) {
-            this.points++
-            console.log(this.points);
-        }
     }
 
     isStanding() {
@@ -58,13 +56,14 @@ export class Leaves extends Actor {
     }
 
     onPreUpdate(engine) {
-        if (this.standing && this.scene.player.interactTimer) {
-            this.points++
+        if (this.standing && this.scene.player.interactTimer || this.standing && this.scene.player2.interactTimer) {
+            this.scene.leafPoints++
             if (this.points++) {
                 this.scene.player.interactTimer = false;
-                this.points--
+                this.scene.player2.interactTimer = false;
+                this.scene.leafPoints--
             }
-            console.log(this.points)
+            console.log(this.scene.leafPoints)
         }
     }
 

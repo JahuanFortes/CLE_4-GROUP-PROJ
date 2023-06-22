@@ -36,7 +36,9 @@ export class Level3 extends Scene {
     yourScore = 0;
     enemyScore = 0;
     leafArray = [];
+    leafPoints = 0;
     timer;
+
     constructor() {
 
         super({ width: 1280, height: 720, })
@@ -118,11 +120,6 @@ export class Level3 extends Scene {
         this.startGame();
     }
 
-    timerFunction() {
-
-
-
-    }
 
     startGame() {
         this.game.currentScene.camera.strategy.lockToActor(this.player);
@@ -153,6 +150,7 @@ export class Level3 extends Scene {
             this.removeTimer(this.timer);
         }
     }
+
 
     scored(evt) {
         if (evt.other instanceof MovableObject) {
@@ -191,12 +189,8 @@ export class Level3 extends Scene {
         this.add(this.footWall2);
         this.add(this.footWall3);
         this.add(this.footWall4);
-
-            this.add(this.label);
-            this.add(this.enemyLabel);
-
-
-
+        this.add(this.label);
+        this.add(this.enemyLabel);
 
     }
     onPostDraw() {
