@@ -63,7 +63,24 @@ export class Level2 extends Scene {
     this.boxes11 = new Box(-900, 1240, 500, 100);
     //#endregion boxes
 
-    //#region objects
+    //#region not needed
+    this.movableObject = new MovableObject(
+      3,
+      Resources.Smallstone.toSprite(),
+      CollisionType.Active,
+      300,
+      100
+    );
+    this.moveStone = new MovableObject(
+      1,
+      Resources.Stone.toSprite(),
+      CollisionType.Active,
+      880,
+      510
+    );
+    //#endregion not needed
+
+    //#region Ending
     this.ending = new MovableObject(
       1,
       Resources.Ending.toSprite(),
@@ -71,13 +88,13 @@ export class Level2 extends Scene {
       -900,
       1000
     );
-    //#endregion objects
+    //#endregion Ending
   }
 
   onInitialize(engine) {
     //gets engine to use for controllers, also adds background with right scale and pos
 
-    //#region background
+    //#region Background
     this.game = engine;
     engine.input.gamepads.enabled = true;
     let background = new Actor();
@@ -85,7 +102,7 @@ export class Level2 extends Scene {
     background.scale = new Vector(2.6, 2.2);
     background.pos = new Vector(775, 480);
     this.add(background);
-    //#endregion background
+    //#endregion Background
   }
 
   onActivate(ctx) {
@@ -106,8 +123,8 @@ export class Level2 extends Scene {
 
   startGame() {
     this.game.currentScene.camera.strategy.lockToActor(this.player);
-
     this.add(this.player);
+    console.log(this.player);
 
     //#region Buttons
     this.add(this.button1);
@@ -144,6 +161,7 @@ export class Level2 extends Scene {
   onPreUpdate(game) {
     //this is puzzle one, both press the button and the door opens
     //these are all if statements used to check for buttons etc.
+
     //#region Puzzles
     if (this.button3.openDoor && this.button4.openDoor) {
       Resources.Opendoor.play();
