@@ -12,7 +12,7 @@ import { Level4 } from "./scenes/game_lvl4.js"
 export class Game extends Engine {
   constructor() {
     super({width: 1440, height: 900, displayMode: DisplayMode.FillScreen});
-    this.showDebug(true);
+    this.showDebug(false);
     this.start(ResourceLoader).then(() => this.startGame());
   }
 

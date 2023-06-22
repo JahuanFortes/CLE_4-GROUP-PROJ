@@ -23,10 +23,10 @@ export class Leaves extends Actor {
         super({
             width: 50,
             height: 50
+
         })
 
         this.sprite = Resources.Leaf.toSprite();
-        this.scale = new Vector(2, 2);
 
         this.scene = scene;
 
@@ -36,6 +36,8 @@ export class Leaves extends Actor {
     onInitialize(engine) {
         this.graphics.use(this.sprite);
         this.rand = new Random();
+        this.rotation = Math.PI * this.rand.integer(0, 1);
+
         this.pos = new Vector(
             this.rand.integer(this.width, (Resources.realLevel3.width - this.width) * 1.8),
             this.rand.integer(this.height, (Resources.realLevel3.height - this.height) * 1.5)

@@ -50,16 +50,16 @@ export class Baller extends Actor {
             if (this.pos.x < this.scene.ball.pos.x) {
                 //move left and under
                 this.actions.clearActions();
-                this.actions.moveTo(new Vector(this.scene.ball.pos.x - 100, this.scene.ball.pos.y + 100), 200);
+                this.actions.moveTo(new Vector(this.scene.ball.pos.x - 100, this.scene.ball.pos.y + 100), 300);
             } else {
                 //move to right and under
                 this.actions.clearActions();
-                this.actions.moveTo(new Vector(this.scene.ball.pos.x + 100, this.scene.ball.pos.y + 100), 200);
+                this.actions.moveTo(new Vector(this.scene.ball.pos.x + 100, this.scene.ball.pos.y + 100), 300);
             }
 
         //if he is under already, just follow/push the ball
         } else {
-            this.actions.meet(this.scene.ball, 100);
+            this.actions.meet(this.scene.ball, 200);
         }
 
     }

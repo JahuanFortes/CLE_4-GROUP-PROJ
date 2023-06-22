@@ -17,7 +17,7 @@ import {
     Timer,
     randomInRange,
     Physics,
-    BaseAlign, TextAlign
+    BaseAlign, TextAlign, FontUnit
 } from "excalibur"
 import { Resources, ResourceLoader } from '../resources.js'
 import { player } from '../player.js'
@@ -27,6 +27,7 @@ import { Box } from "../box.js"
 import {MovableObject} from "../movableObject.js";
 import {Baller} from "../baller.js";
 import {Leaves} from "../leaves.js";
+import { Fonts } from "../fonts.js";
 
 export class Level3 extends Scene {
     game;
@@ -34,11 +35,13 @@ export class Level3 extends Scene {
     character;
     colliding = CollisionType.Fixed;
     yourScore = 0;
-    enemyScore = 4;
+    enemyScore = 0;
     leafArray = [];
     leafPoints = 0;
     timer;
     startBallin = false;
+    winScore = 5;
+    leafAmount = 15;
 
     constructor() {
 
@@ -53,7 +56,7 @@ export class Level3 extends Scene {
         this.footWall4 = new Wall(165, 975, 165, -445);
 
         this.goLevel4 = new MovableObject(1, Resources.Ending.toSprite(), CollisionType.Passive, 2600, -300)
-
+        this.gameFont = new Fonts();
 
     }
 
@@ -76,65 +79,30 @@ export class Level3 extends Scene {
 
         this.footWall3.on('collisionstart', (evt) => this.scored(evt));
         this.footWall1.on('collisionstart', (evt) => this.enemyScored(evt));
-        this.label = new Label({
+        this.playerLabel = new Label({
             text: `${this.yourScore}`,
-            pos: new Vector(200, 190),
-            font: new Font({
-                family: 'arial',
-                // style: FontStyle.Italic,
-                size: 40,
-                strokeColor: Color.Black,
-                lineWidth: 2,
-                bold: true,
-                color: Color.White,
-                baseAlign: BaseAlign.Top,
-                textAlign: TextAlign.Center
-            })
+            pos: new Vector(200, 100),
+            font: this.gameFont.font
         });
         this.enemyLabel = new Label({
             text: `${this.enemyScore}`,
-            pos: new Vector(200, 100),
-            font: new Font({
-                family: 'arial',
-                // style: FontStyle.Italic,
-                size: 40,
-                strokeColor: Color.Black,
-                lineWidth: 2,
-                bold: true,
-                color: Color.White,
-                baseAlign: BaseAlign.Top,
-                textAlign: TextAlign.Center
-            })
+            pos: new Vector(200, 190),
+            font: this.gameFont.font2
         });
         this.wonLabel = new Label({
             text: `You won noobs, follow the path to the end`,
-            pos: new Vector(-445, -400),
-            font: new Font({
-                family: 'arial',
-                // style: FontStyle.Italic,
-                size: 40,
-                strokeColor: Color.Black,
-                lineWidth: 2,
-                bold: true,
-                color: Color.White,
-                baseAlign: BaseAlign.Top,
-                textAlign: TextAlign.Center
-            })
+            pos: new Vector(-845, -300),
+            font: this.gameFont.font3
         });
         this.lostLabel = new Label({
             text: `You lost noobs, try to get to 5 points first!`,
-            pos: new Vector(-445, -400),
-            font: new Font({
-                family: 'arial',
-                // style: FontStyle.Italic,
-                size: 40,
-                strokeColor: Color.Black,
-                lineWidth: 2,
-                bold: true,
-                color: Color.White,
-                baseAlign: BaseAlign.Top,
-                textAlign: TextAlign.Center
-            })
+            pos: new Vector(-845, -300),
+            font: this.gameFont.font3
+        });
+        this.explainLabel = new Label({
+            text: `Find all leaves and start ballin!`,
+            pos: new Vector(2700, 900),
+            font: this.gameFont.font3
         });
         this.timer = new Timer({
             fcn: () => this.spawnLeaves(),
@@ -151,8 +119,8 @@ export class Level3 extends Scene {
         console.log(ctx.previousScene);
         this.player1ID = ctx.previousScene.player1ID;
         this.player2ID = ctx.previousScene.player2ID;
-        this.player = new player(this, 1, 300, -300, this.player1ID);
-        this.player2 = new player(this,2, 5, 100, this.player2ID);
+        this.player = new player(this, 1, 2500, 1000, this.player1ID);
+        this.player2 = new player(this,2, 2500, 1200, this.player2ID);
         //starts game
         this.startGame();
     }
@@ -163,7 +131,7 @@ export class Level3 extends Scene {
         this.game.currentScene.camera.zoom = 0.9;
         this.add(this.player);
         this.add(this.player2);
-
+        this.add(this.explainLabel);
         this.game.currentScene.add(this.timer);
         this.timer.start();
 
@@ -176,7 +144,7 @@ export class Level3 extends Scene {
         this.leaves = new Leaves(this);
         this.add(this.leaves);
         this.leafArray.push(this.leaves);
-        if (this.leafArray.length === 10) {
+        if (this.leafArray.length === this.leafAmount) {
             this.removeTimer(this.timer);
         }
     }
@@ -187,13 +155,14 @@ export class Level3 extends Scene {
             this.baller.actions.clearActions();
             this.baller2.actions.clearActions();
             this.yourScore += 1;
+
             this.player.pos = new Vector(-245, -200);
             this.player2.pos = new Vector(-545, -200);
             this.ball.pos = new Vector(-445, 400);
             this.baller.pos = new Vector(-245, 800);
             this.baller2.pos = new Vector(-545, 800);
 
-            if (this.yourScore === 5) {
+            if (this.yourScore === this.winScore) {
                 this.yourScore = 0;
                 this.enemyScore = 0;
                 this.baller.kill();
@@ -216,12 +185,13 @@ export class Level3 extends Scene {
             this.baller.actions.clearActions();
             this.baller2.actions.clearActions();
             this.enemyScore += 1;
+
             this.player.pos = new Vector(-245, -200);
             this.player2.pos = new Vector(-545, -200);
             this.ball.pos = new Vector(-445, 400);
             this.baller.pos = new Vector(-245, 800);
             this.baller2.pos = new Vector(-545, 800);
-            if (this.enemyScore === 5) {
+            if (this.enemyScore === this.winScore) {
                 this.yourScore = 0;
                 this.enemyScore = 0;
                 this.player.pos = new Vector(-245, -200);
@@ -253,22 +223,24 @@ export class Level3 extends Scene {
         this.add(this.footWall2);
         this.add(this.footWall3);
         this.add(this.footWall4);
-        this.add(this.label);
+        this.add(this.playerLabel);
         this.add(this.enemyLabel);
 
     }
 
     onPostDraw() {
+        this.enemyLabel.text = `${this.enemyScore}`;
+        this.playerLabel.text = `${this.yourScore}`;
+
         if (this.startBallin === false) {
-            if (this.leafPoints === 10) {
+            if (this.leafPoints === this.leafAmount) {
                 this.leafArray.splice(0, this.leafArray.length);
                 this.createPlayArea();
 
             }
         }
 
-        this.label.text = `${this.yourScore}`
-        this.enemyLabel.text = `${this.enemyScore}`
+
 
         if (this.goLevel4.isColliding) {
             this.game.startLevel4();
