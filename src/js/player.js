@@ -12,10 +12,10 @@ export class player extends Actor {
     playerGroup
     hasCamera
     player2
-    
-    
+
+    static group = CollisionGroupManager.create('player');
     constructor(scene, playerId,x, y, charId, charselect, hasCamera){
-        
+
         super({width:100, height:100, collisionType:CollisionType.Active})
         this.spriteSheet = SpriteSheet.fromImageSource({
             image: Resources.characterSheet,
@@ -32,6 +32,7 @@ export class player extends Actor {
                 margin: { x: 50, y: 100}
             }
         })
+        this.body.group = player.group;
         this.graphics.use(this.spriteSheet.sprites[charId])
         this.pos = new Vector(x, y) 
         this.pointer.useGraphicsBounds = true
