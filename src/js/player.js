@@ -1,8 +1,6 @@
 import {Actor, Input, Random, Vector, clamp, Timer, CollisionType, CollisionGroupManager, Delay, GamepadConnectEvent,SpriteSheet, CollisionGroup} from "excalibur"
 import { Resources } from "./resources"
 import { CustomCamera } from "./camera";
-import { player2 } from "./player2id";
-
 export class player extends Actor {
     game;
     scene;
@@ -52,16 +50,12 @@ export class player extends Actor {
         this.selectedP1 = 0
         this.selectedP2 = 0
         this.hasCamera = hasCamera ?? 0
-        this.player2ID = player2CHARID
-        this.player2 = new player2(this,2, 5, 100, this.player2ID, 0, 0)
     }
     onInitialize(engine){
         this.game = engine
         engine.input.gamepads.enabled = true;
         if(this.hasCamera == 1){
-            console.log("Where that camera at tho?")
-            this.game.add(this.player2)
-            this.CustomCamera = new CustomCamera(this, this.player2)
+            this.CustomCamera = new CustomCamera(this, this.scene)
             this.game.add(this.CustomCamera);
         }
         this.on('collisionend', () => this.stopPlayer());

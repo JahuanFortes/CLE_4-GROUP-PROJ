@@ -1,18 +1,18 @@
 import { Actor, BoundingBox, Camera, CollisionGroup, CollisionGroupManager, CollisionType, CompositeCollider, EdgeCollider, Shape, Vector, clamp } from "excalibur";
 import { player } from "./player";
-//import { vector } from "excalibur/build/dist/Util/DrawUtil";
 
 export class CustomCamera extends Actor{
     player1
     player2
-    game    
-    constructor(player1, player2){
+    game
+    scene    
+    constructor(player1, scene){
         super({
             width: 50,
             height: 50,
         })
         this.player1 = player1
-        this.player2 = player2
+        this.scene = scene
         this.pos.x = this.player1.pos.x
         this.pos.y = this.player1.pos.y
         
@@ -21,7 +21,7 @@ export class CustomCamera extends Actor{
         this.game = engine
     }
     onPreUpdate(engine) {
-        let distance = Vector.distance(this.player1.pos, this.player2.pos)
+        let distance = Vector.distance(this.player1.pos, this.scene.player2.pos)
         this.pos.x = this.player1.pos.x
         this.pos.y = this.player1.pos.y
         /*

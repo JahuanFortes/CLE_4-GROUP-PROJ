@@ -7,7 +7,6 @@ import { IngameButton } from "../ingameButton.js";
 import { Wall } from "../wall.js";
 import { Box } from "../box.js"
 import {MovableObject} from "../movableObject.js";
-import { player2 } from "../player2id.js";
 
 export class Level1 extends Scene {
     game;
@@ -70,8 +69,8 @@ export class Level1 extends Scene {
         console.log(ctx.previousScene)
         this.player1ID = ctx.previousScene.player1ID
         this.player2ID = ctx.previousScene.player2ID
-        this.player = new player(this, 1, 5, 100, this.player1ID, 0, 1, this.player2ID);
-        this.player2 = new player2(this,2, 5, 100, this.player2ID, 0, 0);
+        this.player = new player(this, 1, 5, 100, this.player1ID, 0, 1,);
+        this.player2 = new player(this,2, 5, 100, this.player2ID, 0, 0);
         //this.game.currentScene.camera.strategy.lockToActor(this.player)
         this.startGame()
     }
