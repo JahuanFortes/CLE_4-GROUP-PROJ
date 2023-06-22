@@ -12,22 +12,22 @@ import {
 } from "excalibur"
 import { Resources } from "./resources"
 import {MovableObject} from "./movableObject.js";
-let width;
-let heigth;
+
 export class Leaves extends Actor {
 
     standing = false;
-    points = 0;
+
+    leafId = 0;
     constructor(scene) {
 
         super({
-            width: width,
-            height: heigth
+            width: 50,
+            height: 50
         })
+
         this.sprite = Resources.Leaf.toSprite();
         this.scale = new Vector(2, 2);
-        width = this.sprite.width;
-        heigth = this.sprite.height
+
         this.scene = scene;
 
     }
@@ -42,10 +42,6 @@ export class Leaves extends Actor {
         );
         this.on('collisionstart', () => this.isStanding());
         this.on('collisionend', () => this.isNotStanding());
-        if (this.standing && this.scene.player.interactTimer) {
-            this.points++
-            console.log(this.points);
-        }
     }
 
     isStanding() {
@@ -58,13 +54,16 @@ export class Leaves extends Actor {
     }
 
     onPreUpdate(engine) {
-        if (this.standing && this.scene.player.interactTimer) {
-            this.points++
-            if (this.points++) {
+        if (this.standing && this.scene.player.interactTimer || this.standing && this.scene.player2.interactTimer) {
+
+            this.scene.leafPoints++
+            this.kill();
+            if (this.scene.leafPoints++) {
                 this.scene.player.interactTimer = false;
-                this.points--
+                this.scene.player2.interactTimer = false;
+                this.scene.leafPoints--
             }
-            console.log(this.points)
+            console.log(this.scene.leafPoints)
         }
     }
 
