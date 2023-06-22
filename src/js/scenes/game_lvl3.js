@@ -119,8 +119,8 @@ export class Level3 extends Scene {
         console.log(ctx.previousScene);
         this.player1ID = ctx.previousScene.player1ID;
         this.player2ID = ctx.previousScene.player2ID;
-        this.player = new player(this, 1, 2500, 1000, this.player1ID);
-        this.player2 = new player(this,2, 2500, 1200, this.player2ID);
+        this.player = new player(this, 1, 2500, 1000, this.player1ID, 0, 1);
+        this.player2 = new player(this,2, 2500, 1200, this.player2ID, 0, 0);
         //starts game
         this.startGame();
     }
