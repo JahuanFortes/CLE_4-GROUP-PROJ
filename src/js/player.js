@@ -1,16 +1,23 @@
-import {Actor, Input, Random, Vector, clamp, Timer, CollisionType, CollisionGroupManager, Delay, GamepadConnectEvent,SpriteSheet} from "excalibur"
+import {Actor, Input, Random, Vector, clamp, Timer, CollisionType, CollisionGroupManager, Delay, GamepadConnectEvent,SpriteSheet, CollisionGroup} from "excalibur"
 import { Resources } from "./resources"
-
+import { CustomCamera } from "./camera";
 export class player extends Actor {
     game;
     scene;
     playerId;
     interactTimer = false;
-    static group = CollisionGroupManager.create('player');
     spriteSheet
     selectedP1
     selectedP2
-    constructor(scene, playerId,x, y, charId, charselect){
+    playerGroup
+    hasCamera
+    CustomCameraGroup
+    player2ID
+    player2
+    
+    
+    constructor(scene, playerId,x, y, charId, charselect, hasCamera, player2CHARID){
+        
         super({width:100, height:100, collisionType:CollisionType.Active})
         this.spriteSheet = SpriteSheet.fromImageSource({
             image: Resources.characterSheet,
@@ -27,23 +34,35 @@ export class player extends Actor {
                 margin: { x: 50, y: 100}
             }
         })
+        let PlayerCanCollideWith = CollisionGroup.collidesWith([
+            'CC',
+          ])
         //console.log(this.spriteSheet.sprites[0])
+        this.CollisionGroup = PlayerCanCollideWith;
         this.graphics.use(this.spriteSheet.sprites[charId])
         this.pos = new Vector(x, y) 
         this.pointer.useGraphicsBounds = true
         //this.pos = new Vector(5, 100);
         this.scene = scene;
         this.playerId = playerId;
-        this.body.group = player.group;
         this.charId = charId ?? 0
         this.charselect = charselect ?? 0
         this.selectedP1 = 0
         this.selectedP2 = 0
+        this.hasCamera = hasCamera ?? 0
     }
     onInitialize(engine){
         this.game = engine
         engine.input.gamepads.enabled = true;
-
+        if(this.hasCamera == 1){
+            this.CustomCamera = new CustomCamera(this, this.scene)
+            this.game.add(this.CustomCamera);
+        }
+        this.on('collisionend', () => this.stopPlayer());
+    }
+    stopPlayer(){
+        this.vel.x = 0
+        this.vel.y = 0
     }
     onPreUpdate(engine) {
         this.rotation = 0;

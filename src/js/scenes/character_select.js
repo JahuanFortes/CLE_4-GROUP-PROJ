@@ -2,7 +2,6 @@ import { Actor, Engine, Vector, Label, Font, Color, Random, Input, CollisionGrou
 import { Resources, ResourceLoader } from '../resources.js'
 import { player } from '../player.js'
 import { userInterface } from "../userinterface.js";
-import { testingground } from "../scenes/testingground.js";
 export class character_select extends Scene {
     game;
     userInterface;
@@ -13,8 +12,8 @@ export class character_select extends Scene {
     player2ID;
     constructor() {
         super({width: 1440, height: 900, displayMode: DisplayMode.FillScreen});
-        this.player = new player(this, 1, 500, 400, 0, 1)
-        this.player2 = new player(this,2, 1000, 400, 0, 1)
+        this.player = new player(this, 1, 500, 400, 0, 1, 0)
+        this.player2 = new player(this,2, 1000, 400, 0, 1, 0)
         this.userInterface = new userInterface(this, 0, 1)
         this.amount = 0
         this.player1ID = 0
