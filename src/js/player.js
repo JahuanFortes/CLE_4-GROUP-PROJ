@@ -1,4 +1,4 @@
-import {Actor, Input, Random, Vector, clamp, Timer, CollisionType, CollisionGroupManager, Delay, GamepadConnectEvent,SpriteSheet, CollisionGroup} from "excalibur"
+import {Actor, Input, Random, Vector, clamp, Timer, CollisionType, CollisionGroupManager, Delay, GamepadConnectEvent,SpriteSheet, CollisionGroup, range, Animation} from "excalibur"
 import { Resources } from "./resources"
 import { CustomCamera } from "./camera";
 export class player extends Actor {
@@ -12,7 +12,7 @@ export class player extends Actor {
     playerGroup
     hasCamera
     player2
-
+    lastFrame
     static group = CollisionGroupManager.create('player');
     constructor(scene, playerId,x, y, charId, charselect, hasCamera){
 
@@ -32,8 +32,29 @@ export class player extends Actor {
                 margin: { x: 50, y: 100}
             }
         })
+        this.spriteSheetSWalk = SpriteSheet.fromImageSource({
+            image: Resources.CharacterSWalkSheet,
+            grid: {
+                rows: 1,
+                columns: 4,
+                spriteWidth: 55,
+                spriteHeight: 100,
+            }
+        }) 
+        this.spriteSheetFWalk = SpriteSheet.fromImageSource({
+            image: Resources.CharacterFWalkSheet,
+            grid: {
+                rows: 1,
+                columns: 4,
+                spriteWidth: 55,
+                spriteHeight: 100,
+            }
+        })
+        console.log(this.spriteSheetSWalk)
+        this.runAnim = Animation.fromSpriteSheet(this.spriteSheetSWalk, range(0,3), 200)
+        this.runAnimF = Animation.fromSpriteSheet(this.spriteSheetFWalk, range(0,3), 200)
         this.body.group = player.group;
-        this.graphics.use(this.spriteSheet.sprites[charId])
+        this.graphics.use(this.spriteSheetSWalk.sprites[0])
         this.pos = new Vector(x, y) 
         this.pointer.useGraphicsBounds = true
         //this.pos = new Vector(5, 100);
@@ -44,6 +65,7 @@ export class player extends Actor {
         this.selectedP1 = 0
         this.selectedP2 = 0
         this.hasCamera = hasCamera ?? 0
+        this.lastFrame = 0
     }
     onInitialize(engine){
         this.game = engine
@@ -60,7 +82,7 @@ export class player extends Actor {
     }
     onPreUpdate(engine) {
         this.rotation = 0;
-        
+        this.graphics.use(this.spriteSheetSWalk.sprites[0])
         let xspeed = 0
         let yspeed = 0
 
@@ -76,15 +98,19 @@ export class player extends Actor {
             case 1:
                 if (kb.isHeld(Input.Keys.W) || kb.isHeld(Input.Keys.Up)  || controller.at(0).getAxes(Input.Axes.LeftStickY) < -0.5) {
                     yspeed = -300
+                    this.graphics.use(this.runAnimF)
                 }
                 if (kb.isHeld(Input.Keys.S) || kb.isHeld(Input.Keys.Down)  || controller.at(0).getAxes(Input.Axes.LeftStickY) > 0.5) {
                     yspeed = 300
+                    this.graphics.use(this.runAnimF).flipVertical = false
                 }
                 if (kb.isHeld(Input.Keys.A) || kb.isHeld(Input.Keys.Left) || controller.at(0).getAxes(Input.Axes.LeftStickX) < -0.5) {
                     xspeed = -300
+                    this.graphics.use(this.runAnim).flipHorizontal = true
                 }
                 if (kb.isHeld(Input.Keys.D) || kb.isHeld(Input.Keys.Right) || controller.at(0).getAxes(Input.Axes.LeftStickX) > 0.5) {
                     xspeed = 300
+                    this.graphics.use(this.runAnim).flipHorizontal = false
                 }
                 //interaction
                 if (kb.wasPressed(Input.Keys.E)) {
@@ -111,6 +137,7 @@ export class player extends Actor {
 
             }
         this.vel = new Vector(xspeed, yspeed)
+        
         // blijf binnen beeld
 
             this.pos.x = clamp(this.pos.x, -1050, Resources.realLevel.width * 1.84 - this.width/2);

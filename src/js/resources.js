@@ -22,6 +22,8 @@ import click from "../sounds/click.wav"
 import offclick from "../sounds/offclick.wav"
 import opendoor from "../sounds/explosion.wav"
 import characterSheet from "../images/character1.png"
+import characterFWalkSheet from "../images/BASE_character F_walk sprite.png"
+import CharacterSWalkSheet from "../images/BASE_character S_walk sprite.png"
 const font = new FontFace("PressStart2P-Regular", `url(${fontFile})`);
 document.fonts.add(font);
 font.load();
@@ -48,7 +50,9 @@ const Resources = {
     Level2: new ImageSource(level2),
     Click: new Sound(click),
     Offclick: new Sound(offclick),
-    Opendoor: new Sound(opendoor)
+    Opendoor: new Sound(opendoor),
+    CharacterSWalkSheet: new ImageSource(CharacterSWalkSheet),
+    CharacterFWalkSheet: new ImageSource(characterFWalkSheet,)
 }
 // met deze for loop hoef je niet alles handmatig in de loader te zetten
 const resourceArray = [];
