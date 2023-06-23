@@ -2,7 +2,7 @@ import { ImageSource, Sound, Resource, Loader } from 'excalibur'
 import fishImage from '../images/fish.png'
 import signup from '../images/sign.png'
 import signdown from '../images/sign_down.png'
-import labellocation from '../images/label_location.png'
+import labellocation from '../images/pigeon.png'
 import block from '../images/Sprite-0002-rock.png'
 import mapImage from "../images/map.jpg"
 import background from "../images/bg.jpg"

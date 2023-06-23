@@ -18,7 +18,7 @@ export class Secret_sign extends Actor {
 
     standing = false;
     hasCollided = false;
-    constructor(scene, x, y) {
+    constructor(scene, x, y, pigeonType) {
 
         super({
             width: 100,
@@ -39,8 +39,8 @@ export class Secret_sign extends Actor {
         this.labelLocation.scale = new Vector(1, 1);
         this.labelLocation.pos = new Vector(this.pos.x - 1000, this.pos.y);
         this.labelLocation.z = 10;
-        this.firstPigeon = new PigeonLabels(this);
 
+        this.pigeonType = pigeonType;
 
     }
 
@@ -69,11 +69,11 @@ export class Secret_sign extends Actor {
                 this.scene.add(this.labelLocation);
                 this.labelLocation.actions.moveTo(this.pos.x - 400, this.pos.y, 4000);
                 if (this.labelLocation.pos.x === this.pos.x - 400 && this.labelLocation.pos.y === this.pos.y) {
-                    this.scene.add(this.firstPigeon.pigeonLabel1);
+                    this.scene.add(this.pigeonType);
                 }
 
             } else if (this.standing === false) {
-                this.firstPigeon.pigeonLabel1.kill();
+                this.pigeonType.kill();
                 this.labelLocation.kill();
                 this.labelLocation.pos = new Vector(this.pos.x - 1000, this.pos.y);
             }

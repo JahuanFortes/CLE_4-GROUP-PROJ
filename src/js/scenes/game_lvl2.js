@@ -5,6 +5,8 @@ import { IngameButton } from "../ingameButton.js";
 import { Wall } from "../wall.js";
 import { Box } from "../box.js"
 import {MovableObject} from "../movableObject.js";
+import {Secret_sign} from "../secret_sign.js";
+import {PigeonLabels} from "../pigeonLabels.js";
 export class Level2 extends Scene {
   game;
   userInterface;
@@ -45,6 +47,10 @@ export class Level2 extends Scene {
     this.boxes11 = new Box(-900, 1240, 500, 100);
     //#endregion boxes
 
+    this.firstPigeon = new PigeonLabels();
+    this.secondSign = new Secret_sign(this, 2000, 1200, this.firstPigeon.pigeonLabel4);
+    this.secondSign2 = new Secret_sign(this, 2300, 100, this.firstPigeon.pigeonLabel5);
+    this.secondSign3 = new Secret_sign(this, -700, -400, this.firstPigeon.pigeonLabel6);
     //#region not needed
     this.movableObject = new MovableObject(
       3,
@@ -142,7 +148,13 @@ export class Level2 extends Scene {
     this.add(this.boxes11);
     //#endregion Boxes
 
+    this.add(this.secondSign);
+    this.add(this.secondSign2);
+    this.add(this.secondSign3);
+
     this.add(this.ending);
+
+
   }
 
   onPreUpdate(game) {

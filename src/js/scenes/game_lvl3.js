@@ -28,6 +28,8 @@ import {MovableObject} from "../movableObject.js";
 import {Baller} from "../baller.js";
 import {Leaves} from "../leaves.js";
 import { Fonts } from "../fonts.js";
+import {PigeonLabels} from "../pigeonLabels.js";
+import {Secret_sign} from "../secret_sign.js";
 
 export class Level3 extends Scene {
     game;
@@ -57,6 +59,9 @@ export class Level3 extends Scene {
 
         this.goLevel4 = new MovableObject(1, Resources.Ending.toSprite(), CollisionType.Passive, 2600, -300)
         this.gameFont = new Fonts();
+        this.firstPigeon = new PigeonLabels();
+        this.thirdSign = new Secret_sign(this, 2100, -200, this.firstPigeon.pigeonLabel7);
+        this.thirdSign2 = new Secret_sign(this, -500, 1200, this.firstPigeon.pigeonLabel8);
 
     }
 
@@ -99,11 +104,7 @@ export class Level3 extends Scene {
             pos: new Vector(-845, -300),
             font: this.gameFont.font3
         });
-        this.explainLabel = new Label({
-            text: `Find all leaves and start ballin!`,
-            pos: new Vector(2700, 900),
-            font: this.gameFont.font3
-        });
+
         this.timer = new Timer({
             fcn: () => this.spawnLeaves(),
             repeats: true,
@@ -131,7 +132,10 @@ export class Level3 extends Scene {
         this.game.currentScene.camera.zoom = 0.9;
         this.add(this.player);
         this.add(this.player2);
-        this.add(this.explainLabel);
+
+        this.add(this.thirdSign);
+        this.add(this.thirdSign2);
+
         this.game.currentScene.add(this.timer);
         this.timer.start();
 

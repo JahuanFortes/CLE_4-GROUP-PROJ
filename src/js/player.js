@@ -82,6 +82,7 @@ export class player extends Actor {
         this.vel.y = 0
     }
     onPreUpdate(engine) {
+
         this.rotation = 0;
         this.graphics.use(this.spriteSheetSWalk.sprites[0])
         let xspeed = 0
