@@ -5,6 +5,8 @@ import { IngameButton } from "../ingameButton.js";
 import { Wall } from "../wall.js";
 import { Box } from "../box.js"
 import {MovableObject} from "../movableObject.js";
+import {Secret_sign} from "../secret_sign.js";
+import {PigeonLabels} from "../pigeonLabels.js";
 
 export class Level1 extends Scene {
     game;
@@ -53,6 +55,8 @@ export class Level1 extends Scene {
         this.nextLevel = new MovableObject(1, Resources.Ending.toSprite(), CollisionType.Passive, -1050, 1050)
         this.moveStone = new MovableObject(1, Resources.Stone.toSprite(), CollisionType.Active, 1000, 550);
         //#endregion objects
+
+        this.firstSign = new Secret_sign(this, -900, -400);
 
 
 
@@ -128,7 +132,7 @@ export class Level1 extends Scene {
         this.add(this.breakingWallImg);
         this.add(this.breakingWallFence);
         this.add(this.breakingWallRock);
-        console.log(this.player2)
+        this.add(this.firstSign);
     }
     /*
     loadEverything() {

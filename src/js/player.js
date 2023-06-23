@@ -66,6 +66,7 @@ export class player extends Actor {
         this.selectedP2 = 0
         this.hasCamera = hasCamera ?? 0
         this.lastFrame = 0
+        this.z = 100;
     }
     onInitialize(engine){
         this.game = engine

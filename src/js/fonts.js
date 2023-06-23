@@ -1,4 +1,4 @@
-import {BaseAlign, Color, Font, FontUnit, ScreenElement, TextAlign} from "excalibur";
+import {BaseAlign, Color, Font, FontUnit, Label, ScreenElement, TextAlign} from "excalibur";
 
 export class Fonts extends ScreenElement {
     font;
