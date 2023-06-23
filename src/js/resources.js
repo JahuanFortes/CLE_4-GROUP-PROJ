@@ -7,6 +7,7 @@ import level1 from "../images/BgLevel1.jpg"
 import level2 from "../images/BgLevel2New.jpg";
 import realLevel from "../images/BgLevel1New.jpg"
 import realLevel3 from "../images/BgLevel3New.jpg"
+import bgtest from "../images/bgtest.jpg"
 import testButton from "../images/test-button.png"
 import testButton2 from "../images/test-button-2.png"
 import stone from "../images/stone.png"
@@ -32,7 +33,7 @@ const Resources = {
     Bg: new ImageSource(background),
     Football: new ImageSource(football),
     Level1: new ImageSource(level1),
-    Level2: new ImageSource(level2),
+    Bgtest: new ImageSource(bgtest),
     realLevel: new ImageSource(realLevel),
     realLevel3: new ImageSource(realLevel3),
     TestButton: new ImageSource(testButton),

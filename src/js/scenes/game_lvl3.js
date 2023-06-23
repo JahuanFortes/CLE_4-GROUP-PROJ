@@ -66,7 +66,7 @@ export class Level3 extends Scene {
         engine.input.gamepads.enabled = true;
         let bg = new Actor();
         bg.graphics.use(Resources.Bg.toSprite());
-        bg.scale = new Vector(26, 22);
+        bg.scale = new Vector(7, 7);
         bg.pos = new Vector(775, 480);
         bg.z = 0;
         this.add(bg);
