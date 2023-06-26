@@ -5,6 +5,8 @@ import { IngameButton } from "../ingameButton.js";
 import { Wall } from "../wall.js";
 import { Box } from "../box.js"
 import {MovableObject} from "../movableObject.js";
+import {Secret_sign} from "../secret_sign.js";
+import {PigeonLabels} from "../pigeonLabels.js";
 
 export class Level1 extends Scene {
     game;
@@ -15,6 +17,7 @@ export class Level1 extends Scene {
     player2ID;
     remainingTime;
     background;
+    firstSign;
     constructor() {
 
         super({ width: 1280, height: 720 })
@@ -36,7 +39,7 @@ export class Level1 extends Scene {
        this.breakingWallImg = new MovableObject(1, Resources.Onewall.toSprite(), CollisionType.Fixed, 1005, -175);
         this.breakingWallFence = new MovableObject(1, Resources.Fence.toSprite(), CollisionType.Fixed, 1850, 200);
 
-        this.breakingWallRock = new MovableObject(1, Resources.Moverock.toSprite(), CollisionType.Fixed, -250, 950)
+        this.breakingWallRock = new MovableObject(1, Resources.Moverock.toSprite(), CollisionType.Fixed, -250, 950);
         //#endregion walls
 
         //#region boxes
@@ -53,8 +56,10 @@ export class Level1 extends Scene {
         this.nextLevel = new MovableObject(1, Resources.Ending.toSprite(), CollisionType.Passive, -1050, 1050)
         this.moveStone = new MovableObject(1, Resources.Stone.toSprite(), CollisionType.Active, 1000, 550);
         //#endregion objects
-
-
+        this.firstPigeon = new PigeonLabels();
+        this.firstSign = new Secret_sign(this, -900, -400, this.firstPigeon.pigeonLabel1);
+        this.firstSign2 = new Secret_sign(this, 2000, -500, this.firstPigeon.pigeonLabel2);
+        this.firstSign3 = new Secret_sign(this, 2300, 1300, this.firstPigeon.pigeonLabel3);
 
 
 
@@ -87,7 +92,7 @@ export class Level1 extends Scene {
         console.log(ctx.previousScene)
         this.player1ID = ctx.previousScene.player1ID
         this.player2ID = ctx.previousScene.player2ID
-        this.player = new player(this, 1, -700, -75, this.player1ID, 0, 1,);
+        this.player = new player(this, 1, -700, 75, this.player1ID, 0, 1,);
         this.player2 = new player(this,2, -700, -225, this.player2ID, 0, 0);
         this.startGame()
     }
@@ -128,7 +133,10 @@ export class Level1 extends Scene {
         this.add(this.breakingWallImg);
         this.add(this.breakingWallFence);
         this.add(this.breakingWallRock);
-        console.log(this.player2)
+        this.add(this.firstSign);
+        this.add(this.firstSign2);
+        this.add(this.firstSign3);
+
     }
     /*
     loadEverything() {

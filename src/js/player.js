@@ -66,6 +66,7 @@ export class player extends Actor {
         this.selectedP2 = 0
         this.hasCamera = hasCamera ?? 0
         this.lastFrame = 0
+        this.z = 20;
     }
     onInitialize(engine){
         this.game = engine
@@ -81,6 +82,7 @@ export class player extends Actor {
         this.vel.y = 0
     }
     onPreUpdate(engine) {
+
         this.rotation = 0;
         this.graphics.use(this.spriteSheetSWalk.sprites[0])
         let xspeed = 0
@@ -120,15 +122,19 @@ export class player extends Actor {
              case 2:
                 if (kb.isHeld(Input.Keys.I) || kb.isHeld(Input.Keys.Up)  || controller.at(1).getAxes(Input.Axes.LeftStickY) < -0.5) {
                     yspeed = -300
+                    this.graphics.use(this.runAnimF)
                 }
                 if (kb.isHeld(Input.Keys.K) || kb.isHeld(Input.Keys.Down)  || controller.at(1).getAxes(Input.Axes.LeftStickY) > 0.5) {
                     yspeed = 300
+                    this.graphics.use(this.runAnimF).flipVertical = false
                 }
                 if (kb.isHeld(Input.Keys.J) || kb.isHeld(Input.Keys.Left) || controller.at(1).getAxes(Input.Axes.LeftStickX) < -0.5) {
                     xspeed = -300
+                    this.graphics.use(this.runAnim).flipHorizontal = true
                 }
                 if (kb.isHeld(Input.Keys.L) || kb.isHeld(Input.Keys.Right) || controller.at(1).getAxes(Input.Axes.LeftStickX) > 0.5) {
                     xspeed = 300
+                    this.graphics.use(this.runAnim).flipHorizontal = false
                 }
                  //interaction
                  if (kb.wasPressed(Input.Keys.U)) {
