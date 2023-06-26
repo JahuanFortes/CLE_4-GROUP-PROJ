@@ -35,7 +35,7 @@ export class MovableObject extends Actor {
         // })
 
         this.body.collisionType = this.collision;
-
+        this.z = 21;
 
     }
 

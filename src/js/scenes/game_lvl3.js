@@ -50,7 +50,7 @@ export class Level3 extends Scene {
         super({ width: 1280, height: 720, })
         this.baller = new Baller(-245, 800, Resources.block.toSprite(), this);
         this.baller2 = new Baller(-545, 800, Resources.block.toSprite(), this);
-        this.ball = new MovableObject(7, Resources.Football.toSprite(), CollisionType.Active, -445, 400);
+        this.ball = new MovableObject(7, Resources.Football.toSprite(), CollisionType.Active, -430, 260);
 
         this.footWall1 = new Wall(-1015, -445, 165, -445);
         this.footWall2 = new Wall(-1020, 975, -1020, -445);
@@ -136,6 +136,7 @@ export class Level3 extends Scene {
         this.add(this.thirdSign);
         this.add(this.thirdSign2);
 
+        this.add(this.ball);
         this.game.currentScene.add(this.timer);
         this.timer.start();
 
@@ -162,7 +163,7 @@ export class Level3 extends Scene {
 
             this.player.pos = new Vector(-245, -200);
             this.player2.pos = new Vector(-545, -200);
-            this.ball.pos = new Vector(-445, 400);
+            this.ball.pos = new Vector(-430, 260);
             this.baller.pos = new Vector(-245, 800);
             this.baller2.pos = new Vector(-545, 800);
 
@@ -192,7 +193,7 @@ export class Level3 extends Scene {
 
             this.player.pos = new Vector(-245, -200);
             this.player2.pos = new Vector(-545, -200);
-            this.ball.pos = new Vector(-445, 400);
+            this.ball.pos = new Vector(-430, 260);
             this.baller.pos = new Vector(-245, 800);
             this.baller2.pos = new Vector(-545, 800);
             if (this.enemyScore === this.winScore) {
@@ -200,7 +201,7 @@ export class Level3 extends Scene {
                 this.enemyScore = 0;
                 this.player.pos = new Vector(-245, -200);
                 this.player2.pos = new Vector(-545, -200);
-                this.ball.pos = new Vector(-445, 400);
+                this.ball.pos = new Vector(-430, 260);
                 this.baller.pos = new Vector(-245, 800);
                 this.baller2.pos = new Vector(-545, 800);
                 this.add(this.lostLabel);
@@ -222,7 +223,7 @@ export class Level3 extends Scene {
         this.player2.pos = new Vector(-545, -200);
         this.add(this.baller);
         this.add(this.baller2);
-        this.add(this.ball);
+        this.ball.pos = new Vector(-445, 400);
         this.add(this.footWall1);
         this.add(this.footWall2);
         this.add(this.footWall3);

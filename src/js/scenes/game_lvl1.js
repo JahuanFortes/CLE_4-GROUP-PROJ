@@ -39,7 +39,7 @@ export class Level1 extends Scene {
        this.breakingWallImg = new MovableObject(1, Resources.Onewall.toSprite(), CollisionType.Fixed, 1005, -175);
         this.breakingWallFence = new MovableObject(1, Resources.Fence.toSprite(), CollisionType.Fixed, 1850, 200);
 
-        this.breakingWallRock = new MovableObject(1, Resources.Moverock.toSprite(), CollisionType.Fixed, -250, 950)
+        this.breakingWallRock = new MovableObject(1, Resources.Moverock.toSprite(), CollisionType.Fixed, -250, 950);
         //#endregion walls
 
         //#region boxes

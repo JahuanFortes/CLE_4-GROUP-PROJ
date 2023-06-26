@@ -57,7 +57,7 @@ export class Leaves extends Actor {
 
     onPreUpdate(engine) {
         if (this.standing && this.scene.player.interactTimer || this.standing && this.scene.player2.interactTimer) {
-
+            Resources.Pickupleaf.play();
             this.scene.leafPoints++
             this.kill();
             if (this.scene.leafPoints++) {

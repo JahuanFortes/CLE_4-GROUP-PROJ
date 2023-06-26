@@ -67,9 +67,14 @@ export class Secret_sign extends Actor {
         if (this.hasCollided === true) {
             if (this.standing && this.scene.player.interactTimer || this.standing && this.scene.player2.interactTimer) {
                 this.scene.add(this.labelLocation);
+
                 this.labelLocation.actions.moveTo(this.pos.x - 400, this.pos.y, 4000);
                 if (this.labelLocation.pos.x === this.pos.x - 400 && this.labelLocation.pos.y === this.pos.y) {
                     this.scene.add(this.pigeonType);
+                    Resources.Pigeonsound.play();
+                    this.scene.player.interactTimer = false;
+                    this.scene.player2.interactTimer = false;
+
                 }
 
             } else if (this.standing === false) {

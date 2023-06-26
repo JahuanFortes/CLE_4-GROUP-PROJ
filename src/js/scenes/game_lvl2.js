@@ -27,10 +27,11 @@ export class Level2 extends Scene {
     //#endregion buttons
 
     //#region walls
-    this.wall = new Wall(-5, 230, 215, 230);
-    this.wall2 = new Wall(-5, 310, 215, 310);
-    this.wall3 = new Wall(1810, 754, 2100, 754);
-    this.wall4 = new Wall(-672, 836, -672, 1180);
+
+    this.breakWall1 = new MovableObject(1, Resources.Level2Movewall.toSprite(), CollisionType.Fixed, 106, 337);
+    this.breakWall2 = new MovableObject(1, Resources.Level2Onewall.toSprite(), CollisionType.Fixed, 1930, 740);
+    this.breakWall3 = new MovableObject(1, Resources.Level2Twowall.toSprite(), CollisionType.Fixed, -695, 1010);
+
     //#endregion walls
 
     //#region boxes
@@ -52,13 +53,9 @@ export class Level2 extends Scene {
     this.secondSign2 = new Secret_sign(this, 2300, 100, this.firstPigeon.pigeonLabel5);
     this.secondSign3 = new Secret_sign(this, -700, -400, this.firstPigeon.pigeonLabel6);
     //#region not needed
-    this.movableObject = new MovableObject(
-      3,
-      Resources.Smallstone.toSprite(),
-      CollisionType.Active,
-      300,
-      100
-    );
+    this.tree = new MovableObject(7, Resources.Tree.toSprite(), CollisionType.PreventCollision, 455, 600);
+    this.ball = new MovableObject(7, Resources.Tennisball.toSprite(), CollisionType.Active, 455, 600);
+    this.movableObject = new MovableObject(3, Resources.Smallstone.toSprite(), CollisionType.Active, 300, 100);
     this.moveStone = new MovableObject(
       1,
       Resources.Stone.toSprite(),
@@ -127,10 +124,12 @@ export class Level2 extends Scene {
     //#endregion Buttons
 
     //#region Walls
-    this.add(this.wall);
-    this.add(this.wall2);
-    this.add(this.wall3);
-    this.add(this.wall4);
+
+    this.add(this.breakWall1);
+
+
+    this.add(this.breakWall2);
+    this.add(this.breakWall3);
     //#endregion Walls
 
     //#region Boxes
@@ -152,6 +151,8 @@ export class Level2 extends Scene {
     this.add(this.secondSign2);
     this.add(this.secondSign3);
 
+    this.add(this.ball);
+    this.add(this.tree);
     this.add(this.ending);
 
 
@@ -163,20 +164,19 @@ export class Level2 extends Scene {
     //#region Puzzles
     if (this.button3.openDoor && this.button4.openDoor) {
       Resources.Opendoor.play();
-      this.wall4.kill();
+      this.breakWall3.kill();
       this.button3.openDoor = false;
       this.button4.openDoor = false;
     }
 
     if (this.button1.openDoor) {
-      this.wall3.kill();
+      this.breakWall2.kill();
       this.button1.openDoor = false;
     }
 
     if (this.button2.openDoor) {
       Resources.Opendoor.play();
-      this.wall.kill();
-      this.wall2.kill();
+      this.breakWall1.kill();
       this.button2.openDoor = false;
     }
 
