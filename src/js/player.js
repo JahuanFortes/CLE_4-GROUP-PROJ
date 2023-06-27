@@ -53,7 +53,7 @@ export class player extends Actor {
         console.log(this.spriteSheetSWalk)
         this.runAnim = Animation.fromSpriteSheet(this.spriteSheetSWalk, range(0,3), 200)
         this.runAnimF = Animation.fromSpriteSheet(this.spriteSheetFWalk, range(0,3), 200)
-        this.pickupAnim = this.spriteSheetSWalk.sprites[4];
+        this.pickupAnim = this.spriteSheetFWalk.sprites[4];
         this.body.group = player.group;
         this.graphics.use(this.spriteSheetFWalk.sprites[1])
         this.pos = new Vector(x, y) 

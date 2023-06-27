@@ -38,6 +38,8 @@ import pigeonSound from "../sounds/pigeon.wav"
 import characterSheet from "../images/character1.png"
 import characterFWalkSheet from "../images/BASE_character F_walk sprite.png"
 import CharacterSWalkSheet from "../images/BASE_character S_walk sprite.png"
+import enemyOne from "../images/idle.png"
+import enemyTwo from "../images/idle2.png"
 
 const font = new FontFace("PressStart2P-Regular", `url(${fontFile})`);
 document.fonts.add(font);
@@ -79,6 +81,8 @@ const Resources = {
     Pigeonsound: new Sound(pigeonSound),
     CharacterSWalkSheet: new ImageSource(CharacterSWalkSheet),
     CharacterFWalkSheet: new ImageSource(characterFWalkSheet),
+    Enemy1WalkSheet: new ImageSource(enemyOne),
+    Enemy2WalkSheet: new ImageSource(enemyTwo),
     Logo: new ImageSource(logo),
     Start: new ImageSource(start),
 }
