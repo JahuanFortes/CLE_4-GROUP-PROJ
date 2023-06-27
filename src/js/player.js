@@ -172,7 +172,6 @@ export class player extends Actor {
         console.log(this.spriteSheetSWalk)
         this.runAnim = Animation.fromSpriteSheet(this.spriteSheetSWalk, range(0,3), 200)
         this.runAnimF = Animation.fromSpriteSheet(this.spriteSheetFWalk, range(0,3), 200)
-        this.pickupAnim = this.spriteSheetFWalk.sprites[4];
         this.body.group = player.group;
         this.graphics.use(this.spriteSheetSWalk1.sprites[0])
         this.pos = new Vector(x, y) 
@@ -186,21 +185,25 @@ export class player extends Actor {
                 this.runAnim = Animation.fromSpriteSheet(this.spriteSheetSWalk1, range(0,3), 200)
                 this.runAnimF = Animation.fromSpriteSheet(this.spriteSheetFWalk1, range(0,3), 200)
                 this.runAnimB = Animation.fromSpriteSheet(this.spriteSheetBWalk1, range (0,3), 200)
+                this.pickupAnim = this.spriteSheetFWalk1.sprites[4];
                 break;
-            case 2:
+            case 1:
                 this.runAnim = Animation.fromSpriteSheet(this.spriteSheetSWalk2, range(0,3), 200)
                 this.runAnimF = Animation.fromSpriteSheet(this.spriteSheetFWalk2, range(0,3), 200)
                 this.runAnimB = Animation.fromSpriteSheet(this.spriteSheetBWalk2, range (0,3), 200)
+                this.pickupAnim = this.spriteSheetFWalk2.sprites[4];
                 break;
-            case 3:
+            case 2:
                 this.runAnim = Animation.fromSpriteSheet(this.spriteSheetSWalk3, range(0,3), 200)
                 this.runAnimF = Animation.fromSpriteSheet(this.spriteSheetFWalk3, range(0,3), 200)
                 this.runAnimB = Animation.fromSpriteSheet(this.spriteSheetBWalk3, range (0,3), 200)
+                this.pickupAnim = this.spriteSheetFWalk3.sprites[4];
                 break;
-            case 4:
+            case 3:
                 this.runAnim = Animation.fromSpriteSheet(this.spriteSheetSWalk4, range(0,3), 200)
                 this.runAnimF = Animation.fromSpriteSheet(this.spriteSheetFWalk4, range(0,3), 200)
                 this.runAnimB = Animation.fromSpriteSheet(this.spriteSheetBWalk4, range (0,3), 200)
+                this.pickupAnim = this.spriteSheetFWalk4.sprites[4];
                 break;
         }
         
@@ -225,9 +228,6 @@ export class player extends Actor {
         this.vel.y = 0
     }
     onPreUpdate(engine) {
-        if (this.interactTimer === false) {
-            this.graphics.use(this.spriteSheetFWalk.sprites[1]);
-        }
         this.rotation = 0;
         let xspeed = 0
         let yspeed = 0
@@ -240,20 +240,25 @@ export class player extends Actor {
 
 
         if(this.charselect == 0){
-         switch(this.charId){
-            case 0:
-                this.graphics.use(this.spriteSheetSWalk1.sprites[0])
-                break;
-            case 2:
-                this.graphics.use(this.spriteSheetSWalk2.sprites[0])
-                break;
-            case 3:
-                this.graphics.use(this.spriteSheetSWalk3.sprites[0])
-                break;
-            case 4:
-                this.graphics.use(this.spriteSheetSWalk4.sprites[0])
-                break;
-         }
+            if (this.interactTimer === false) {
+                switch(this.charId){
+                    case 0:
+                        this.graphics.use(this.spriteSheetSWalk1.sprites[0])
+                        break;
+                    case 1:
+                        this.graphics.use(this.spriteSheetSWalk2.sprites[0])
+                        break;
+                    case 2:
+                        this.graphics.use(this.spriteSheetSWalk3.sprites[0])
+                        break;
+                    case 3:
+                        this.graphics.use(this.spriteSheetSWalk4.sprites[0])
+                        break;
+                 }
+            }
+            
+         
+         
         //this.graphics.use(this.spriteSheetSWalk.sprites[0])
         switch(this.playerId){
             case 1:
@@ -311,42 +316,42 @@ export class player extends Actor {
 
 
         } else{
-
+            console.log(this.charId)
             switch(this.playerId){
             case 1:
                 if (this.selectedP1 != 1){
                     if (kb.wasPressed(Input.Keys.W) || kb.wasPressed(Input.Keys.Up)  || controller.at(0).getAxes(Input.Axes.LeftStickY) < -0.5) {
-                        if(this.charId >= 5){ this.charId = 0} 
+                        if(this.charId >= 3){ this.charId = -1} 
                         this.charId++
                         switch(this.charId){
-                            case 1: 
+                            case 0: 
                                 this.graphics.use(this.spriteSheetSWalk1.sprites[0])
                                 break;
-                            case 2:
+                            case 1:
                                 this.graphics.use(this.spriteSheetSWalk2.sprites[0])
                                 break;
-                            case 3:
+                            case 2:
                                 this.graphics.use(this.spriteSheetSWalk3.sprites[0])
                                 break;
-                            case 4:
+                            case 3:
                                 this.graphics.use(this.spriteSheetSWalk4.sprites[0])
                                 break;
                         } 
                     }
                     if (kb.wasPressed(Input.Keys.S) || kb.wasPressed(Input.Keys.Down)  || controller.at(0).getAxes(Input.Axes.LeftStickY) > 0.5) {
-                        if(this.charId == -1){ this.charId = 0} 
+                        if(this.charId == 0){ this.charId = 1} 
                         this.charId--
                         switch(this.charId){
-                            case 1: 
+                            case 0: 
                                 this.graphics.use(this.spriteSheetSWalk1.sprites[0])
                                 break;
-                            case 2:
+                            case 1:
                                 this.graphics.use(this.spriteSheetSWalk2.sprites[0])
                                 break;
-                            case 3:
+                            case 2:
                                 this.graphics.use(this.spriteSheetSWalk3.sprites[0])
                                 break;
-                            case 4:
+                            case 3:
                                 this.graphics.use(this.spriteSheetSWalk4.sprites[0])
                                 break;
                         }
@@ -360,37 +365,37 @@ export class player extends Actor {
             case 2:
                 if (this.selectedP2 != 1){
                     if (kb.wasPressed(Input.Keys.I) || kb.isHeld(Input.Keys.Up)  || controller.at(1).getAxes(Input.Axes.LeftStickY) < -0.5) {
-                        if(this.charId >= 5){ this.charId = 0} 
+                        if(this.charId >= 3){ this.charId = -1} 
                         this.charId++
                         switch(this.charId){
-                            case 1: 
+                            case 0: 
                                 this.graphics.use(this.spriteSheetSWalk1.sprites[0])
                                 break;
-                            case 2:
+                            case 1:
                                 this.graphics.use(this.spriteSheetSWalk2.sprites[0])
                                 break;
-                            case 3:
+                            case 2:
                                 this.graphics.use(this.spriteSheetSWalk3.sprites[0])
                                 break;
-                            case 4:
+                            case 3:
                                 this.graphics.use(this.spriteSheetSWalk4.sprites[0])
                                 break;
-                        }
+                        } 
                     }
                     if (kb.wasPressed(Input.Keys.K) || kb.wasPressed(Input.Keys.Down)  || controller.at(1).getAxes(Input.Axes.LeftStickY) > 0.5) {
-                        if(this.charId == -1){ this.charId = 0} 
+                        if(this.charId == 0){ this.charId = 1} 
                         this.charId--
                         switch(this.charId){
-                            case 1: 
+                            case 0: 
                                 this.graphics.use(this.spriteSheetSWalk1.sprites[0])
                                 break;
-                            case 2:
+                            case 1:
                                 this.graphics.use(this.spriteSheetSWalk2.sprites[0])
                                 break;
-                            case 3:
+                            case 2:
                                 this.graphics.use(this.spriteSheetSWalk3.sprites[0])
                                 break;
-                            case 4:
+                            case 3:
                                 this.graphics.use(this.spriteSheetSWalk4.sprites[0])
                                 break;
                         }
@@ -415,7 +420,7 @@ export class player extends Actor {
     this.interactTimer = true;
     this.graphics.use(this.pickupAnim);
     const timer = new Timer({
-      fcn: () => (this.interactTimer = false, this.graphics.use(this.spriteSheetSWalk.sprites[1])),
+      fcn: () => (this.interactTimer = false, this.graphics.use(this.spriteSheetSWalk1.sprites[1])),
       repeats: false,
       interval: 2000,
     });
