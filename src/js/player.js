@@ -36,7 +36,7 @@ export class player extends Actor {
             image: Resources.CharacterSWalkSheet,
             grid: {
                 rows: 1,
-                columns: 4,
+                columns: 5,
                 spriteWidth: 55,
                 spriteHeight: 100,
             }
@@ -45,7 +45,7 @@ export class player extends Actor {
             image: Resources.CharacterFWalkSheet,
             grid: {
                 rows: 1,
-                columns: 4,
+                columns: 5,
                 spriteWidth: 55,
                 spriteHeight: 100,
             }
@@ -53,8 +53,9 @@ export class player extends Actor {
         console.log(this.spriteSheetSWalk)
         this.runAnim = Animation.fromSpriteSheet(this.spriteSheetSWalk, range(0,3), 200)
         this.runAnimF = Animation.fromSpriteSheet(this.spriteSheetFWalk, range(0,3), 200)
+        this.pickupAnim = this.spriteSheetSWalk.sprites[4];
         this.body.group = player.group;
-        this.graphics.use(this.spriteSheetSWalk.sprites[0])
+        this.graphics.use(this.spriteSheetFWalk.sprites[1])
         this.pos = new Vector(x, y) 
         this.pointer.useGraphicsBounds = true
         //this.pos = new Vector(5, 100);
@@ -82,9 +83,10 @@ export class player extends Actor {
         this.vel.y = 0
     }
     onPreUpdate(engine) {
-
+        if (this.interactTimer === false) {
+            this.graphics.use(this.spriteSheetFWalk.sprites[1]);
+        }
         this.rotation = 0;
-        this.graphics.use(this.spriteSheetSWalk.sprites[0])
         let xspeed = 0
         let yspeed = 0
 
@@ -143,7 +145,7 @@ export class player extends Actor {
 
             }
         this.vel = new Vector(xspeed, yspeed)
-        
+
         // blijf binnen beeld
 
             this.pos.x = clamp(this.pos.x, -1050, Resources.realLevel.width * 1.84 - this.width/2);
@@ -151,18 +153,18 @@ export class player extends Actor {
 
 
         } else{
-            
+
             switch(this.playerId){
             case 1:
                 if (this.selectedP1 != 1){
                     if (kb.wasPressed(Input.Keys.W) || kb.wasPressed(Input.Keys.Up)  || controller.at(0).getAxes(Input.Axes.LeftStickY) < -0.5) {
-                        if(this.charId >= 2){ this.charId = -1} 
+                        if(this.charId >= 2){ this.charId = -1}
                         this.charId++
                         this.graphics.use(this.spriteSheet.sprites[this.charId])
 
                     }
                     if (kb.wasPressed(Input.Keys.S) || kb.wasPressed(Input.Keys.Down)  || controller.at(0).getAxes(Input.Axes.LeftStickY) > 0.5) {
-                        if(this.charId == 0){ this.charId = 1} 
+                        if(this.charId == 0){ this.charId = 1}
                         this.charId--
                         this.graphics.use(this.spriteSheet.sprites[this.charId])
                     }
@@ -175,12 +177,12 @@ export class player extends Actor {
             case 2:
                 if (this.selectedP2 != 1){
                     if (kb.wasPressed(Input.Keys.I) || kb.isHeld(Input.Keys.Up)  || controller.at(1).getAxes(Input.Axes.LeftStickY) < -0.5) {
-                        if(this.charId >= 2){ this.charId = -1} 
+                        if(this.charId >= 2){ this.charId = -1}
                         this.charId++
                         this.graphics.use(this.spriteSheet.sprites[this.charId])
                     }
                     if (kb.wasPressed(Input.Keys.K) || kb.wasPressed(Input.Keys.Down)  || controller.at(1).getAxes(Input.Axes.LeftStickY) > 0.5) {
-                        if(this.charId == 0){ this.charId = 1} 
+                        if(this.charId == 0){ this.charId = 1}
                         this.charId--
                         this.graphics.use(this.spriteSheet.sprites[this.charId])
                     }
@@ -202,9 +204,9 @@ export class player extends Actor {
   interact(event) {
     console.log(this.interactTimer);
     this.interactTimer = true;
-
+    this.graphics.use(this.pickupAnim);
     const timer = new Timer({
-      fcn: () => (this.interactTimer = false),
+      fcn: () => (this.interactTimer = false, this.graphics.use(this.spriteSheetSWalk.sprites[1])),
       repeats: false,
       interval: 2000,
     });

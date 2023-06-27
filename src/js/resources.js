@@ -1,4 +1,6 @@
-import { ImageSource, Sound, Resource, Loader } from 'excalibur'
+import {ImageSource, Sound, Resource, Loader, Color} from 'excalibur'
+import logo from "../images/logo.png"
+import start from "../images/startButton.png"
 import fishImage from '../images/fish.png'
 import signup from '../images/sign.png'
 import signdown from '../images/sign_down.png'
@@ -10,6 +12,7 @@ import level1 from "../images/BgLevel1.jpg"
 import level2 from "../images/BgLevel2New.jpg";
 import realLevel from "../images/BgLevel1New.jpg"
 import realLevel3 from "../images/BgLevel3New.jpg"
+import backgroundstart from "../images/BgLevel4New.jpg"
 import bgtest from "../images/bgtest.jpg"
 import testButton from "../images/test-button.png"
 import testButton2 from "../images/test-button-2.png"
@@ -53,6 +56,7 @@ const Resources = {
     Bgtest: new ImageSource(bgtest),
     realLevel: new ImageSource(realLevel),
     realLevel3: new ImageSource(realLevel3),
+    Backbroundstart: new ImageSource(backgroundstart),
     TestButton: new ImageSource(testButton),
     TestButton2: new ImageSource(testButton2),
     Stone: new ImageSource(stone),
@@ -74,12 +78,23 @@ const Resources = {
     Pickupleaf: new Sound(pickup),
     Pigeonsound: new Sound(pigeonSound),
     CharacterSWalkSheet: new ImageSource(CharacterSWalkSheet),
-    CharacterFWalkSheet: new ImageSource(characterFWalkSheet,)
+    CharacterFWalkSheet: new ImageSource(characterFWalkSheet),
+    Logo: new ImageSource(logo),
+    Start: new ImageSource(start),
 }
 // met deze for loop hoef je niet alles handmatig in de loader te zetten
 const resourceArray = [];
 for (const key in Resources) {
   resourceArray.push(Resources[key]);
 }
+
 const ResourceLoader = new Loader(resourceArray);
+
+ResourceLoader.logo = logo;
+ResourceLoader.logoWidth = 478;
+ResourceLoader.logoHeight = 241;
+ResourceLoader.backgroundColor = new Color(145, 190, 97, 1);
+
+
+
 export { Resources, ResourceLoader };
