@@ -38,7 +38,18 @@ import pigeonSound from "../sounds/pigeon.wav"
 import characterSheet from "../images/character1.png"
 import characterFWalkSheet from "../images/BASE_character F_walk sprite.png"
 import CharacterSWalkSheet from "../images/BASE_character S_walk sprite.png"
-
+import CharacterFWalkSheet1 from "../images/1_character F_walk sprite.png"
+import CharacterFWalkSheet2 from "../images/2_character F_walk sprite.png"
+import CharacterFWalkSheet3 from "../images/3_character F_walk sprite.png"
+import CharacterFWalkSheet4 from "../images/4_character F_walk sprite.png"
+import CharacterBWalkSheet1 from "../images/1_character B_walk sprite.png"
+import CharacterBWalkSheet2 from "../images/2_character B_walk sprite.png"
+import CharacterBWalkSheet3 from "../images/3_character B_walk sprite.png"
+import CharacterBWalkSheet4 from "../images/4_character B_walk sprite.png"
+import CharacterSWalkSheet1 from "../images/1_character S_walk sprite.png"
+import CharacterSWalkSheet2 from "../images/2_character S_walk sprite.png"
+import CharacterSWalkSheet3 from "../images/3_character S_walk sprite.png"
+import CharacterSWalkSheet4 from "../images/4_character S_walk sprite.png"
 const font = new FontFace("PressStart2P-Regular", `url(${fontFile})`);
 document.fonts.add(font);
 font.load();
@@ -81,6 +92,18 @@ const Resources = {
     CharacterFWalkSheet: new ImageSource(characterFWalkSheet),
     Logo: new ImageSource(logo),
     Start: new ImageSource(start),
+    CharacterSWalkSheet1: new ImageSource(CharacterSWalkSheet1),
+    CharacterSWalkSheet2: new ImageSource(CharacterSWalkSheet2),
+    CharacterSWalkSheet3: new ImageSource(CharacterSWalkSheet3),
+    CharacterSWalkSheet4: new ImageSource(CharacterSWalkSheet4),
+    CharacterFWalkSheet1: new ImageSource(CharacterFWalkSheet1),
+    CharacterFWalkSheet2: new ImageSource(CharacterFWalkSheet2),
+    CharacterFWalkSheet3: new ImageSource(CharacterFWalkSheet3),
+    CharacterFWalkSheet4: new ImageSource(CharacterFWalkSheet4),
+    CharacterBWalkSheet1: new ImageSource(CharacterBWalkSheet1),
+    CharacterBWalkSheet2: new ImageSource(CharacterBWalkSheet2),
+    CharacterBWalkSheet3: new ImageSource(CharacterBWalkSheet3),
+    CharacterBWalkSheet4: new ImageSource(CharacterBWalkSheet4)
 }
 // met deze for loop hoef je niet alles handmatig in de loader te zetten
 const resourceArray = [];
