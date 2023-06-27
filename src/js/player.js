@@ -237,6 +237,7 @@ export class player extends Actor {
 
         let kb = engine.input.keyboard
         let controller = engine.input.gamepads
+        console.log(controller)
         controller.on('connect', () => {
            console.log("test")
         })
@@ -324,7 +325,7 @@ export class player extends Actor {
             switch(this.playerId){
             case 1:
                 if (this.selectedP1 != 1){
-                    if (kb.wasPressed(Input.Keys.W) || kb.wasPressed(Input.Keys.Up)  || controller.at(0).getAxes(Input.Axes.LeftStickY) < -0.5) {
+                    if (kb.wasPressed(Input.Keys.W) || kb.wasPressed(Input.Keys.Up)  || controller.at(0).isButtonPressed(Input.Buttons.DpadUp)) {
                         if(this.charId >= 3){ this.charId = -1} 
                         this.charId++
                         switch(this.charId){
@@ -351,7 +352,7 @@ export class player extends Actor {
                         } 
                         
                     }
-                    if (kb.wasPressed(Input.Keys.S) || kb.wasPressed(Input.Keys.Down)  || controller.at(0).getAxes(Input.Axes.LeftStickY) > 0.5) {
+                    if (kb.wasPressed(Input.Keys.S) || kb.wasPressed(Input.Keys.Down)  || controller.at(0).isButtonPressed(Input.Buttons.DpadDown)) {
                         if(this.charId <= 0){ this.charId = 1} 
                         this.charId--
                         console.log(this.charId)
@@ -386,7 +387,7 @@ export class player extends Actor {
             break;
             case 2:
                 if (this.selectedP2 != 1){
-                    if (kb.wasPressed(Input.Keys.I) || kb.isHeld(Input.Keys.Up)  || controller.at(1).getAxes(Input.Axes.LeftStickY) < -0.5) {
+                    if (kb.wasPressed(Input.Keys.I) || kb.isHeld(Input.Keys.Up)  || controller.at(1).isButtonPressed(Input.Buttons.DpadUp)) {
                         if(this.charId >= 3){ this.charId = -1} 
                         this.charId++
                         switch(this.charId){
@@ -412,7 +413,7 @@ export class player extends Actor {
                                 break;
                         } 
                     }
-                    if (kb.wasPressed(Input.Keys.K) || kb.wasPressed(Input.Keys.Down)  || controller.at(1).getAxes(Input.Axes.LeftStickY) > 0.5) {
+                    if (kb.wasPressed(Input.Keys.K) || kb.wasPressed(Input.Keys.Down)  || controller.at(1).isButtonPressed(Input.Buttons.DpadDown)) {
                         if(this.charId == 0){ this.charId = 1} 
                         this.charId--
                         switch(this.charId){

@@ -31,7 +31,9 @@ export class CustomCamera extends Actor{
             this.game.currentScene.camera.zoom = 1.0
         }
         */
-       let zoom = 600 / distance
+       console.log(distance)
+       let zoom = 450 / distance
+       console.log(zoom)
        this.game.currentScene.camera.zoom = clamp(zoom, 0.2, 0.9)  
     }
 }
