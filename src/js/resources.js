@@ -50,6 +50,9 @@ import CharacterSWalkSheet1 from "../images/1_character S_walk sprite.png"
 import CharacterSWalkSheet2 from "../images/2_character S_walk sprite.png"
 import CharacterSWalkSheet3 from "../images/3_character S_walk sprite.png"
 import CharacterSWalkSheet4 from "../images/4_character S_walk sprite.png"
+import enemyOne from "../images/idle.png"
+import enemyTwo from "../images/idle2.png"
+
 const font = new FontFace("PressStart2P-Regular", `url(${fontFile})`);
 document.fonts.add(font);
 font.load();
@@ -90,6 +93,8 @@ const Resources = {
     Pigeonsound: new Sound(pigeonSound),
     CharacterSWalkSheet: new ImageSource(CharacterSWalkSheet),
     CharacterFWalkSheet: new ImageSource(characterFWalkSheet),
+    Enemy1WalkSheet: new ImageSource(enemyOne),
+    Enemy2WalkSheet: new ImageSource(enemyTwo),
     Logo: new ImageSource(logo),
     Start: new ImageSource(start),
     CharacterSWalkSheet1: new ImageSource(CharacterSWalkSheet1),
