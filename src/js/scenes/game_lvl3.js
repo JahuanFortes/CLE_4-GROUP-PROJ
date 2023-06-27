@@ -248,7 +248,7 @@ export class Level3 extends Scene {
 
 
         if (this.goLevel4.isColliding) {
-            this.game.startLevel4();
+            this.game.startEnding();
             this.goLevel4.isColliding = false;
         }
     }

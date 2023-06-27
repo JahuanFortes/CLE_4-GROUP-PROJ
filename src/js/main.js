@@ -34,7 +34,7 @@ export class Game extends Engine {
     this.addScene("Level3", new Level3());
     this.goToScene("titlescreen");
     this.addScene("endingscreen", new Endingscreen());
-    this.goToScene("endingscreen");
+    this.goToScene("titlescreen");
   }
   startLevel2() {
     // this.addScene("Level2", new Level2());
@@ -44,6 +44,10 @@ export class Game extends Engine {
   startLevel3() {
     this.goToScene("Level3");
     console.log("level3 has started!");
+  }
+  startEnding() {
+    this.goToScene("endingscreen");
+    console.log("Ending has started!");
   }
 }
 
