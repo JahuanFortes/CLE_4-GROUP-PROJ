@@ -28,9 +28,9 @@ export class character_select extends Scene {
     player1ID;
     player2ID;
     constructor() {
-        super({width: 1440, height: 900, displayMode: DisplayMode.FillScreen});
-        this.player = new player(this, 1, 500, 400, 0, 1, 0)
-        this.player2 = new player(this,2, 1000, 400, 0, 1, 0)
+        super({width: 1280, height: 720});
+        this.player = new player(this, 1, 600, 450, 0, 1, 0)
+        this.player2 = new player(this,2, 1100, 450, 0, 1, 0)
         this.userInterface = new userInterface(this, 0, 1)
         this.amount = 0
         this.player1ID = 0
@@ -39,6 +39,13 @@ export class character_select extends Scene {
     onInitialize(engine) {
         this.game = engine
         engine.input.gamepads.enabled = true;
+        let bg = new Actor({});
+        bg.graphics.use(Resources.Backbroundstart.toSprite());
+        bg.scale = new Vector(1.3, 1.3);
+        bg.pos = new Vector(775, 480);
+        bg.z = 0;
+
+        this.add(bg);
     }
     onActivate(ctx) {
         console.log("Scene has started");
@@ -67,7 +74,7 @@ export class character_select extends Scene {
         }
         if(this.amount === 2){
 
-            this.game.goToScene('Level2', this.player1ID, this.player2ID);
+            this.game.goToScene('Level1', this.player1ID, this.player2ID);
         }
      }
 }

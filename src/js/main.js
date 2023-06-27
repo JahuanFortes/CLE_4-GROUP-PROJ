@@ -23,7 +23,7 @@ export class Game extends Engine {
     this.addScene("testingground", new testingground());
     this.addScene("character_select", new character_select());
     this.addScene("Level3", new Level3())
-    this.goToScene("character_select");
+    this.goToScene("titlescreen");
   }
   startLevel2() {
     // this.addScene("Level2", new Level2());

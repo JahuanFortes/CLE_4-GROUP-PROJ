@@ -10,6 +10,7 @@ import level1 from "../images/BgLevel1.jpg"
 import level2 from "../images/BgLevel2New.jpg";
 import realLevel from "../images/BgLevel1New.jpg"
 import realLevel3 from "../images/BgLevel3New.jpg"
+import backgroundstart from "../images/BgLevel4New.jpg"
 import bgtest from "../images/bgtest.jpg"
 import testButton from "../images/test-button.png"
 import testButton2 from "../images/test-button-2.png"
@@ -53,6 +54,7 @@ const Resources = {
     Bgtest: new ImageSource(bgtest),
     realLevel: new ImageSource(realLevel),
     realLevel3: new ImageSource(realLevel3),
+    Backbroundstart: new ImageSource(backgroundstart),
     TestButton: new ImageSource(testButton),
     TestButton2: new ImageSource(testButton2),
     Stone: new ImageSource(stone),

@@ -1,4 +1,4 @@
-import {Actor, BaseAlign, Color, Font, FontStyle, Label, TextAlign, vec, Vector, Input} from "excalibur";
+import {Actor, BaseAlign, Color, Font, FontStyle, Label, TextAlign, vec, Vector, Input, FontUnit} from "excalibur";
 import { player } from "./player.js";
 import { Resources } from "./resources.js"
 import json from "../js/info.json"
@@ -98,34 +98,28 @@ export class userInterface extends Actor {
     }
     charSelect(){
         this.charSelect = new Label({
-            pos: new Vector(750, 100),
+            pos: new Vector(425, 200),
             text: json.charselect[0],
             font: new Font({
-                family: 'arial',
-                // style: FontStyle.Italic,
-                size: 40,
-                strokeColor: Color.Black,
-                lineWidth: 2,
-                bold: true,
+                family: "PressStart2P-Regular",
+                size: 30,
                 color: Color.White,
-                baseAlign: BaseAlign.Top,
-                textAlign: TextAlign.Center
-                })
+                unit: FontUnit.Px,
+                strokeColor: Color.Black,
+                lineWidth: 1,
+            }),
             })
         this.buttonSelect = new Label({
-                pos: new Vector(750, 600),
+                pos: new Vector(275, 700),
                 text: json.charselect[1],
-                font: new Font({
-                    family: 'arial',
-                    // style: FontStyle.Italic,
-                    size: 40,
-                    strokeColor: Color.Black,
-                    lineWidth: 2,
-                    bold: true,
-                    color: Color.White,
-                    baseAlign: BaseAlign.Top,
-                    textAlign: TextAlign.Center
-                    })
+            font: new Font({
+                family: "PressStart2P-Regular",
+                size: 35,
+                color: Color.White,
+                unit: FontUnit.Px,
+                strokeColor: Color.Black,
+                lineWidth: 1,
+            }),
             })
         this.scene.add(this.charSelect)
         this.scene.add(this.buttonSelect)
