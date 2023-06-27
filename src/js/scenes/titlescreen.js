@@ -29,20 +29,15 @@ export class TitleScreen extends Scene {
     bg.scale = new Vector(1.3, 1.3);
     bg.pos = new Vector(775, 480);
     bg.z = 0;
-    this.add(bg);
+
     //text field:
     // FontStyle("Press Start 2P");
 
-    let bigText1 = new Label({
-      text: "Puzzle 1943",
-      pos: new Vector(this.game.screen.drawWidth / 2.3, 200),
-      font: new Font({
-        family: "PressStart2P-Regular",
-        size: 20,
-        color: Color.White,
-        unit: FontUnit.Px,
-      }),
-    });
+
+    let logo = new Actor();
+    logo.graphics.use(Resources.Logo.toSprite());
+    logo.pos = new Vector(this.game.screen.drawWidth / 2, 250);
+
 
     let bigText2 = new Label({
       text: `Explore the park and reach new places!
@@ -70,7 +65,8 @@ export class TitleScreen extends Scene {
         lineWidth: 1,
       }),
     });
-    this.add(bigText1);
+    this.add(bg);
+    this.add(logo);
     this.add(bigText2);
     this.add(textField2);
     textField2.actions.blink(200, 200, 10);
