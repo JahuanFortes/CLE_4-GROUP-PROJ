@@ -246,16 +246,16 @@ export class player extends Actor {
             if (this.interactTimer === false) {
                 switch(this.charId){
                     case 0:
-                        this.graphics.use(this.spriteSheetSWalk1.sprites[0])
+                        this.graphics.use(this.spriteSheetFWalk1.sprites[0])
                         break;
                     case 1:
-                        this.graphics.use(this.spriteSheetSWalk2.sprites[0])
+                        this.graphics.use(this.spriteSheetFWalk2.sprites[0])
                         break;
                     case 2:
-                        this.graphics.use(this.spriteSheetSWalk3.sprites[0])
+                        this.graphics.use(this.spriteSheetFWalk3.sprites[0])
                         break;
                     case 3:
-                        this.graphics.use(this.spriteSheetSWalk4.sprites[0])
+                        this.graphics.use(this.spriteSheetFWalk4.sprites[0])
                         break;
                  }
             }
