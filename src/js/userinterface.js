@@ -96,7 +96,8 @@ export class userInterface extends Actor {
             this.scene.add(this.gameOverText)
             this.scene.add(this.restartText)
     }
-    charSelect(){
+    charSelect(charId){
+        this.charId = charId ?? 2
         this.charSelect = new Label({
             pos: new Vector(425, 200),
             text: json.charselect[0],
@@ -108,9 +109,9 @@ export class userInterface extends Actor {
                 strokeColor: Color.Black,
                 lineWidth: 1,
             }),
-            })
+        })
         this.buttonSelect = new Label({
-                pos: new Vector(275, 700),
+                pos: new Vector(275, 720),
                 text: json.charselect[1],
             font: new Font({
                 family: "PressStart2P-Regular",
@@ -120,9 +121,61 @@ export class userInterface extends Actor {
                 strokeColor: Color.Black,
                 lineWidth: 1,
             }),
-            })
+        })
+        this.char1SelectBox = new Label({
+            pos: new Vector(100, 300),
+            text: json.charselect[2],
+            font: new Font({
+                family: "PressStart2P-Regular",
+                size: 30,
+                color: Color.White,
+                unit: FontUnit.Px,
+                strokeColor: Color.Black,
+                lineWidth: 1,
+            }),
+        })
+        this.char1SelectBoxInfo = new Label({
+            pos: new Vector(100, 500),
+            text: json.charselect[3],
+            font: new Font({
+                family: "PressStart2P-Regular",
+                size: 30,
+                color: Color.White,
+                unit: FontUnit.Px,
+                strokeColor: Color.Black,
+                lineWidth: 1,
+            }),
+        })
+        this.char2SelectBox = new Label({
+            pos: new Vector(1100, 300),
+            text: json.charselect[2],
+            font: new Font({
+                family: "PressStart2P-Regular",
+                size: 30,
+                color: Color.White,
+                unit: FontUnit.Px,
+                strokeColor: Color.Black,
+                lineWidth: 1,
+            }),
+        })
+        this.char2SelectBoxInfo = new Label({
+            pos: new Vector(1100, 500),
+            text: json.charselect[3],
+            font: new Font({
+                family: "PressStart2P-Regular",
+                size: 30,
+                color: Color.White,
+                unit: FontUnit.Px,
+                strokeColor: Color.Black,
+                lineWidth: 1,
+            }),
+        })
         this.scene.add(this.charSelect)
         this.scene.add(this.buttonSelect)
+        this.scene.add(this.char1SelectBox)
+        this.scene.add(this.char1SelectBoxInfo)
+        this.scene.add(this.char2SelectBox)
+        this.scene.add(this.char2SelectBoxInfo)
         this.buttonSelect.actions.blink(300, 150, 100)
     }
     explanation(){

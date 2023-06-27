@@ -29,9 +29,9 @@ export class character_select extends Scene {
     player2ID;
     constructor() {
         super({width: 1280, height: 720});
-        this.player = new player(this, 1, 600, 450, 0, 1, 0)
-        this.player2 = new player(this,2, 1100, 450, 0, 1, 0)
         this.userInterface = new userInterface(this, 0, 1)
+        this.player = new player(this, 1, 500, 450, 0, 1, 0, this.userInterface)
+        this.player2 = new player(this,2, 900, 450, 0, 1, 0, this.userInterface)
         this.amount = 0
         this.player1ID = 0
         this.player2ID = 0

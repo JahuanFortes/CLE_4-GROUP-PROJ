@@ -1,6 +1,7 @@
 import {Actor, Input, Random, Vector, clamp, Timer, CollisionType, CollisionGroupManager, Delay, GamepadConnectEvent,SpriteSheet, CollisionGroup, range, Animation} from "excalibur"
 import { Resources } from "./resources"
 import { CustomCamera } from "./camera";
+import json from "../js/info.json"
 export class player extends Actor {
     game;
     scene;
@@ -21,8 +22,9 @@ export class player extends Actor {
     hasCamera
     player2
     lastFrame
+    userInterface
     static group = CollisionGroupManager.create('player');
-    constructor(scene, playerId,x, y, charId, charselect, hasCamera){
+    constructor(scene, playerId,x, y, charId, charselect, hasCamera, userInterface){
 
         super({width:100, height:100, collisionType:CollisionType.Active})
         //Create all spritesheets for all the characters
@@ -180,6 +182,7 @@ export class player extends Actor {
         this.scene = scene;
         this.playerId = playerId;
         this.charId = charId ?? 0
+        this.userInterface = userInterface;
         switch(this.charId){
             case 0:
                 this.runAnim = Animation.fromSpriteSheet(this.spriteSheetSWalk1, range(0,3), 200)
@@ -266,6 +269,7 @@ export class player extends Actor {
                     yspeed = -300
                     this.graphics.use(this.runAnimF)
                     this.graphics.use(this.runAnimB)
+                    
                 }
                 if (kb.isHeld(Input.Keys.S) || kb.isHeld(Input.Keys.Down)  || controller.at(0).getAxes(Input.Axes.LeftStickY) > 0.5) {
                     yspeed = 300
@@ -316,7 +320,7 @@ export class player extends Actor {
 
 
         } else{
-            console.log(this.charId)
+            //console.log(this.charId)
             switch(this.playerId){
             case 1:
                 if (this.selectedP1 != 1){
@@ -326,33 +330,51 @@ export class player extends Actor {
                         switch(this.charId){
                             case 0: 
                                 this.graphics.use(this.spriteSheetSWalk1.sprites[0])
+                                this.userInterface.char1SelectBox.text = json.charselect[2]
+                                this.userInterface.char1SelectBoxInfo.text = json.charselect[3]
                                 break;
                             case 1:
                                 this.graphics.use(this.spriteSheetSWalk2.sprites[0])
+                                this.userInterface.char1SelectBox.text = json.charselect[4]
+                                this.userInterface.char1SelectBoxInfo.text = json.charselect[5]
                                 break;
                             case 2:
                                 this.graphics.use(this.spriteSheetSWalk3.sprites[0])
+                                this.userInterface.char1SelectBox.text = json.charselect[6]
+                                this.userInterface.char1SelectBoxInfo.text = json.charselect[7]
                                 break;
                             case 3:
                                 this.graphics.use(this.spriteSheetSWalk4.sprites[0])
+                                this.userInterface.char1SelectBox.text = json.charselect[8]
+                                this.userInterface.char1SelectBoxInfo.text = json.charselect[9]
                                 break;
                         } 
+                        
                     }
                     if (kb.wasPressed(Input.Keys.S) || kb.wasPressed(Input.Keys.Down)  || controller.at(0).getAxes(Input.Axes.LeftStickY) > 0.5) {
-                        if(this.charId == 0){ this.charId = 1} 
+                        if(this.charId <= 0){ this.charId = 1} 
                         this.charId--
+                        console.log(this.charId)
                         switch(this.charId){
                             case 0: 
                                 this.graphics.use(this.spriteSheetSWalk1.sprites[0])
+                                this.userInterface.char1SelectBox.text = json.charselect[2]
+                                this.userInterface.char1SelectBoxInfo.text = json.charselect[3]
                                 break;
                             case 1:
                                 this.graphics.use(this.spriteSheetSWalk2.sprites[0])
+                                this.userInterface.char1SelectBox.text = json.charselect[4]
+                                this.userInterface.char1SelectBoxInfo.text = json.charselect[5]
                                 break;
                             case 2:
                                 this.graphics.use(this.spriteSheetSWalk3.sprites[0])
+                                this.userInterface.char1SelectBox.text = json.charselect[6]
+                                this.userInterface.char1SelectBoxInfo.text = json.charselect[7]
                                 break;
                             case 3:
                                 this.graphics.use(this.spriteSheetSWalk4.sprites[0])
+                                this.userInterface.char1SelectBox.text = json.charselect[8]
+                                this.userInterface.char1SelectBoxInfo.text = json.charselect[9]
                                 break;
                         }
                     }
@@ -370,15 +392,23 @@ export class player extends Actor {
                         switch(this.charId){
                             case 0: 
                                 this.graphics.use(this.spriteSheetSWalk1.sprites[0])
+                                this.userInterface.char2SelectBox.text = json.charselect[2]
+                                this.userInterface.char2SelectBoxInfo.text = json.charselect[3]
                                 break;
                             case 1:
                                 this.graphics.use(this.spriteSheetSWalk2.sprites[0])
+                                this.userInterface.char2SelectBox.text = json.charselect[4]
+                                this.userInterface.char2SelectBoxInfo.text = json.charselect[5]
                                 break;
                             case 2:
                                 this.graphics.use(this.spriteSheetSWalk3.sprites[0])
+                                this.userInterface.char2SelectBox.text = json.charselect[6]
+                                this.userInterface.char2SelectBoxInfo.text = json.charselect[7]
                                 break;
                             case 3:
                                 this.graphics.use(this.spriteSheetSWalk4.sprites[0])
+                                this.userInterface.char2SelectBox.text = json.charselect[8]
+                                this.userInterface.char2SelectBoxInfo.text = json.charselect[9]
                                 break;
                         } 
                     }
@@ -388,15 +418,23 @@ export class player extends Actor {
                         switch(this.charId){
                             case 0: 
                                 this.graphics.use(this.spriteSheetSWalk1.sprites[0])
+                                this.userInterface.char2SelectBox.text = json.charselect[2]
+                                this.userInterface.char2SelectBoxInfo.text = json.charselect[3]
                                 break;
                             case 1:
                                 this.graphics.use(this.spriteSheetSWalk2.sprites[0])
+                                this.userInterface.char2SelectBox.text = json.charselect[4]
+                                this.userInterface.char2SelectBoxInfo.text = json.charselect[5]
                                 break;
                             case 2:
                                 this.graphics.use(this.spriteSheetSWalk3.sprites[0])
+                                this.userInterface.char2SelectBox.text = json.charselect[6]
+                                this.userInterface.char2SelectBoxInfo.text = json.charselect[7]
                                 break;
                             case 3:
                                 this.graphics.use(this.spriteSheetSWalk4.sprites[0])
+                                this.userInterface.char2SelectBox.text = json.charselect[8]
+                                this.userInterface.char2SelectBoxInfo.text = json.charselect[9]
                                 break;
                         }
                     }
