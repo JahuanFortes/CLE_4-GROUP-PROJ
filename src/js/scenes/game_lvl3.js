@@ -94,6 +94,12 @@ export class Level3 extends Scene {
             pos: new Vector(200, 190),
             font: this.gameFont.font2
         });
+
+        this.startExplain = new Label({
+            text: `Get rid of these leaves please!\n(interact)`,
+            pos: new Vector(2675, 800),
+            font: this.gameFont.font3
+        });
         this.wonLabel = new Label({
             text: `You won noobs, follow the path to the end`,
             pos: new Vector(-845, -300),
@@ -133,8 +139,8 @@ export class Level3 extends Scene {
         this.add(this.player);
         this.add(this.player2);
 
-        this.add(this.thirdSign);
         this.add(this.thirdSign2);
+        this.add(this.startExplain);
 
         this.add(this.ball);
         this.game.currentScene.add(this.timer);
@@ -180,6 +186,7 @@ export class Level3 extends Scene {
                 this.player2.pos = new Vector(-545, -200);
                 this.add(this.wonLabel);
                 this.add(this.goLevel4);
+                this.add(this.thirdSign);
             }
         }
 
