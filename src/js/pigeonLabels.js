@@ -37,10 +37,10 @@ And ask you politely\nto come back`,
             })
         })
         this.pigeonLabel3 = new Label( {
-            text: `WOWOWOOWOWOWO\nWOOWOWOWOWOOW\nWOOWOWOWOWOW
-WOWOWOWOWOWOW\nWOWOOWOWOWOW
-WWOWOWOOWOWOW\nWOOWOWOWOWOWO`,
-            pos: new Vector( 1800,  1200),
+            text: `These stones are\nlighter then feathers.\nTry to find your
+way out maybe even\nuse your strenght
+You are almost there.\nWork together!`,
+            pos: new Vector( 1700,  1200),
             z: 1000,
             font: new Font({
                 family: "PressStart2P-Regular",
@@ -52,10 +52,10 @@ WWOWOWOOWOWOW\nWOOWOWOWOWOWO`,
             })
         })
         this.pigeonLabel4 = new Label( {
-            text: `NONNONONONONONONON\nNONNONONONONONONON\nNONNONONONONONONON
-NONNONONONONONONON\nNONNONONONONONONON
-WNONNONONONONONONONW\nWOONONNONONONONONONON`,
-            pos: new Vector( 1400,  1100),
+            text: `Now that both of\nyou are here
+I believe that\nyou know the
+rest. But first\ni hid a tennisball\nfind it if\nyou can.2`,
+            pos: new Vector( 1425,  1075),
             z: 1000,
             font: new Font({
                 family: "PressStart2P-Regular",
@@ -67,10 +67,10 @@ WNONNONONONONONONONW\nWOONONNONONONONONONON`,
             })
         })
         this.pigeonLabel5 = new Label( {
-            text: `YESYESYESYESYESYES\nYESYESYESYESYESYEN\nNYESYESYESYESYESYEONONONONON
-YESYESYESYESYESYE\nNONYESYESYESYESYESYE
-YESYESYESYESYESYE\nWOYESYESYESYESYESYEON`,
-            pos: new Vector(1700 ,  0),
+            text: `I put your friend\naway try to\nhelp him get\nout of there!
+You need him to\nget to the end
+All these rooms\nhold your awnsers.`,
+            pos: new Vector(1725 ,  -25),
             z: 1000,
             font: new Font({
                 family: "PressStart2P-Regular",
@@ -82,10 +82,10 @@ YESYESYESYESYESYE\nWOYESYESYESYESYESYEON`,
             })
         })
         this.pigeonLabel6 = new Label( {
-            text: `Now both of you are hereS\n n ow both of you are hereS\nNNow both of you are hereS
-Now both of you are hereS\nNNow both of you are hereSE
-Now both of you are hereSE\nWNow both of you are hereS`,
-            pos: new Vector(-1300, -500),
+            text: `Did you guys\nknow i get alot\nof my food in
+this park. I live\nhere but sometimes
+the footballers get\ntoo much for me\nMaybe you will\neven meet one!`,
+            pos: new Vector(-1275, -550),
             z: 1000,
             font: new Font({
                 family: "PressStart2P-Regular",
@@ -97,10 +97,10 @@ Now both of you are hereSE\nWNow both of you are hereS`,
             })
         })
         this.pigeonLabel7 = new Label( {
-            text: `LVL 3 epxlain\nLVL 3 epxlainereS\nNNow bLVL 3 epxlain
-LVL 3 epxlainS\nNNoLVL 3 epxlain
-LVL 3 epxlainE\nWNLVL 3 epxlain`,
-            pos: new Vector(1550, -350),
+            text: `You did it,\nyou beat them.\nThank you!
+I'm sorry for\nkeeping you here
+you can leave now\nI just needed\nyou guys to\nunderstand my pain.`,
+            pos: new Vector(1525, -330),
             z: 1000,
             font: new Font({
                 family: "PressStart2P-Regular",
@@ -112,9 +112,10 @@ LVL 3 epxlainE\nWNLVL 3 epxlain`,
             })
         })
         this.pigeonLabel8 = new Label( {
-            text: `LVL 3 adnomd\nLVL 3 ep 3 adnomdreS\nNNow bLV 3 adnomd 3 adnomd
- 3 adnomdnE\n 3 adnomdpxlain`,
-            pos: new Vector(-1100, 1100),
+            text: `This field\nfor some reason,\nthere are always
+coming flying things\nfrom this place,
+it scares me\nmaybe i need to\nstart my villain\narc.`,
+            pos: new Vector(-1075, 1075),
             z: 1000,
             font: new Font({
                 family: "PressStart2P-Regular",
