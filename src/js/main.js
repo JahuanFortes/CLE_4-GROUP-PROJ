@@ -26,13 +26,15 @@ export class Game extends Engine {
   }
 
   startGame() {
+    console.log("playing audio");
+    console.log(this.bgMusic);
+
     this.addScene("titlescreen", new TitleScreen());
     this.addScene("Level1", new Level1());
     this.addScene("Level2", new Level2());
     this.addScene("testingground", new testingground());
     this.addScene("character_select", new character_select());
     this.addScene("Level3", new Level3());
-    this.goToScene("titlescreen");
     this.addScene("endingscreen", new Endingscreen());
     this.goToScene("titlescreen");
   }

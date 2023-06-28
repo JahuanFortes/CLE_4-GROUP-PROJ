@@ -1,13 +1,34 @@
-import { Actor, Engine, Vector, Label, Font, Color, Random, Input, CollisionType, CollisionGroup, BoundingBox, EdgeCollider, Scene, Timer, randomInRange, Physics, CollisionGroupManager} from "excalibur"
-import { Resources, ResourceLoader } from '../resources.js'
-import { player } from '../player.js'
+import {
+  Actor,
+  Engine,
+  Vector,
+  Label,
+  Font,
+  Color,
+  Random,
+  Input,
+  CollisionType,
+  CollisionGroup,
+  BoundingBox,
+  EdgeCollider,
+  Scene,
+  Timer,
+  randomInRange,
+  Physics,
+  CollisionGroupManager,
+} from "excalibur";
+import { Resources, ResourceLoader } from "../resources.js";
+import { player } from "../player.js";
 import { IngameButton } from "../ingameButton.js";
 import { Wall } from "../wall.js";
-import { Box } from "../box.js"
-import {MovableObject} from "../movableObject.js";
-import {Secret_sign} from "../secret_sign.js";
-import {PigeonLabels} from "../pigeonLabels.js";
+import { Box } from "../box.js";
+import { MovableObject } from "../movableObject.js";
+import { Secret_sign } from "../secret_sign.js";
+import { PigeonLabels } from "../pigeonLabels.js";
+import musicFile from "../../sounds/BG_music.mp3";
+
 export class Level2 extends Scene {
+  bgMusic;
   game;
   userInterface;
   character;
@@ -28,9 +49,27 @@ export class Level2 extends Scene {
 
     //#region walls
 
-    this.breakWall1 = new MovableObject(1, Resources.Level2Movewall.toSprite(), CollisionType.Fixed, 106, 337);
-    this.breakWall2 = new MovableObject(1, Resources.Level2Onewall.toSprite(), CollisionType.Fixed, 1930, 740);
-    this.breakWall3 = new MovableObject(1, Resources.Level2Twowall.toSprite(), CollisionType.Fixed, -695, 1010);
+    this.breakWall1 = new MovableObject(
+      1,
+      Resources.Level2Movewall.toSprite(),
+      CollisionType.Fixed,
+      106,
+      337
+    );
+    this.breakWall2 = new MovableObject(
+      1,
+      Resources.Level2Onewall.toSprite(),
+      CollisionType.Fixed,
+      1930,
+      740
+    );
+    this.breakWall3 = new MovableObject(
+      1,
+      Resources.Level2Twowall.toSprite(),
+      CollisionType.Fixed,
+      -695,
+      1010
+    );
 
     //#endregion walls
 
@@ -49,13 +88,46 @@ export class Level2 extends Scene {
     //#endregion boxes
 
     this.firstPigeon = new PigeonLabels();
-    this.secondSign = new Secret_sign(this, 2000, 1200, this.firstPigeon.pigeonLabel4);
-    this.secondSign2 = new Secret_sign(this, 2300, 100, this.firstPigeon.pigeonLabel5);
-    this.secondSign3 = new Secret_sign(this, -700, -400, this.firstPigeon.pigeonLabel6);
+    this.secondSign = new Secret_sign(
+      this,
+      2000,
+      1200,
+      this.firstPigeon.pigeonLabel4
+    );
+    this.secondSign2 = new Secret_sign(
+      this,
+      2300,
+      100,
+      this.firstPigeon.pigeonLabel5
+    );
+    this.secondSign3 = new Secret_sign(
+      this,
+      -700,
+      -400,
+      this.firstPigeon.pigeonLabel6
+    );
     //#region not needed
-    this.tree = new MovableObject(7, Resources.Tree.toSprite(), CollisionType.PreventCollision, 455, 600);
-    this.ball = new MovableObject(7, Resources.Tennisball.toSprite(), CollisionType.Active, 455, 600);
-    this.movableObject = new MovableObject(3, Resources.Smallstone.toSprite(), CollisionType.Active, 300, 100);
+    this.tree = new MovableObject(
+      7,
+      Resources.Tree.toSprite(),
+      CollisionType.PreventCollision,
+      455,
+      600
+    );
+    this.ball = new MovableObject(
+      7,
+      Resources.Tennisball.toSprite(),
+      CollisionType.Active,
+      455,
+      600
+    );
+    this.movableObject = new MovableObject(
+      3,
+      Resources.Smallstone.toSprite(),
+      CollisionType.Active,
+      300,
+      100
+    );
     this.moveStone = new MovableObject(
       1,
       Resources.Stone.toSprite(),
@@ -99,7 +171,6 @@ export class Level2 extends Scene {
     //adds players to scene and gives them the right id and location
     console.log("Level1 has started");
     console.log(ctx.previousScene);
-
     //#region Players
     this.player1ID = ctx.previousScene.player1ID;
     this.player2ID = ctx.previousScene.player2ID;
@@ -127,7 +198,6 @@ export class Level2 extends Scene {
 
     this.add(this.breakWall1);
 
-
     this.add(this.breakWall2);
     this.add(this.breakWall3);
     //#endregion Walls
@@ -154,8 +224,6 @@ export class Level2 extends Scene {
     this.add(this.ball);
     this.add(this.tree);
     this.add(this.ending);
-
-
   }
 
   onPreUpdate(game) {
