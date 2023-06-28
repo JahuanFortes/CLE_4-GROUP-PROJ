@@ -73,7 +73,7 @@ export class TitleScreen extends Scene {
   }
 
   onPreUpdate(engine) {
-    if (engine.input.keyboard.wasPressed(Input.Keys.Space)) {
+    if (engine.input.keyboard.wasPressed(Input.Keys.Space) || engine.input.gamepads.at(0).isButtonPressed(Input.Buttons.Start) || engine.input.gamepads.at(1).isButtonPressed(Input.Buttons.Start)) {
       this.game.goToScene("character_select");
     }
   }

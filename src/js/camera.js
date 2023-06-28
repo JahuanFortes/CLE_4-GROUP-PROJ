@@ -16,6 +16,7 @@ export class CustomCamera extends Actor{
     }
     onInitialize(engine) {
         this.game = engine
+        console.log(this.scene)
     }
     onPreUpdate(engine) {
         let distance = Vector.distance(this.player1.pos, this.scene.player2.pos)
@@ -31,9 +32,9 @@ export class CustomCamera extends Actor{
             this.game.currentScene.camera.zoom = 1.0
         }
         */
-       console.log(distance)
-       let zoom = 450 / distance
-       console.log(zoom)
+       //console.log(distance)
+       let zoom = 400 / distance
+       //console.log(zoom)
        this.game.currentScene.camera.zoom = clamp(zoom, 0.2, 0.9)  
     }
 }

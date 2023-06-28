@@ -7,6 +7,7 @@ export class player extends Actor {
     scene;
     playerId;
     interactTimer = false;
+    charSelectTimer = false;
     spriteSheet
     spriteSheet2
     spriteSheet3
@@ -225,6 +226,11 @@ export class player extends Actor {
             this.game.add(this.CustomCamera);
         }
         this.on('collisionend', () => this.stopPlayer());
+        let controller = engine.input.gamepads
+        console.log(controller)
+        controller.on('connect', () => {
+           console.log("test")
+        })
     }
     stopPlayer(){
         this.vel.x = 0
@@ -237,7 +243,7 @@ export class player extends Actor {
 
         let kb = engine.input.keyboard
         let controller = engine.input.gamepads
-        console.log(controller)
+        //console.log(controller)
         controller.on('connect', () => {
            console.log("test")
         })
@@ -266,49 +272,73 @@ export class player extends Actor {
         //this.graphics.use(this.spriteSheetSWalk.sprites[0])
         switch(this.playerId){
             case 1:
-                if (kb.isHeld(Input.Keys.W) || kb.isHeld(Input.Keys.Up)  || controller.at(0).getAxes(Input.Axes.LeftStickY) < -0.5) {
+                if (kb.isHeld(Input.Keys.W) || kb.isHeld(Input.Keys.Up)  || controller.at(0).getAxes(Input.Axes.LeftStickY) < -0.5 || controller.at(0).getButton(Input.Buttons.DpadUp)) {
                     yspeed = -300
                     this.graphics.use(this.runAnimF)
                     this.graphics.use(this.runAnimB)
                     
                 }
-                if (kb.isHeld(Input.Keys.S) || kb.isHeld(Input.Keys.Down)  || controller.at(0).getAxes(Input.Axes.LeftStickY) > 0.5) {
+                if (kb.isHeld(Input.Keys.S) || kb.isHeld(Input.Keys.Down)  || controller.at(0).getAxes(Input.Axes.LeftStickY) > 0.5 || controller.at(0).getButton(Input.Buttons.DpadDown)) {
                     yspeed = 300
                     this.graphics.use(this.runAnimF)
                 }
-                if (kb.isHeld(Input.Keys.A) || kb.isHeld(Input.Keys.Left) || controller.at(0).getAxes(Input.Axes.LeftStickX) < -0.5) {
+                if (kb.isHeld(Input.Keys.A) || kb.isHeld(Input.Keys.Left) || controller.at(0).getAxes(Input.Axes.LeftStickX) < -0.5 || controller.at(0).getButton(Input.Buttons.DpadLeft)) {
                     xspeed = -300
                     this.graphics.use(this.runAnim).flipHorizontal = true
                 }
-                if (kb.isHeld(Input.Keys.D) || kb.isHeld(Input.Keys.Right) || controller.at(0).getAxes(Input.Axes.LeftStickX) > 0.5) {
+                if (kb.isHeld(Input.Keys.D) || kb.isHeld(Input.Keys.Right) || controller.at(0).getAxes(Input.Axes.LeftStickX) > 0.5 || controller.at(0).getButton(Input.Buttons.DpadRight)) {
                     xspeed = 300
                     this.graphics.use(this.runAnim).flipHorizontal = false
                 }
                 //interaction
-                if (kb.wasPressed(Input.Keys.E)) {
+                if (kb.wasPressed(Input.Keys.E) || controller.at(0).isButtonPressed(Input.Buttons.Face2)) {
+                    if(this.charSelectTimer == false){
                     this.interact();
+                    this.charSelectTimer = true
+                        const Chartimer = new Timer({
+                            fcn: () => (this.charSelectTimer = false),
+                            repeats: false,
+                            interval: 2000,
+                          });
+                      
+                          this.game.currentScene.add(Chartimer);
+                          console.log(Chartimer)
+                          Chartimer.start();
+                    }
                 }
              break;
              case 2:
-                if (kb.isHeld(Input.Keys.I) || kb.isHeld(Input.Keys.Up)  || controller.at(1).getAxes(Input.Axes.LeftStickY) < -0.5) {
+                if (kb.isHeld(Input.Keys.I) || kb.isHeld(Input.Keys.Up)  || controller.at(1).getAxes(Input.Axes.LeftStickY) < -0.5 || controller.at(1).getButton(Input.Buttons.DpadUp)) {
                     yspeed = -300
                     this.graphics.use(this.runAnimB)
                 }
-                if (kb.isHeld(Input.Keys.K) || kb.isHeld(Input.Keys.Down)  || controller.at(1).getAxes(Input.Axes.LeftStickY) > 0.5) {
+                if (kb.isHeld(Input.Keys.K) || kb.isHeld(Input.Keys.Down)  || controller.at(1).getAxes(Input.Axes.LeftStickY) > 0.5 || controller.at(1).getButton(Input.Buttons.DpadDown)) {
                     yspeed = 300
                     this.graphics.use(this.runAnimF)
                 }
-                if (kb.isHeld(Input.Keys.J) || kb.isHeld(Input.Keys.Left) || controller.at(1).getAxes(Input.Axes.LeftStickX) < -0.5) {
+                if (kb.isHeld(Input.Keys.J) || kb.isHeld(Input.Keys.Left) || controller.at(1).getAxes(Input.Axes.LeftStickX) < -0.5 || controller.at(1).getButton(Input.Buttons.DpadLeft)) {
                     xspeed = -300
                     this.graphics.use(this.runAnim).flipHorizontal = true
                 }
-                if (kb.isHeld(Input.Keys.L) || kb.isHeld(Input.Keys.Right) || controller.at(1).getAxes(Input.Axes.LeftStickX) > 0.5) {
+                if (kb.isHeld(Input.Keys.L) || kb.isHeld(Input.Keys.Right) || controller.at(1).getAxes(Input.Axes.LeftStickX) > 0.5 || controller.at(1).getButton(Input.Buttons.DpadRight)) {
                     xspeed = 300
                     this.graphics.use(this.runAnim).flipHorizontal = false
                 }
                  //interaction
-                 if (kb.wasPressed(Input.Keys.U)) {
-                     this.interact();
+                 if (kb.wasPressed(Input.Keys.U) || controller.at(1).isButtonPressed(Input.Buttons.Face2)) {
+                    if(this.charSelectTimer == false){
+                        this.interact();
+                        this.charSelectTimer = true
+                            const Chartimer = new Timer({
+                                fcn: () => (this.charSelectTimer = false),
+                                repeats: false,
+                                interval: 2000,
+                              });
+                          
+                              this.game.currentScene.add(Chartimer);
+                              console.log(Chartimer)
+                              Chartimer.start();
+                        }
                  }
 
             }
@@ -325,123 +355,194 @@ export class player extends Actor {
             switch(this.playerId){
             case 1:
                 if (this.selectedP1 != 1){
-                    if (kb.wasPressed(Input.Keys.W) || kb.wasPressed(Input.Keys.Up)  || controller.at(0).isButtonPressed(Input.Buttons.DpadUp)) {
-                        if(this.charId >= 3){ this.charId = -1} 
-                        this.charId++
-                        switch(this.charId){
-                            case 0: 
-                                this.graphics.use(this.spriteSheetSWalk1.sprites[0])
-                                this.userInterface.char1SelectBox.text = json.charselect[2]
-                                this.userInterface.char1SelectBoxInfo.text = json.charselect[3]
-                                break;
-                            case 1:
-                                this.graphics.use(this.spriteSheetSWalk2.sprites[0])
-                                this.userInterface.char1SelectBox.text = json.charselect[4]
-                                this.userInterface.char1SelectBoxInfo.text = json.charselect[5]
-                                break;
-                            case 2:
-                                this.graphics.use(this.spriteSheetSWalk3.sprites[0])
-                                this.userInterface.char1SelectBox.text = json.charselect[6]
-                                this.userInterface.char1SelectBoxInfo.text = json.charselect[7]
-                                break;
-                            case 3:
-                                this.graphics.use(this.spriteSheetSWalk4.sprites[0])
-                                this.userInterface.char1SelectBox.text = json.charselect[8]
-                                this.userInterface.char1SelectBoxInfo.text = json.charselect[9]
-                                break;
-                        } 
-                        
+                    if (kb.wasPressed(Input.Keys.W) || kb.wasPressed(Input.Keys.Up)  || controller.at(0).getButton(Input.Buttons.DpadUp)) {
+                        if(this.charSelectTimer == false){
+                            if(this.charId >= 3){ this.charId = -1} 
+                            this.charId++
+                            switch(this.charId){
+                                case 0: 
+                                    this.graphics.use(this.spriteSheetSWalk1.sprites[0])
+                                    this.userInterface.char1SelectBox.text = json.charselect[2]
+                                    this.userInterface.char1SelectBoxInfo.text = json.charselect[3]
+                                    break;
+                                case 1:
+                                    this.graphics.use(this.spriteSheetSWalk2.sprites[0])
+                                    this.userInterface.char1SelectBox.text = json.charselect[4]
+                                    this.userInterface.char1SelectBoxInfo.text = json.charselect[5]
+                                    break;
+                                case 2:
+                                    this.graphics.use(this.spriteSheetSWalk3.sprites[0])
+                                    this.userInterface.char1SelectBox.text = json.charselect[6]
+                                    this.userInterface.char1SelectBoxInfo.text = json.charselect[7]
+                                    break;
+                                case 3:
+                                    this.graphics.use(this.spriteSheetSWalk4.sprites[0])
+                                    this.userInterface.char1SelectBox.text = json.charselect[8]
+                                    this.userInterface.char1SelectBoxInfo.text = json.charselect[9]
+                                    break;
+                            }
+                        this.charSelectTimer = true
+                        const Chartimer = new Timer({
+                            fcn: () => (this.charSelectTimer = false),
+                            repeats: false,
+                            interval: 500,
+                          });
+                      
+                          this.game.currentScene.add(Chartimer);
+                          console.log(Chartimer)
+                          Chartimer.start();
+                        }
                     }
                     if (kb.wasPressed(Input.Keys.S) || kb.wasPressed(Input.Keys.Down)  || controller.at(0).isButtonPressed(Input.Buttons.DpadDown)) {
-                        if(this.charId <= 0){ this.charId = 1} 
-                        this.charId--
-                        console.log(this.charId)
-                        switch(this.charId){
-                            case 0: 
-                                this.graphics.use(this.spriteSheetSWalk1.sprites[0])
-                                this.userInterface.char1SelectBox.text = json.charselect[2]
-                                this.userInterface.char1SelectBoxInfo.text = json.charselect[3]
-                                break;
-                            case 1:
-                                this.graphics.use(this.spriteSheetSWalk2.sprites[0])
-                                this.userInterface.char1SelectBox.text = json.charselect[4]
-                                this.userInterface.char1SelectBoxInfo.text = json.charselect[5]
-                                break;
-                            case 2:
-                                this.graphics.use(this.spriteSheetSWalk3.sprites[0])
-                                this.userInterface.char1SelectBox.text = json.charselect[6]
-                                this.userInterface.char1SelectBoxInfo.text = json.charselect[7]
-                                break;
-                            case 3:
-                                this.graphics.use(this.spriteSheetSWalk4.sprites[0])
-                                this.userInterface.char1SelectBox.text = json.charselect[8]
-                                this.userInterface.char1SelectBoxInfo.text = json.charselect[9]
-                                break;
+                        if(this.charSelectTimer == false){
+                            if(this.charId <= 0){ this.charId = 1} 
+                            this.charId--
+                            console.log(this.charId)
+                            switch(this.charId){
+                                case 0: 
+                                    this.graphics.use(this.spriteSheetSWalk1.sprites[0])
+                                    this.userInterface.char1SelectBox.text = json.charselect[2]
+                                    this.userInterface.char1SelectBoxInfo.text = json.charselect[3]
+                                    break;
+                                case 1:
+                                    this.graphics.use(this.spriteSheetSWalk2.sprites[0])
+                                    this.userInterface.char1SelectBox.text = json.charselect[4]
+                                    this.userInterface.char1SelectBoxInfo.text = json.charselect[5]
+                                    break;
+                                case 2:
+                                    this.graphics.use(this.spriteSheetSWalk3.sprites[0])
+                                    this.userInterface.char1SelectBox.text = json.charselect[6]
+                                    this.userInterface.char1SelectBoxInfo.text = json.charselect[7]
+                                    break;
+                                case 3:
+                                    this.graphics.use(this.spriteSheetSWalk4.sprites[0])
+                                    this.userInterface.char1SelectBox.text = json.charselect[8]
+                                    this.userInterface.char1SelectBoxInfo.text = json.charselect[9]
+                                    break;
+                            }
+                            this.charSelectTimer = true
+                            const Chartimer = new Timer({
+                            fcn: () => (this.charSelectTimer = false),
+                            repeats: false,
+                            interval: 500,
+                          });
+                      
+                          this.game.currentScene.add(Chartimer);
+                          console.log(Chartimer)
+                          Chartimer.start();
                         }
                     }
                 }
-                if(kb.wasPressed(Input.Keys.Enter)){
+                if(kb.wasPressed(Input.Keys.Enter) || controller.at(0).isButtonPressed(Input.Buttons.Face1)){
+                    if(this.charSelectTimer == false){
                     this.scene.charSelected(1,this.charId, 1)
                     this.selectedP1 = 1
+                    this.charSelectTimer = true
+                    const Chartimer = new Timer({
+                        fcn: () => (this.charSelectTimer = false),
+                        repeats: false,
+                        interval: 50000,
+                      });
+                  
+                      this.game.currentScene.add(Chartimer);
+                      console.log(Chartimer)
+                      Chartimer.start();
+                    }
                 }
             break;
             case 2:
                 if (this.selectedP2 != 1){
                     if (kb.wasPressed(Input.Keys.I) || kb.isHeld(Input.Keys.Up)  || controller.at(1).isButtonPressed(Input.Buttons.DpadUp)) {
-                        if(this.charId >= 3){ this.charId = -1} 
-                        this.charId++
-                        switch(this.charId){
-                            case 0: 
-                                this.graphics.use(this.spriteSheetSWalk1.sprites[0])
-                                this.userInterface.char2SelectBox.text = json.charselect[2]
-                                this.userInterface.char2SelectBoxInfo.text = json.charselect[3]
-                                break;
-                            case 1:
-                                this.graphics.use(this.spriteSheetSWalk2.sprites[0])
-                                this.userInterface.char2SelectBox.text = json.charselect[4]
-                                this.userInterface.char2SelectBoxInfo.text = json.charselect[5]
-                                break;
-                            case 2:
-                                this.graphics.use(this.spriteSheetSWalk3.sprites[0])
-                                this.userInterface.char2SelectBox.text = json.charselect[6]
-                                this.userInterface.char2SelectBoxInfo.text = json.charselect[7]
-                                break;
-                            case 3:
-                                this.graphics.use(this.spriteSheetSWalk4.sprites[0])
-                                this.userInterface.char2SelectBox.text = json.charselect[8]
-                                this.userInterface.char2SelectBoxInfo.text = json.charselect[9]
-                                break;
-                        } 
-                    }
-                    if (kb.wasPressed(Input.Keys.K) || kb.wasPressed(Input.Keys.Down)  || controller.at(1).isButtonPressed(Input.Buttons.DpadDown)) {
-                        if(this.charId == 0){ this.charId = 1} 
-                        this.charId--
-                        switch(this.charId){
-                            case 0: 
-                                this.graphics.use(this.spriteSheetSWalk1.sprites[0])
-                                this.userInterface.char2SelectBox.text = json.charselect[2]
-                                this.userInterface.char2SelectBoxInfo.text = json.charselect[3]
-                                break;
-                            case 1:
-                                this.graphics.use(this.spriteSheetSWalk2.sprites[0])
-                                this.userInterface.char2SelectBox.text = json.charselect[4]
-                                this.userInterface.char2SelectBoxInfo.text = json.charselect[5]
-                                break;
-                            case 2:
-                                this.graphics.use(this.spriteSheetSWalk3.sprites[0])
-                                this.userInterface.char2SelectBox.text = json.charselect[6]
-                                this.userInterface.char2SelectBoxInfo.text = json.charselect[7]
-                                break;
-                            case 3:
-                                this.graphics.use(this.spriteSheetSWalk4.sprites[0])
-                                this.userInterface.char2SelectBox.text = json.charselect[8]
-                                this.userInterface.char2SelectBoxInfo.text = json.charselect[9]
-                                break;
+                        if(this.charSelectTimer == false){
+                            if(this.charId >= 3){ this.charId = -1} 
+                            this.charId++
+                            switch(this.charId){
+                                case 0: 
+                                    this.graphics.use(this.spriteSheetSWalk1.sprites[0])
+                                    this.userInterface.char2SelectBox.text = json.charselect[2]
+                                    this.userInterface.char2SelectBoxInfo.text = json.charselect[3]
+                                    break;
+                                case 1:
+                                    this.graphics.use(this.spriteSheetSWalk2.sprites[0])
+                                    this.userInterface.char2SelectBox.text = json.charselect[4]
+                                    this.userInterface.char2SelectBoxInfo.text = json.charselect[5]
+                                    break;
+                                case 2:
+                                    this.graphics.use(this.spriteSheetSWalk3.sprites[0])
+                                    this.userInterface.char2SelectBox.text = json.charselect[6]
+                                    this.userInterface.char2SelectBoxInfo.text = json.charselect[7]
+                                    break;
+                                case 3:
+                                    this.graphics.use(this.spriteSheetSWalk4.sprites[0])
+                                    this.userInterface.char2SelectBox.text = json.charselect[8]
+                                    this.userInterface.char2SelectBoxInfo.text = json.charselect[9]
+                                    break;
+                            } 
+                        this.charSelectTimer = true
+                        const Chartimer = new Timer({
+                            fcn: () => (this.charSelectTimer = false),
+                            repeats: false,
+                            interval: 500,
+                          });
+                      
+                          this.game.currentScene.add(Chartimer);
+                          console.log(Chartimer)
+                          Chartimer.start();
                         }
                     }
-                    if(kb.wasPressed(Input.Keys.ShiftRight)){
+                    if (kb.wasPressed(Input.Keys.K) || kb.wasPressed(Input.Keys.Down)  || controller.at(1).isButtonPressed(Input.Buttons.DpadDown)) {
+                        if(this.charSelectTimer == false){
+                            if(this.charId == 0){ this.charId = 1} 
+                            this.charId--
+                            switch(this.charId){
+                                case 0: 
+                                    this.graphics.use(this.spriteSheetSWalk1.sprites[0])
+                                    this.userInterface.char2SelectBox.text = json.charselect[2]
+                                    this.userInterface.char2SelectBoxInfo.text = json.charselect[3]
+                                    break;
+                                case 1:
+                                    this.graphics.use(this.spriteSheetSWalk2.sprites[0])
+                                    this.userInterface.char2SelectBox.text = json.charselect[4]
+                                    this.userInterface.char2SelectBoxInfo.text = json.charselect[5]
+                                    break;
+                                case 2:
+                                    this.graphics.use(this.spriteSheetSWalk3.sprites[0])
+                                    this.userInterface.char2SelectBox.text = json.charselect[6]
+                                    this.userInterface.char2SelectBoxInfo.text = json.charselect[7]
+                                    break;
+                                case 3:
+                                    this.graphics.use(this.spriteSheetSWalk4.sprites[0])
+                                    this.userInterface.char2SelectBox.text = json.charselect[8]
+                                    this.userInterface.char2SelectBoxInfo.text = json.charselect[9]
+                                    break;
+                            }
+                            this.charSelectTimer = true
+                            const Chartimer = new Timer({
+                                fcn: () => (this.charSelectTimer = false),
+                                repeats: false,
+                                interval: 500,
+                              });
+                          
+                              this.game.currentScene.add(Chartimer);
+                              console.log(Chartimer)
+                              Chartimer.start();
+                        }
+                    }
+                    if(kb.wasPressed(Input.Keys.ShiftRight) || controller.at(1).isButtonPressed(Input.Buttons.Face1)){
+                        if(this.charSelectTimer == false){
                         this.scene.charSelected(2,this.charId, 1)
                         this.selectedP2 = 1
+                        this.charSelectTimer = true
+                        const Chartimer = new Timer({
+                            fcn: () => (this.charSelectTimer = false),
+                            repeats: false,
+                            interval: 50000,
+                          });
+                      
+                          this.game.currentScene.add(Chartimer);
+                          console.log(Chartimer)
+                          Chartimer.start();
+                        }
                     }
                 }
             }
