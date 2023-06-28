@@ -99,7 +99,7 @@ export class userInterface extends Actor {
     charSelect(charId){
         this.charId = charId ?? 2
         this.charSelect = new Label({
-            pos: new Vector(425, 200),
+            pos: new Vector(400, 200),
             text: json.charselect[0],
             font: new Font({
                 family: "PressStart2P-Regular",
@@ -111,7 +111,7 @@ export class userInterface extends Actor {
             }),
         })
         this.buttonSelect = new Label({
-                pos: new Vector(275, 720),
+                pos: new Vector(150, 750),
                 text: json.charselect[1],
             font: new Font({
                 family: "PressStart2P-Regular",

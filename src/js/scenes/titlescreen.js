@@ -42,7 +42,7 @@ export class TitleScreen extends Scene {
     let bigText2 = new Label({
       text: `Explore the park and reach new places!
       Maybe even have a 'fight' :0`,
-      pos: new Vector(this.game.screen.drawWidth / 5.5, 500),
+      pos: new Vector(this.game.screen.drawWidth / 8, 500),
       font: new Font({
         family: "PressStart2P-Regular",
         size: 30,
